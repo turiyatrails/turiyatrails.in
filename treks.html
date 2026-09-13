@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Treks | Turiya Trails</title>
+<meta name="description" content="Three treks in the Kumaun Himalayas. Pandavkholi, Pinnath and Bharatkot. Small groups, slow walking, honest difficulty grades.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FCF9F5;
+    --green:#2a5439;
+    --charcoal:#1e1a16;
+    --gold:#b8872a;
+    --line:rgba(42,84,57,.18);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--cream);
+    color:var(--charcoal);
+    font-family:'Outfit',sans-serif;
+    font-weight:300;
+    line-height:1.7;
+    font-size:16.5px;
+  }
+  h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:500;color:var(--green);line-height:1.2}
+  a{color:inherit;text-decoration:none}
+
+  nav{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:26px 6vw;border-bottom:1px solid var(--line);
+  }
+  .brand{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--green);letter-spacing:.04em}
+  .nav-links{display:flex;gap:32px;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase}
+  .nav-links a{opacity:.75;transition:opacity .25s}
+  .nav-links a:hover,.nav-links a:focus-visible{opacity:1;color:var(--green)}
+  .nav-links a.active{opacity:1;color:var(--green);border-bottom:1px solid var(--gold);padding-bottom:2px}
+  @media(max-width:760px){.nav-links{display:none}}
+
+  header.hero{padding:14vh 6vw 8vh;max-width:900px}
+  .eyebrow{font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
+  header.hero h1{font-size:clamp(2.6rem,6vw,4.2rem);margin-bottom:26px}
+  header.hero p{max-width:560px;font-size:1.05rem;opacity:.85}
+
+  .note{
+    margin:0 6vw 4vh;max-width:560px;
+    border-left:2px solid var(--gold);padding:14px 22px;
+    font-size:.92rem;opacity:.85;
+  }
+
+  .trek{
+    border-top:1px solid var(--line);
+    padding:9vh 6vw;
+    display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:7vw;
+  }
+  @media(max-width:900px){.trek{grid-template-columns:1fr;gap:36px}}
+  .t-head .kind{font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+  .t-head h2{font-size:clamp(2rem,4vw,2.9rem);margin-bottom:8px}
+  .t-head .place{font-size:.9rem;letter-spacing:.05em;color:var(--green);margin-bottom:24px}
+  .t-head p.desc{max-width:480px;margin-bottom:30px}
+  .btn{
+    display:inline-block;background:var(--green);color:var(--cream);
+    padding:14px 34px;font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;
+    transition:background .25s;
+  }
+  .btn:hover,.btn:focus-visible{background:#1f4029}
+
+  .facts{border-left:1px solid var(--line);padding-left:28px}
+  .fact{padding-bottom:22px}
+  .fact:last-child{padding-bottom:0}
+  .fact .label{
+    font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:2px;
+  }
+  .fact .value{font-family:'Cormorant Garamond',serif;font-size:1.35rem;color:var(--green)}
+  .fact p.detail{font-size:.9rem;opacity:.8;max-width:420px;margin-top:4px}
+
+  footer{
+    border-top:1px solid var(--line);padding:60px 6vw;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;
+    font-size:.85rem;opacity:.8;
+  }
+  footer .f-brand{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--green);opacity:1}
+
+  .wa-float{
+    position:fixed;right:22px;bottom:22px;width:54px;height:54px;
+    background:var(--green);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 4px 18px rgba(30,26,22,.22);z-index:50;transition:transform .2s;
+  }
+  .wa-float:hover{transform:scale(1.06)}
+  .wa-float svg{width:26px;height:26px;fill:var(--cream)}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    .wa-float,.btn{transition:none}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="brand" href="index.html">Turiya Trails</a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="journeys.html">Journeys</a>
+    <a href="treks.html" class="active">Treks</a>
+    <a href="forest-walks.html">Forest Walks</a>
+    <a href="birdwatching.html">Birdwatching</a>
+    <a href="stargazing.html">Stargazing</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <p class="eyebrow">Walk to notice, not to conquer</p>
+  <h1>Three trails, graded honestly</h1>
+  <p>These are the treks we know and lead ourselves. Each one also lives inside a longer journey, but you can walk any of them on its own. Groups of 4 to 10, led by our BMC certified guide.</p>
+</header>
+
+<p class="note">Dates are released in small batches, not year round. Message us on WhatsApp and we will tell you what is opening next.</p>
+
+<!-- PANDAVKHOLI -->
+<section class="trek" id="pandavkholi">
+  <div class="t-head">
+    <p class="kind">Beginner</p>
+    <h2>Pandavkholi</h2>
+    <p class="place">Kukuchina, near Dwarahat</p>
+    <p class="desc">A gentle forest climb to a high meadow tied to the years the Pandavas spent in hiding. The trail passes near the Mahavatar Babaji cave, and the meadow at the top is the kind of place people stop talking without being asked.</p>
+    <a class="btn" href="https://wa.me/916396091261?text=Namaste%2C%20I%20would%20like%20to%20know%20the%20next%20batch%20for%20the%20Pandavkholi%20trek.">Ask about the next batch</a>
+  </div>
+  <div class="facts">
+    <div class="fact">
+      <p class="label">Trail</p>
+      <p class="value">3.5 km each way</p>
+      <p class="detail">A steady forest path from Kukuchina village. Comfortable for first time trekkers who can walk a few hours.</p>
+    </div>
+    <div class="fact">
+      <p class="label">Getting there</p>
+      <p class="value">About 1.5 hours from Ranikhet</p>
+      <p class="detail">Via Dwarahat. We arrange the drive.</p>
+    </div>
+    <div class="fact">
+      <p class="label">Part of</p>
+      <p class="value">Into the Quiet</p>
+      <p class="detail">This trail is the final day of our beginner journey.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PINNATH -->
+<section class="trek" id="pinnath">
+  <div class="t-head">
+    <p class="kind">Intermediate</p>
+    <h2>Pinnath</h2>
+    <p class="place">Near Kausani</p>
+    <p class="desc">A climb through oak and rhododendron to a temple ridge at 2,750 metres. The clouds usually arrive before you do, and on a clear day the high Himalaya stands in a line across the north.</p>
+    <a class="btn" href="https://wa.me/916396091261?text=Namaste%2C%20I%20would%20like%20to%20know%20the%20next%20batch%20for%20the%20Pinnath%20trek.">Ask about the next batch</a>
+  </div>
+  <div class="facts">
+    <div class="fact">
+      <p class="label">Trail</p>
+      <p class="value">5 km each way</p>
+      <p class="detail">A sustained climb. You should be comfortable walking uphill for a few hours at altitude.</p>
+    </div>
+    <div class="fact">
+      <p class="label">Altitude</p>
+      <p class="value">2,750 metres</p>
+      <p class="detail">High enough to feel it. We walk slowly on purpose.</p>
+    </div>
+    <div class="fact">
+      <p class="label">Part of</p>
+      <p class="value">Where the Clouds Rest</p>
+      <p class="detail">This trail is the final day of our intermediate journey, with a night near Kausani.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BHARATKOT -->
+<section class="trek" id="bharatkot">
+  <div class="t-head">
+    <p class="kind">Challenging</p>
+    <h2>Bharatkot</h2>
+    <p class="place">Almora district</p>
+    <p class="desc">The highest peak in its range, and the hardest walking we offer. The trek is usually taken over two days with a night in camp on the mountain. It asks for fitness and gives back a sky you will not forget.</p>
+    <a class="btn" href="https://wa.me/916396091261?text=Namaste%2C%20I%20would%20like%20to%20know%20the%20next%20batch%20for%20the%20Bharatkot%20trek.">Ask about the next batch</a>
+  </div>
+  <div class="facts">
+    <div class="fact">
+      <p class="label">Trail</p>
+      <p class="value">A full two day trek</p>
+      <p class="detail">Long distances and real climbs. For fit, experienced walkers. We will talk honestly with you about readiness before confirming.</p>
+    </div>
+    <div class="fact">
+      <p class="label">Camp</p>
+      <p class="value">One night on the mountain</p>
+      <p class="detail">Camping equipment is included. The night sky from camp is half the reason to come.</p>
+    </div>
+    <div class="fact">
+      <p class="label">Part of</p>
+      <p class="value">The Seeker's Ridge</p>
+      <p class="detail">This trek is the heart of our challenging journey.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <p class="f-brand">Turiya Trails</p>
+    <p>Oakakhi, Ranikhet, Kumaun Himalayas</p>
+  </div>
+  <div>
+    <p>turiyatrails.in</p>
+    <p><a href="https://wa.me/916396091261">WhatsApp: +91 63960 91261</a></p>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/916396091261?text=Namaste%2C%20I%20found%20you%20through%20the%20website%20and%20would%20like%20to%20know%20more." aria-label="Message us on WhatsApp">
+  <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.6.8 5 2.3 7L4 29l7.2-2.2c1.5.8 3.1 1.2 4.8 1.2 6.6 0 12-5.4 12-12S22.6 3 16 3zm0 21.8c-1.5 0-3-.4-4.3-1.2l-.3-.2-4.3 1.3 1.3-4.1-.2-.3c-.9-1.4-1.4-3-1.4-4.8 0-5.1 4.1-9.2 9.2-9.2s9.2 4.1 9.2 9.2-4.1 9.3-9.2 9.3zm5-6.9c-.3-.1-1.6-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.2-1.4-.8-.7-1.4-1.6-1.5-1.9-.2-.3 0-.4.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.6-.7 1.9-1.3.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3z"/></svg>
+</a>
+
+</body>
+</html>
