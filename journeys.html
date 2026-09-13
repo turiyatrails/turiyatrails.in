@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Journeys | Turiya Trails</title>
+<meta name="description" content="Slow, small-group journeys in the Kumaun Himalayas. Forest walks, spiritual circuits, dark skies and birdwatching. Groups of 4 to 10 only.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FCF9F5;
+    --green:#2a5439;
+    --charcoal:#1e1a16;
+    --gold:#b8872a;
+    --line:rgba(42,84,57,.18);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--cream);
+    color:var(--charcoal);
+    font-family:'Outfit',sans-serif;
+    font-weight:300;
+    line-height:1.7;
+    font-size:16.5px;
+  }
+  h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:300;color:var(--charcoal);line-height:1.2}
+  h1 em,h2 em,h3 em{font-style:italic;color:var(--green)}
+  a{color:inherit;text-decoration:none}
+
+  /* Nav */
+  nav{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:26px 6vw;border-bottom:1px solid var(--line);
+  }
+  .brand{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--green);letter-spacing:.04em}
+  .nav-links{display:flex;gap:36px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:400}
+  .nav-links a{opacity:.75;transition:opacity .25s}
+  .nav-links a:hover,.nav-links a:focus-visible{opacity:1;color:var(--green)}
+  .nav-links a.active{opacity:1;color:var(--green);border-bottom:1px solid var(--gold);padding-bottom:2px}
+  @media(max-width:760px){.nav-links{display:none}}
+
+  /* Hero */
+  header.hero{padding:14vh 6vw 10vh;max-width:900px}
+  .eyebrow{
+    font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--gold);margin-bottom:20px;
+  }
+  header.hero h1{font-size:clamp(2.6rem,6vw,4.2rem);margin-bottom:26px}
+  header.hero p{max-width:560px;font-size:1.05rem;opacity:.85}
+
+  /* Journey section */
+  .journey{
+    border-top:1px solid var(--line);
+    padding:9vh 6vw;
+    display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:7vw;
+  }
+  @media(max-width:900px){.journey{grid-template-columns:1fr;gap:40px}}
+  .j-head .kind{
+    font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;
+  }
+  .j-head h2{font-size:clamp(2rem,4vw,2.9rem);margin-bottom:8px}
+  .j-head .meta{
+    font-size:.85rem;letter-spacing:.06em;color:var(--green);margin-bottom:22px;
+  }
+  .j-head .desc{max-width:480px;margin-bottom:30px}
+  .price{
+    font-family:'Cormorant Garamond',serif;font-size:1.9rem;color:var(--green);margin-bottom:4px;
+  }
+  .price span{font-family:'Outfit',sans-serif;font-size:.8rem;letter-spacing:.05em;opacity:.7}
+  .season{font-size:.85rem;opacity:.7;margin-bottom:28px;max-width:440px}
+  .btn{
+    display:inline-block;background:var(--green);color:var(--cream);
+    padding:14px 34px;font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;
+    transition:background .25s;
+  }
+  .btn:hover,.btn:focus-visible{background:#1f4029}
+  .btn.ghost{
+    background:transparent;color:var(--green);border:1px solid var(--green);cursor:default;
+  }
+
+  /* Trail (day by day) */
+  .trail{border-left:1px solid var(--line);padding-left:28px}
+  .day{position:relative;padding-bottom:26px}
+  .day:last-child{padding-bottom:0}
+  .day::before{
+    content:"";position:absolute;left:-32.5px;top:9px;
+    width:8px;height:8px;border-radius:50%;
+    background:var(--cream);border:1.5px solid var(--gold);
+  }
+  .day h3{font-size:1.25rem;margin-bottom:4px}
+  .day p{font-size:.95rem;opacity:.85;max-width:440px}
+  .includes{
+    margin-top:34px;font-size:.85rem;opacity:.75;max-width:440px;
+    border-top:1px solid var(--line);padding-top:18px;
+  }
+  .includes strong{font-weight:500;color:var(--green)}
+
+  .variant{margin-top:26px;padding-top:22px;border-top:1px solid var(--line)}
+  .variant h3{font-size:1.2rem;margin-bottom:6px}
+  .variant p{font-size:.92rem;opacity:.85;max-width:460px;margin-bottom:10px}
+
+  .soon-tag{
+    display:inline-block;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+    border:1px solid var(--gold);color:var(--gold);padding:5px 14px;margin-bottom:18px;
+  }
+
+  /* Footer */
+  footer{
+    border-top:1px solid var(--line);padding:60px 6vw;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;
+    font-size:.85rem;opacity:.8;
+  }
+  footer .f-brand{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--green);opacity:1}
+
+  /* Floating WhatsApp */
+  .wa-float{
+    position:fixed;right:22px;bottom:22px;width:54px;height:54px;
+    background:var(--green);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 4px 18px rgba(30,26,22,.22);z-index:50;transition:transform .2s;
+  }
+  .wa-float:hover{transform:scale(1.06)}
+  .wa-float svg{width:26px;height:26px;fill:var(--cream)}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    .wa-float,.btn{transition:none}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="brand" href="index.html">Turiya Trails</a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="journeys.html" class="active">Journeys</a>
+    <a href="treks.html">Treks</a>
+    <a href="forest-walks.html">Forest Walks</a>
+    <a href="birdwatching.html">Birdwatching</a>
+    <a href="stargazing.html">Stargazing</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <p class="eyebrow">Silence, forest, stars</p>
+  <h1>Journeys that ask nothing of you <em>except attention</em></h1>
+  <p>Small groups of 4 to 10. Slow days in the Kumaun Himalayas, based at Oakakhi in Ranikhet. Every journey includes our forest walks, shared meals, and evenings that end under the sky. Walk to notice, not to conquer.</p>
+</header>
+
+<!-- INTO THE QUIET -->
+<section class="journey" id="into-the-quiet">
+  <div class="j-head">
+    <p class="kind">Slow Days · Beginner</p>
+    <h2>Into the Quiet</h2>
+    <p class="meta">2 nights, 3 days · Ranikhet and Pandavkholi</p>
+    <p class="desc">Three slow days in the forest above Ranikhet. You walk in the morning when the birds are loudest, sit through a sunset, and let a fire ask you a few honest questions at night. On the last day you walk a little higher.</p>
+    <p class="price">Rs 14,000 <span>per person</span></p>
+    <p class="season">Runs in small batches through the year, except deep monsoon. Dates are shared on WhatsApp.</p>
+    <a class="btn" href="https://wa.me/916396091261?text=Namaste%2C%20I%20would%20like%20to%20know%20the%20next%20dates%20for%20Into%20the%20Quiet.">Ask about dates</a>
+  </div>
+  <div class="trail">
+    <div class="day">
+      <h3>Day one, evening</h3>
+      <p>Arrive at Oakakhi. A sunset walk into Kalika forest, then a quiet dinner.</p>
+    </div>
+    <div class="day">
+      <h3>Day two</h3>
+      <p>Village trail and birdwatching before breakfast. A slow afternoon. In the evening, a village walk, then stargazing and stories with our astro guide. The night ends at the bonfire, with questions worth sitting with.</p>
+    </div>
+    <div class="day">
+      <h3>Day three</h3>
+      <p>Drive to Kukuchina via Dwarahat and walk the 3 km forest trail to the Pandavkholi meadow. Time at the top, an optional visit to the Mahavatar Babaji cave, and a gentle return.</p>
+    </div>
+    <p class="includes"><strong>Included</strong> · Two nights at Oakakhi, all meals, all guided walks, stargazing and storytelling, bonfire evening, the Pandavkholi trek with a certified guide, and local transport on the trek day.</p>
+  </div>
+</section>
+
+<!-- WHERE THE CLOUDS REST -->
+<section class="journey" id="where-the-clouds-rest">
+  <div class="j-head">
+    <p class="kind">Slow Days · Intermediate</p>
+    <h2>Where the Clouds Rest</h2>
+    <p class="meta">3 nights, 4 days · Ranikhet and Kausani</p>
+    <p class="desc">The slow days of Ranikhet, and then a night near Kausani for the Pinnath trail. A 5 km walk to a temple at 2,750 metres, where the clouds usually arrive before you do.</p>
+    <p class="price">Rs 18,000 <span>per person</span></p>
+    <p class="season">Best from autumn to early summer. Dates are shared on WhatsApp.</p>
+    <a class="btn" href="https://wa.me/916396091261?text=Namaste%2C%20I%20would%20like%20to%20know%20the%20next%20dates%20for%20Where%20the%20Clouds%20Rest.">Ask about dates</a>
+  </div>
+  <div class="trail">
+    <div class="day">
+      <h3>Days one and two</h3>
+      <p>The full rhythm of Oakakhi. Kalika forest at dusk, birds at dawn, the village trail, stargazing, and the bonfire.</p>
+    </div>
+    <div class="day">
+      <h3>Day three</h3>
+      <p>A slow drive to Kausani, about two and a half hours through the hills. Evening at leisure, facing the high Himalaya.</p>
+    </div>
+    <div class="day">
+      <h3>Day four</h3>
+      <p>The Pinnath trail. Five kilometres up to the temple ridge, unhurried, and back down for the journey home.</p>
+    </div>
+    <p class="includes"><strong>Included</strong> · Three nights of stay, all meals, all guided walks and sessions, the Pinnath trek with a certified guide, and transport between Ranikhet and Kausani.</p>
+  </div>
+</section>
+
+<!-- THE SEEKER'S RIDGE -->
+<section class="journey" id="the-seekers-ridge">
+  <div class="j-head">
+    <p class="kind">Slow Days · Challenging</p>
+    <h2>The Seeker's Ridge</h2>
+    <p class="meta">3 nights, 4 days · Ranikhet and Bharatkot</p>
+    <p class="desc">For those who want the silence to cost something. Bharatkot is the highest peak in its range near Almora, and the walk to it is long and honest. One night is spent in camp on the mountain.</p>
+    <p class="price">Rs 19,500 <span>per person</span></p>
+    <p class="season">For fit walkers. Batches run outside monsoon and deep winter. Dates are shared on WhatsApp.</p>
+    <a class="btn" href="https://wa.me/916396091261?text=Namaste%2C%20I%20would%20like%20to%20know%20the%20next%20dates%20for%20The%20Seeker%27s%20Ridge.">Ask about dates</a>
+  </div>
+  <div class="trail">
+    <div class="day">
+      <h3>Day one</h3>
+      <p>Arrive at Oakakhi. The sunset forest walk, dinner, and an early night. The briefing happens at the fire.</p>
+    </div>
+    <div class="day">
+      <h3>Days two and three</h3>
+      <p>The Bharatkot trek, taken over two days with a camp night on the mountain. Led by our BMC certified lead guide. The night in camp includes the sky, the fire, and very little else. That is the point.</p>
+    </div>
+    <div class="day">
+      <h3>Day four</h3>
+      <p>Descend, return to Oakakhi for a proper meal, and leave when you are ready.</p>
+    </div>
+    <p class="includes"><strong>Included</strong> · Three nights including one camp night, all meals, camping equipment, the full trek with a certified guide, and local transport.</p>
+  </div>
+</section>
+
+<!-- SUB EK -->
+<section class="journey" id="sub-ek">
+  <div class="j-head">
+    <p class="kind">Spiritual Circuit</p>
+    <h2>Sub Ek</h2>
+    <p class="meta">Kakrighat · Kainchi Dham · Bhumiadhar · Hanuman Garhi</p>
+    <p class="desc">Four small temples in the Kumaon hills, one river, and a name people keep returning to. We travel slowly between the places associated with Neem Karoli Baba, sit where his people sat, and keep the phones away. Nothing to buy, nothing to prove. Sub ek. All is one.</p>
+    <p class="price">Rs 9,500 <span>per person · two days</span></p>
+    <p class="price">Rs 14,500 <span>per person · three days</span></p>
+    <p class="season">Darshan at Kainchi is open through the year. We avoid the June bhandara crowds and plan quieter days.</p>
+    <a class="btn" href="https://wa.me/916396091261?text=Namaste%2C%20I%20would%20like%20to%20know%20more%20about%20the%20Sub%20Ek%20circuit.">Ask about dates</a>
+  </div>
+  <div class="trail">
+    <div class="day">
+      <h3>The two day circuit</h3>
+      <p>An early start from Ranikhet. First Kakrighat, where Vivekananda sat by the Kosi under a peepal tree. Midday darshan at Kainchi Dham, then Bhumiadhar. Overnight near Bhowali or Nainital. The second morning begins at Hanuman Garhi in Nainital, and the return is unhurried.</p>
+    </div>
+    <div class="day">
+      <h3>The three day circuit</h3>
+      <p>The same four places with room to breathe. Evening aarti at Kainchi, a morning by the river, time in Nainital, and no clock worth watching. Two nights of stay.</p>
+    </div>
+    <p class="includes"><strong>Included</strong> · Stays, all meals, all travel between the sites, and a guide who knows when to speak and when not to. Darshan at these temples is free, and we keep it that way.</p>
+  </div>
+</section>
+
+<!-- THREE SKIES -->
+<section class="journey" id="three-skies">
+  <div class="j-head">
+    <p class="kind">Astro Circuit</p>
+    <h2>Three Skies</h2>
+    <p class="meta">3 nights, 4 days · Ranikhet, Kausani, Kasar Devi</p>
+    <p class="desc">Three nights, three different skies. The light you see left its source before you were born. Our astro guide walks you through the constellations, the stories behind them, and the silence after the stories end.</p>
+    <p class="price">Rs 18,500 <span>per person</span></p>
+    <p class="season">Astro batches run only on new moon windows, October to March, when the Kumaun sky is at its darkest. An optional fourth night at Mukteshwar can be added for Rs 5,500.</p>
+    <a class="btn" href="https://wa.me/916396091261?text=Namaste%2C%20I%20would%20like%20to%20know%20the%20next%20new%20moon%20dates%20for%20Three%20Skies.">Ask about dates</a>
+  </div>
+  <div class="trail">
+    <div class="day">
+      <h3>Night one · Ranikhet</h3>
+      <p>Kalika forest at dusk, then the first sky. A full astro night at our home ground near Oakakhi, with the naked eye and a good story.</p>
+    </div>
+    <div class="day">
+      <h3>Night two · Kausani</h3>
+      <p>A drive north through the hills. Kausani sits high and clear, and its observatory skies are among the best in Kumaun. Telescope time, and the mountains at dawn.</p>
+    </div>
+    <div class="day">
+      <h3>Night three · Kasar Devi</h3>
+      <p>The ridge above Almora that has drawn seekers for a century. No telescope tonight. Just the raw sky, lying back on the grass, and the oldest light there is.</p>
+    </div>
+    <div class="day">
+      <h3>Optional night four · Mukteshwar</h3>
+      <p>At 2,285 metres with almost no light below, Mukteshwar is the deepest sky of the circuit. Exit the next morning via Bhimtal and Kathgodam.</p>
+    </div>
+    <p class="includes"><strong>Included</strong> · All stays, all meals, all transport between sites, every astro session with our guide, and observatory entry where used.</p>
+  </div>
+</section>
+
+<!-- FIRST LIGHT -->
+<section class="journey" id="first-light">
+  <div class="j-head">
+    <p class="kind">Birdwatching Circuit</p>
+    <h2>First Light</h2>
+    <p class="meta">3 nights, 4 days · Ranikhet, Sattal, Pangot</p>
+    <p class="desc">The classic Kumaun birding triangle, taken slowly. Over five hundred species live between these forests and lakes. You will not see them all. You will learn to see a few of them properly.</p>
+    <p class="price">Rs 19,500 <span>per person</span></p>
+    <p class="season">The season runs October to June. December and January bring peak activity, April and May bring breeding plumage. No departures in monsoon.</p>
+    <a class="btn" href="https://wa.me/916396091261?text=Namaste%2C%20I%20would%20like%20to%20know%20the%20next%20dates%20for%20First%20Light.">Ask about dates</a>
+  </div>
+  <div class="trail">
+    <div class="day">
+      <h3>Night one · Ranikhet</h3>
+      <p>Arrive by evening. At dawn, Kalika forest with our lead guide. The Great Barbet, the Khalij Pheasant, the Verditer Flycatcher. The home list.</p>
+    </div>
+    <div class="day">
+      <h3>Night two · Sattal</h3>
+      <p>Two hours to the seven lakes. An afternoon and a morning at the famous hides, where the birds come to you if you can hold still long enough.</p>
+    </div>
+    <div class="day">
+      <h3>Night three · Pangot</h3>
+      <p>Through Nainital, with stops at Kilbury on the way. Pangot's forests hold the three pheasants every birder comes for. An early night, because the morning matters.</p>
+    </div>
+    <div class="day">
+      <h3>Day four</h3>
+      <p>First light at Kilbury and Woodpecker Point. Then a short drive down to Kathgodam, and home.</p>
+    </div>
+    <p class="includes"><strong>Included</strong> · All stays, all meals, all transport, hide charges, and guiding throughout. Bring binoculars if you have them. We carry spares if you do not.</p>
+  </div>
+</section>
+
+<!-- THE LONG QUIET -->
+<section class="journey" id="the-long-quiet">
+  <div class="j-head">
+    <p class="kind">Spiritual Week</p>
+    <span class="soon-tag">Coming soon</span>
+    <h2>The Long Quiet</h2>
+    <p class="meta">5 nights, 6 days · Ranikhet to Kainchi, the long way</p>
+    <p class="desc">Five nights across the quiet places of Kumaun. Ranikhet, the Pandavkholi meadows, the oak forests of Sitlakhet, the Kasar Devi ridge, and finally the Kainchi valley. A week that moves slowly on purpose.</p>
+    <p class="price">Rs 39,000 <span>per person</span></p>
+    <p class="season">We are walking this route ourselves before we open it. If you would like to be told when the first batch opens, send us a message.</p>
+    <a class="btn" href="https://wa.me/916396091261?text=Namaste%2C%20please%20tell%20me%20when%20The%20Long%20Quiet%20opens%20for%20booking.">Tell me when it opens</a>
+  </div>
+  <div class="trail">
+    <div class="day">
+      <h3>Nights one and two</h3>
+      <p>Ranikhet and the Kalika forest, then Kukuchina for the Pandavkholi trail and the Mahavatar Babaji cave.</p>
+    </div>
+    <div class="day">
+      <h3>Night three</h3>
+      <p>Sitlakhet. The walk to the Syahi Devi temple through old oak forest, and a Himalayan sunset that asks for nothing.</p>
+    </div>
+    <div class="day">
+      <h3>Night four</h3>
+      <p>Kasar Devi. The ridge, the caves, and an evening of sitting still.</p>
+    </div>
+    <div class="day">
+      <h3>Night five</h3>
+      <p>The Kainchi valley. Kakrighat, darshan at Kainchi Dham, Bhumiadhar, and an exit the next morning through Nainital and Hanuman Garhi.</p>
+    </div>
+    <p class="includes"><strong>Included</strong> · Five nights across four places, all meals, all guiding, and every drive in between.</p>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <p class="f-brand">Turiya Trails</p>
+    <p>Oakakhi, Ranikhet, Kumaun Himalayas</p>
+  </div>
+  <div>
+    <p>turiyatrails.in</p>
+    <p><a href="https://wa.me/916396091261">WhatsApp: +91 63960 91261</a></p>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/916396091261?text=Namaste%2C%20I%20found%20you%20through%20the%20website%20and%20would%20like%20to%20know%20more." aria-label="Message us on WhatsApp">
+  <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.6.8 5 2.3 7L4 29l7.2-2.2c1.5.8 3.1 1.2 4.8 1.2 6.6 0 12-5.4 12-12S22.6 3 16 3zm0 21.8c-1.5 0-3-.4-4.3-1.2l-.3-.2-4.3 1.3 1.3-4.1-.2-.3c-.9-1.4-1.4-3-1.4-4.8 0-5.1 4.1-9.2 9.2-9.2s9.2 4.1 9.2 9.2-4.1 9.3-9.2 9.3zm5-6.9c-.3-.1-1.6-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.2-1.4-.8-.7-1.4-1.6-1.5-1.9-.2-.3 0-.4.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.6-.7 1.9-1.3.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3z"/></svg>
+</a>
+
+</body>
+</html>
