@@ -7,7 +7,7 @@ from html import escape
 from . import markdown
 from .data import (FAQ, FEATURED_JOURNEYS, JOURNEYS, PLACES, PRICE_NOTE, SESSION_TERMS, SESSIONS, SITE, TEAM, TREKS,
                    journey, rupees, trek, wa)
-from .templates import ORG_LD, ROOT, WA_ICON, breadcrumbs, media, page, url
+from .templates import ORG_LD, ROOT, WA_ICON, breadcrumbs, gallery, media, page, photo_sources, url
 
 E = escape
 
@@ -77,7 +77,7 @@ def page_hero(eyebrow, title, lede, scene, slot, crumbs=None, facts=None):
     if facts:
         facts_html = '<dl class="facts">' + "".join(f"<div><dt>{E(k)}</dt><dd>{E(v)}</dd></div>" for k, v in facts) + "</dl>"
     return f"""<section class="page-hero">
-  <div class="hero-media">{media(slot, scene, "", eager=True, sizes="100vw")}</div>
+  <div class="hero-media">{media(slot, scene, "", eager=True, sizes="(max-aspect-ratio: 1/1) 220vh, 100vw")}</div>
   <div class="wrap page-hero-inner">
     {crumb_html}
     <span class="eyebrow">{E(eyebrow)}</span>
@@ -176,7 +176,7 @@ def home():
 
     body = f"""
 <section class="hero">
-  <div class="hero-media">{media("home-hero", ("dawn", 7), "", eager=True, sizes="100vw")}</div>
+  <div class="hero-media">{media("home-hero", ("dawn", 7), "", eager=True, sizes="(max-aspect-ratio: 1/1) 220vh, 100vw")}</div>
   <div class="wrap hero-inner">
     <span class="eyebrow">Ranikhet · Kumaun Himalaya</span>
     <h1>Walk slowly. <em>Notice</em> everything.</h1>
@@ -406,6 +406,7 @@ def journey_page(j):
       <div class="detail-main">
         <section class="prose reveal">{intro}</section>
         <section class="reveal"><h2>Day by day</h2><ol class="itinerary">{itinerary}</ol></section>
+        {f'<section><h2>From the trail</h2>{gallery(j["gallery"], "Photographs from our own walks on this route.")}</section>' if j.get("gallery") else ""}
         {trek_html}
         <section class="cols-2 reveal">
           <div><h2>Who it suits</h2>{checklist(j['for'])}</div>
@@ -457,6 +458,7 @@ def journey_page(j):
     meta = {
         "path": f"journeys/{j['slug']}.html",
         "title": f"{j['name']}: {SEO_TITLES[j['slug']]} | Turiya Trails",
+        **({"image": photo_sources(j["photo"])["fallback"]} if photo_sources(j["photo"]) else {}),
         "description": f"{j['summary']} {duration(j).capitalize()} from Ranikhet, {price_label(j)} {PRICE_NOTE}.",
         "jsonld": [crumbs_ld, trip_ld],
     }
@@ -616,7 +618,13 @@ def birdwatching():
          ("Best season", "March to June for summer migrants and breeding plumage. October to February for winter species. Each season is a different forest."),
          ("Group size", "A maximum of six people. Smaller groups see more.")],
         "Birdwatching", ["first-light", "kalika-weekend", "into-the-quiet"],
-        extra='<p class="small muted" style="margin-top:1.5rem">Wild birds keep their own schedule. We never guarantee a particular sighting.</p>')
+        extra=('<div style="margin-top:clamp(3.5rem,6vw,5rem)"><span class="eyebrow">From our camera rolls</span><h3 class="h2" style="margin-bottom:2rem">Birds we have photographed in Kumaun</h3>'
+               + gallery([("bird-magpie", "A red-billed blue magpie perched on a post", "Red-billed blue magpie"),
+                          ("bird-verditer", "A verditer flycatcher on a wire", "Verditer flycatcher"),
+                          ("bird-whistling-thrush", "A blue whistling thrush on a rock", "Blue whistling thrush"),
+                          ("bird-kingfisher", "A white-throated kingfisher on a dead branch above a forested slope", "White-throated kingfisher"),
+                          ("bird-flameback", "A flameback woodpecker on a bare trunk", "Flameback woodpecker")])
+               + '</div><p class="small muted" style="margin-top:1.5rem">Wild birds keep their own schedule. We never guarantee a particular sighting.</p>'))
 
 
 def stargazing():
@@ -841,7 +849,7 @@ def about():
 def team():
     crumbs, crumbs_ld = breadcrumbs([("Home", ""), ("About", "about.html"), ("Guides", None)])
     people = "".join(f"""<article class="person reveal">
-  <div class="initial" aria-hidden="true">{E(p['initial'])}</div>
+  {media(p['photo'], ('mist', 40), f"{p['name']}, {p['role']}", cls="media--portrait", sizes="(min-width: 860px) 33vw, 100vw") if photo_sources(p.get('photo', '')) else f'<div class="initial" aria-hidden="true">{E(p["initial"])}</div>'}
   <h3>{E(p['name'])}</h3><span class="role">{E(p['role'])}</span>
   <p>{E(p['bio'])}</p>
   <ul class="chips">{''.join(f'<li>{E(s)}</li>' for s in p['skills'])}</ul>
@@ -851,7 +859,7 @@ def team():
 {plain_hero("The people behind Turiya Trails", "Grounded companions, not <em>entertainers</em>", "People trust people, not brochures. Here is who you will actually be walking, watching birds and sitting under the stars with.", crumbs)}
 <section class="section" style="padding-top:0">
   <div class="wrap">
-    <p class="muted small reveal" style="margin-bottom:3rem">No stock photographs here. Portraits of the team will appear once we have taken them properly.</p>
+    <p class="muted small reveal" style="margin-bottom:3rem">Real people, real photographs. No stock images on this page.</p>
     <div class="people">{people}</div>
   </div>
 </section>

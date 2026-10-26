@@ -114,6 +114,10 @@ JOURNEYS = [
         "included": ["Two nights at Oakakhi", "All meals", "All guided walks", "Stargazing and storytelling", "Bonfire evening", "The Pandavkholi trek with a certified guide", "Local transport on the trek day"],
         "excluded": ["Travel to Ranikhet and back", "Personal expenses", "Travel insurance"],
         "trek": "pandavkholi",
+        "gallery": [("pandavkholi-1", "The open meadow at Pandavkholi under a cloudy sky", ""),
+                    ("pandavkholi-2", "A silhouette against the sunset near Pandavkholi", ""),
+                    ("pandavkholi-3", "Dusk on the walk to Pandavkholi", ""),
+                    ("pandavkholi-4", "The sun setting over the ridges from Pandavkholi", "")],
     },
     {
         "slug": "where-the-clouds-rest",
@@ -172,6 +176,10 @@ JOURNEYS = [
         "included": ["Three nights, including one camp night", "All meals", "Camping equipment", "The full trek with a certified guide", "Local transport"],
         "excluded": ["Travel to Ranikhet and back", "Personal expenses", "Travel insurance"],
         "trek": "bharatkot",
+        "gallery": [("bharatkot-1", "Our camp on the Bharatkot summit in the morning", ""),
+                    ("bharatkot-2", "Snow peaks of the high Himalaya seen from Bharatkot", ""),
+                    ("bharatkot-3", "Tents on the ridge near Bharatkot", ""),
+                    ("bharatkot-4", "Walking up through oak forest on the way to Bharatkot", "")],
     },
     {
         "slug": "first-light",
@@ -297,6 +305,10 @@ JOURNEYS = [
         "included": ["Seven nights: Oakakhi, trail stays and Kausani", "All meals", "Tents where needed", "Our guide and local support staff", "All transport from Ranikhet and back", "Trek permits and forest fees"],
         "excluded": ["Travel to Ranikhet", "Porter or mule for personal bags (can be arranged)", "Personal expenses", "Travel insurance"],
         "trek": "pindari",
+        "gallery": [("pindari-1", "Arms open below the snow peaks at the head of the Pindar valley", ""),
+                    ("pindari-2", "A trekker and a resting flock high in the Pindar valley", ""),
+                    ("pindari-3", "A stream tumbling through forest on the Pindari trail", ""),
+                    ("pindari-4", "Slate-roofed houses of a village on the Pindari trail", "")],
     },
     {
         "slug": "sub-ek",
@@ -480,15 +492,15 @@ PLACES = [
 # People (from the existing site)
 # ---------------------------------------------------------------------------
 TEAM = [
-    {"initial": "N", "name": "Nishant", "role": "Lead guide and host",
+    {"initial": "N", "photo": "team-nishant", "name": "Nishant", "role": "Lead guide and host",
      "bio": "Runs Oakakhi Stays in Ranikhet and leads every trek in person. BMC mountaineering certified. The person you will meet first, chai in hand, before anything else is discussed.",
      "skills": ["Himalayan safety", "Hospitality", "Forest ecology"],
      "quote": "I've hosted people at Oakakhi for years. What I want now is to actually walk them into the forest, not just point at it from the porch."},
-    {"initial": "S", "name": "Sachin", "role": "Astro guide and storyteller",
+    {"initial": "S", "photo": "team-sachin", "name": "Sachin", "role": "Astro guide and storyteller",
      "bio": "Training with a stargazing company near Ramnagar and bringing every technique back to Turiya's astro nights. Believes the best fact is the one wrapped inside a story.",
      "skills": ["Constellation navigation", "Astrophotography", "Campfire storytelling"],
      "quote": "Most people have never really looked up. My job on an astro night isn't to recite facts, it's to get out of the way so the sky can do that."},
-    {"initial": "K", "name": "Naveen (Kannu)", "role": "Field documentarian",
+    {"initial": "K", "photo": "team-naveen", "name": "Naveen (Kannu)", "role": "Field documentarian",
      "bio": "Born in these hills. Shoots every walk, every dawn, every quiet moment that would otherwise go unrecorded. Also first on the trail when the group needs steady hands.",
      "skills": ["Camera craft", "Birding", "First aid"],
      "quote": "I grew up in these hills. Filming them for Turiya Trails is the first time work has meant showing people my own backyard properly."},

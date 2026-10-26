@@ -43,7 +43,7 @@ def optimise_photos():
                 im = ImageOps.exif_transpose(im).convert("RGB")
                 if im.width > width:
                     im = im.resize((width, round(im.height * width / im.width)), Image.LANCZOS)
-                im.save(dest, "WEBP", quality=80, method=6)
+                im.save(dest, "WEBP", quality=70, method=6)
             print(f"  photo  {os.path.relpath(dest, ROOT)}")
 
 

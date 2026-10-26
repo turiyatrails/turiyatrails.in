@@ -34,6 +34,26 @@ def photo_sources(slot):
     return None
 
 
+# Where the subject sits in a photo, so cropping keeps it in view (CSS object-position).
+FOCUS = {
+    "home-hero": "62% 55%",
+    "home-intro": "50% 60%",
+    "journey-into-the-quiet": "50% 75%",
+    "journey-the-seekers-ridge": "50% 70%",
+    "journey-where-the-river-begins": "50% 40%",
+    "trek-pandavkholi": "55% 60%",
+    "trek-bharatkot": "60% 60%",
+    "journeys-hero": "50% 75%",
+    "treks-hero": "50% 60%",
+    "about-hero": "50% 45%",
+    "team-nishant": "50% 70%",
+    "team-sachin": "35% 60%",
+    "team-naveen": "50% 70%",
+    "pandavkholi-1": "60% 60%",
+    "bharatkot-1": "50% 55%",
+}
+
+
 def media(slot, scene, alt, cls="", eager=False, sizes="(min-width: 900px) 50vw, 100vw"):
     """An image slot. Shows the photo for `slot` if it exists, otherwise an illustration."""
     src = photo_sources(slot) if slot else None
@@ -41,11 +61,26 @@ def media(slot, scene, alt, cls="", eager=False, sizes="(min-width: 900px) 50vw,
     if src:
         srcset = ", ".join(s for s in [f'{src["small"]} 900w' if src["small"] else "", f'{src["large"]} 1800w' if src["large"] else ""] if s)
         source = f'<source type="image/webp" srcset="{srcset}" sizes="{sizes}">' if srcset else ""
-        inner = f'<picture>{source}<img src="{src["fallback"]}" alt="{escape(alt)}" loading="{loading}" decoding="async" width="1800" height="1200"></picture>'
+        pos = f' style="object-position:{FOCUS[slot]}"' if slot in FOCUS else ""
+        fetch = ' fetchpriority="high"' if eager else ""
+        inner = f'<picture>{source}<img src="{src["fallback"]}" alt="{escape(alt)}" loading="{loading}"{fetch} decoding="async" width="1800" height="1200"{pos}></picture>'
     else:
         kind, seed = scene
         inner = art.scene(kind, seed, alt)
     return f'<div class="media {cls}">{inner}</div>'
+
+
+def gallery(items, note=""):
+    """A row of photos. items: (slot, alt, caption or "")."""
+    figs = "".join(
+        f'<figure class="g-item">{media(slot, ("mist", i), alt, sizes="(min-width: 900px) 25vw, 50vw")}'
+        + (f"<figcaption>{escape(cap)}</figcaption>" if cap else "") + "</figure>"
+        for i, (slot, alt, cap) in enumerate(items) if photo_sources(slot)
+    )
+    if not figs:
+        return ""
+    note_html = f'<p class="g-note">{escape(note)}</p>' if note else ""
+    return f'<div class="gallery reveal">{figs}</div>{note_html}'
 
 
 def head(meta):
