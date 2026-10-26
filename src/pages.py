@@ -6,7 +6,7 @@ from html import escape
 
 from . import markdown
 from .data import (FAQ, FEATURED_JOURNEYS, JOURNEYS, PLACES, PRICE_NOTE, SESSION_TERMS, SESSIONS, SITE, TEAM, TREKS,
-                   journey, rupees, trek, wa)
+                   USD_RATE, journey, rupees, trek, usd, wa)
 from .templates import ORG_LD, ROOT, WA_ICON, breadcrumbs, gallery, media, page, photo_sources, url
 
 E = escape
@@ -38,7 +38,7 @@ def journey_card(j, eager=False):
 
 def journey_row(j):
     tag = '<span class="tag">New</span>' if j["status"] == "new" else ('<span class="tag">Opening soon</span>' if j["status"] == "soon" else "")
-    alt = f'<small>{E(j["price_alt"])}</small>' if j.get("price_alt") else f"<small>{PRICE_NOTE}</small>"
+    alt = f'<small>{E(j["price_alt"])}</small>' if j.get("price_alt") else f"<small>{PRICE_NOTE} · ≈ {usd(j['price'])}</small>"
     return f"""<li class="journey-row"><a href="/journeys/{j['slug']}.html">
   <span class="jr-level">{E(j['level'])}</span>
   <span><h3>{E(j['name'])}{tag}</h3><span class="jr-sub">{duration(j)}</span></span>
@@ -49,6 +49,10 @@ def journey_row(j):
 
 def checklist(items):
     return '<ul class="checklist">' + "".join(f"<li>{E(i)}</li>" for i in items) + "</ul>"
+
+
+def faq_pick(*questions):
+    return [qa for q in questions for qa in FAQ if qa[0] == q]
 
 
 def faq_block(items):
@@ -310,6 +314,21 @@ def home():
   </div>
 </section>
 
+<section class="section section--stone">
+  <div class="wrap">
+    <div class="grid-2">
+      <div class="reveal">
+        <span class="eyebrow">Travelling from abroad</span>
+        <h2 class="h2">Come from far away. We will handle the last stretch.</h2>
+      </div>
+      <div class="reveal">
+        <p class="lede">Getting from Delhi to Ranikhet, visas and permits, the best seasons, what to pack, and how to pay from abroad. All in one place, with approximate US dollar prices for every journey.</p>
+        <p style="margin-top:2rem"><a class="link-arrow" href="/international.html">Guide for international travellers</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="section">
   <div class="wrap wrap--narrow">
     <div class="heading-block reveal">
@@ -417,11 +436,11 @@ def journey_page(j):
           <div><h2>Not included</h2>{checklist(j['excluded'])}</div>
         </section>
         <section class="reveal"><h2>When to go</h2><p class="prose">{E(j['season'])}</p></section>
-        <section class="reveal"><h2>Before you book</h2>{faq_block([FAQ[2], FAQ[3], FAQ[4], FAQ[8]])}</section>
+        <section class="reveal"><h2>Before you book</h2>{faq_block(faq_pick('Where do journeys start?', 'How do I book?', 'I am travelling from abroad. Can I join?', 'What happens in an emergency?'))}</section>
       </div>
       <aside class="aside-card" aria-label="Price and booking">
         <p class="ac-price">{price_label(j)}</p>
-        <p class="ac-note">{PRICE_NOTE}{', ' + duration(j) if not j.get('price_alt') else ''}</p>
+        <p class="ac-note">{PRICE_NOTE}{', ' + duration(j) if not j.get('price_alt') else ''}<br>About {usd(j['price'])} · <a href="/international.html">travelling from abroad?</a></p>
         {alt_price}
         <dl>
           <div><dt>Starts</dt><dd>Ranikhet</dd></div>
@@ -472,7 +491,7 @@ def session_rows(items):
     return "".join(f"""<div class="session reveal">
   <div><h3>{E(s['name'])}</h3><span class="s-where">{E(s['where'])} · {E(s['length'])}</span></div>
   <p class="s-desc">{E(s['desc'])}</p>
-  <div class="s-price">{rupees(s['price'])}<small>{PRICE_NOTE}</small><a class="link-arrow" href="{wa(f"Namaste Turiya Trails, I would like to book: {s['name']}. Please share available dates.")}">Ask about dates</a></div>
+  <div class="s-price">{rupees(s['price'])}<small>{PRICE_NOTE} · ≈ {usd(s['price'])}</small><a class="link-arrow" href="{wa(f"Namaste Turiya Trails, I would like to book: {s['name']}. Please share available dates.")}">Ask about dates</a></div>
 </div>""" for s in items)
 
 
@@ -989,7 +1008,7 @@ def plan():
       <div class="reveal">
         <span class="eyebrow">What happens next</span>
         <ol class="steps" style="grid-template-columns:1fr;gap:0">{''.join(f'<li><h3>{t}</h3><p>{E(d)}</p></li>' for t, d in steps)}</ol>
-        <div class="notice" style="margin-top:2rem"><p>Prefer to just talk? Message <a href="{wa('Namaste Turiya Trails, I found you through the website and would like to know more.')}">{SITE['phone_display']}</a> on WhatsApp.</p></div>
+        <div class="notice" style="margin-top:2rem"><p>Prefer to just talk? Message <a href="{wa('Namaste Turiya Trails, I found you through the website and would like to know more.')}">{SITE['phone_display']}</a> on WhatsApp, or email <a href="mailto:{SITE['email']}?subject=Planning%20a%20journey">{SITE['email']}</a>.</p><p>Travelling from abroad? Start with our <a href="/international.html">guide for international travellers</a>.</p></div>
       </div>
     </div>
   </div>
@@ -1013,6 +1032,119 @@ def plan():
 # ---------------------------------------------------------------------------
 # Small pages
 # ---------------------------------------------------------------------------
+def international():
+    crumbs, crumbs_ld = breadcrumbs([("Home", ""), ("International travellers", None)])
+    starts = ["into-the-quiet", "sub-ek", "where-the-river-begins"]
+    prices = "".join(f"""<div class="session reveal">
+  <div><h3>{E(j['name'])}</h3><span class="s-where">{duration(j)} · {E(j['route'])}</span></div>
+  <p class="s-desc">{E(j['kind'])} · {E(j['level'])}{' · opening soon' if j['status'] == 'soon' else ''}</p>
+  <div class="s-price">{price_label(j)}<small>≈ {usd(j['price'])} {PRICE_NOTE}</small><a class="link-arrow" href="/journeys/{j['slug']}.html">See the journey</a></div>
+</div>""" for j in JOURNEYS)
+    facts = [("Base", "Ranikhet, about 1,800 m"), ("Nearest railway", "Kathgodam"), ("Nearest airport", "Pantnagar"), ("Time zone", "IST, UTC+5:30")]
+    route = [
+        ("Fly into Delhi", "Indira Gandhi International Airport (DEL) is the usual way in. Give yourself a night in Delhi to recover from the flight."),
+        ("Train to Kathgodam", "Kathgodam is the railhead for the Kumaun hills. The Shatabdi runs by day in about six hours, and the Ranikhet Express overnight. Book early on the Indian Railways website or through an agent."),
+        ("Up into the hills", "From Kathgodam it is about three hours by road to Ranikhet. Tell us your train and we will help you arrange the drive."),
+        ("Chai at Oakakhi", "You arrive at our home in Ranikhet. Everything else is ours to plan."),
+    ]
+    route_html = "".join(f"<li><h3>{t}</h3><p>{E(d)}</p></li>" for t, d in route)
+    body = f"""
+{page_hero("For international travellers", "Welcome to the <em>Kumaun</em> Himalaya", "Everything you need to plan a journey with us from abroad: getting from Delhi to Ranikhet, visas and permits, the best seasons, staying safe and well, and how prices work.", ("snow", 31), "international-hero", crumbs, facts)}
+
+<section class="section">
+  <div class="wrap">
+    <div class="grid-2" style="align-items:start">
+      <div class="reveal"><span class="eyebrow">Why come here</span><h2 class="h2">The quieter side of the Himalaya</h2></div>
+      <div class="prose reveal">
+        <p>Kumaun is the eastern half of Uttarakhand: oak and rhododendron forest, long views of the high Himalaya, small villages, and far fewer visitors than the better-known trails of Himachal or Nepal.</p>
+        <p>We are a small team based in Ranikhet. You stay with us at Oakakhi, a family-run home, and walk with guides who grew up in these hills. Groups are small, the pace is slow, and you can message the founders directly at every step, in English.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--paper">
+  <div class="wrap">
+    <div class="heading-block reveal"><span class="eyebrow">Getting here</span><h2 class="h2">From Delhi to Ranikhet</h2><p class="lede">Most international guests come through Delhi. Allow a full day of travel each way between Delhi and Ranikhet.</p></div>
+    <ol class="steps reveal">{route_html}</ol>
+    <p class="small muted reveal" style="margin-top:2rem">Other options: fly from Delhi to Pantnagar, then about four hours by road; or drive from Delhi in about nine to ten hours.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="heading-block reveal"><span class="eyebrow">Where to start</span><h2 class="h2">Good first journeys for visitors from abroad</h2></div>
+    <div class="feature-grid">{''.join(journey_card(journey(x)) for x in starts)}</div>
+  </div>
+</section>
+
+<section class="section section--stone">
+  <div class="wrap">
+    <div class="cols-2">
+      <div class="reveal">
+        <span class="eyebrow">Visas and permits</span>
+        <h2 class="h3" style="margin-bottom:1.25rem">Paperwork, simply</h2>
+        <div class="prose">
+          <p>Most visitors need a visa for India. Many nationalities can apply online for an e-Visa. Always use the official Government of India website, <a href="https://indianvisaonline.gov.in/" rel="noopener">indianvisaonline.gov.in</a>, and apply well before you travel.</p>
+          <p>Some areas near India's northern borders need special permits for foreign nationals. Before you book a mountain journey such as Above the Treeline (Munsyari) or Where the River Begins (Pindari), we check the current rules for your nationality and help with any permit that is needed. Carry your passport and visa on every journey.</p>
+        </div>
+      </div>
+      <div class="reveal">
+        <span class="eyebrow">When to come</span>
+        <h2 class="h3" style="margin-bottom:1.25rem">The seasons</h2>
+        {checklist(["October and November: clear skies, long mountain views, and the best stargazing", "December to February: cold and clear, with snow higher up", "March to May: rhododendrons in flower and the busiest birding months", "June to September: monsoon. Green and beautiful, but we avoid long treks", "Pindari: May to June, and September to October"])}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="cols-2">
+      <div class="reveal">
+        <span class="eyebrow">Health and safety</span>
+        <h2 class="h3" style="margin-bottom:1.25rem">Travelling well</h2>
+        {checklist(["Ranikhet sits at about 1,800 m, which most people barely notice. Khalia Top and Pindari reach about 3,500 to 3,600 m, so we walk slowly and build in time to adjust.", "We strongly recommend travel insurance that covers trekking at the altitude of your journey and emergency evacuation.", "Our guides carry first aid and are trained in immediate response.", "Solo travellers, including women travelling alone, are very welcome. You stay in a family home, groups are small, and you can reach the founders directly.", "Tell us about dietary needs or allergies before you arrive. Meals are home-cooked and fresh."])}
+      </div>
+      <div class="reveal">
+        <span class="eyebrow">Money and staying in touch</span>
+        <h2 class="h3" style="margin-bottom:1.25rem">Practical things</h2>
+        {checklist(["Prices are set in Indian rupees. Dollar figures on this site are approximate and for guidance only.", "When we confirm your place, we explain how to pay from abroad.", "Ranikhet town has ATMs. Carry some cash for small purchases in villages.", "Buy an Indian SIM card on arrival, with your passport. We coordinate on WhatsApp and email.", "Mobile signal is patchy on the trails, and that is part of the point."])}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pause section--stone"><div class="wrap reveal"><p class="quote">“Dress modestly at temples, take your shoes off at the door, and ask before photographing people. The hills will do the rest.”</p><span class="quote-cite">A few gentle customs</span></div></section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="heading-block reveal"><span class="eyebrow">Prices</span><h2 class="h2">Every journey, in rupees and dollars</h2><p class="lede">Per person, including stays, meals, guiding and transport during the journey. Dollar prices are approximate, at about ₹{USD_RATE} to the dollar.</p></div>
+    <div class="sessions">{prices}</div>
+  </div>
+</section>
+
+<section class="section section--dark cta">
+  <div class="wrap reveal">
+    <span class="eyebrow">Write to us</span>
+    <h2>Tell us where you are coming from.</h2>
+    <p>Write in English, from any time zone. We are in India Standard Time (UTC+5:30), and one of the founders replies personally.</p>
+    <div class="btn-row">
+      <a class="btn btn--light" href="mailto:{SITE['email']}?subject=Journey%20enquiry%20from%20abroad">Email {SITE['email']}</a>
+      <a class="btn btn--ghost-light" href="{wa('Hello Turiya Trails, I am travelling from abroad and would like to know more about your journeys.')}">{WA_ICON} WhatsApp us</a>
+    </div>
+  </div>
+</section>
+"""
+    meta = {
+        "path": "international.html",
+        "title": "Himalaya trips for international travellers | Turiya Trails",
+        "description": "Planning a Himalayan trek or nature journey in Uttarakhand from abroad? Getting from Delhi to Ranikhet, visas, permits, seasons, safety and prices in US dollars, from Turiya Trails.",
+        "jsonld": [crumbs_ld],
+    }
+    return "international.html", page(meta, body, current="international.html")
+
+
 def privacy():
     crumbs, crumbs_ld = breadcrumbs([("Home", ""), ("Privacy", None)])
     body = f"""
@@ -1022,6 +1154,7 @@ def privacy():
     <div class="prose reveal" style="max-width:40rem">
       <p>This website does not have accounts, cookies for tracking, analytics, or a database collecting your information. There is no newsletter signup that stores your email.</p>
       <p>Every “Book”, “Ask” and “Enquire” button opens WhatsApp with a pre-filled message, sent directly to the Turiya Trails number. The enquiry form works the same way: it builds a message in your browser and opens WhatsApp. Nothing you type is sent to or stored by this website.</p>
+      <p>If you email us at {SITE['email']}, we use your address only to reply to you.</p>
       <p>If you message us on WhatsApp, that conversation lives on WhatsApp, governed by WhatsApp's own privacy terms, not ours. We do not sell, share, or use your number for anything beyond the conversation you started.</p>
       <p>Our fonts are loaded from Google Fonts, which means your browser requests them from Google. Our hosting provider may log basic technical information, such as IP address and browser type, as part of standard web hosting. We do not access or use this data ourselves.</p>
       <p>If anything here changes, this page will change with it. If you have a question we have not answered, ask us directly on WhatsApp.</p>
@@ -1068,7 +1201,7 @@ def redirect(old, new, title):
 def all_pages():
     posts = journal_posts()
     out = [home(), journeys_index(), experiences(), forest_walks(), birdwatching(), stargazing(), nature_classes(),
-           treks(), oakakhi(), about(), team(), journal_index(), plan(), privacy(), not_found(),
+           treks(), oakakhi(), about(), team(), journal_index(), plan(), international(), privacy(), not_found(),
            redirect("conscious-treks.html", "treks.html", "Treks")]
     out += [journey_page(j) for j in JOURNEYS]
     out += [article(p, posts) for p in posts]

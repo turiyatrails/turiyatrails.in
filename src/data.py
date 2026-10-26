@@ -12,6 +12,7 @@ SITE = {
     "tagline": "Slow journeys in the Kumaun Himalaya",
     "phone_display": "+91 63960 91261",
     "phone_wa": "916396091261",
+    "email": "turiyatrails@gmail.com",
     "base": "Oakakhi Stays, Ranikhet, Uttarakhand",
     "maps": "https://www.google.com/maps/search/Oakakhi+Stays+Ranikhet+Uttarakhand",
     "year": 2026,
@@ -36,6 +37,16 @@ def wa(text=None):
 
 def rupees(n):
     return "₹" + _indian(n)
+
+
+# Rupees per US dollar, for the approximate dollar prices shown to international
+# travellers. Update when the rate moves noticeably; prices are charged in rupees.
+USD_RATE = 95
+
+
+def usd(n):
+    """Approximate US dollar price, rounded to the nearest $5."""
+    return f"US${round(n / USD_RATE / 5) * 5:,}"
 
 
 def _indian(n):
@@ -509,6 +520,7 @@ TEAM = [
 FAQ = [
     ("Is this suitable for beginners?", "Yes. The Kalika Weekend and every day experience are built for beginners, and Into the Quiet is a gentle first trek. Our longer treks ask more, and we will be honest with you about which one fits."),
     ("Can solo travellers join?", "Solo travellers are a large part of who we build these journeys for, not an edge case we tolerate. You can join a scheduled batch or a session on your own."),
+    ("I am travelling from abroad. Can I join?", "Yes, and you are very welcome. Our page for international travellers covers getting to Ranikhet from Delhi, visas, permits, seasons, money and what to pack. Prices are in rupees, with approximate US dollar prices alongside."),
     ("Where do journeys start?", "Almost every journey starts at Oakakhi Stays, our home in Ranikhet. The nearest railway station is Kathgodam, about three hours away by road. Tell us how you are travelling and we will help you plan the last stretch."),
     ("How do I book?", "Message us on WhatsApp or use the enquiry form. We talk first about what you are looking for, then share dates, the full plan and how to confirm your place. No booking is final until we have spoken."),
     ("What should I pack?", "Layers, sturdy shoes, a headlamp, and less than you think. We send a full list once your dates are confirmed."),
