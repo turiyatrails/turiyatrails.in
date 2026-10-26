@@ -1,223 +1,173 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-IN" class="no-js">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Treks | Turiya Trails</title>
-<meta name="description" content="Three treks in the Kumaun Himalayas. Pandavkholi, Pinnath and Bharatkot. Small groups, slow walking, honest difficulty grades.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Treks near Ranikhet: Pandavkholi to Pindari | Turiya Trails</title>
+<meta name="description" content="Small-group treks in the Kumaun Himalaya, graded honestly: Pandavkholi (beginner), Pinnath (intermediate), Bharatkot (challenging), Khalia Top in Munsyari and the Pindari Glacier.">
+<link rel="canonical" href="https://turiyatrails.in/treks.html">
+
+<meta property="og:site_name" content="Turiya Trails">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Treks near Ranikhet: Pandavkholi to Pindari | Turiya Trails">
+<meta property="og:description" content="Small-group treks in the Kumaun Himalaya, graded honestly: Pandavkholi (beginner), Pinnath (intermediate), Bharatkot (challenging), Khalia Top in Munsyari and the Pindari Glacier.">
+<meta property="og:url" content="https://turiyatrails.in/treks.html">
+<meta property="og:image" content="https://turiyatrails.in/assets/img/og-default.jpg">
+<meta property="og:locale" content="en_IN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#17291f">
+<link rel="icon" type="image/png" sizes="48x48" href="/assets/img/favicon-48.png">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --cream:#FCF9F5;
-    --green:#2a5439;
-    --charcoal:#1e1a16;
-    --gold:#b8872a;
-    --line:rgba(42,84,57,.18);
-  }
-  *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{
-    background:var(--cream);
-    color:var(--charcoal);
-    font-family:'Outfit',sans-serif;
-    font-weight:300;
-    line-height:1.7;
-    font-size:16.5px;
-  }
-  h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:500;color:var(--green);line-height:1.2}
-  a{color:inherit;text-decoration:none}
-
-  nav{
-    display:flex;justify-content:space-between;align-items:center;
-    padding:26px 6vw;border-bottom:1px solid var(--line);
-  }
-  .brand{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--green);letter-spacing:.04em}
-  .nav-links{display:flex;gap:32px;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase}
-  .nav-links a{opacity:.75;transition:opacity .25s}
-  .nav-links a:hover,.nav-links a:focus-visible{opacity:1;color:var(--green)}
-  .nav-links a.active{opacity:1;color:var(--green);border-bottom:1px solid var(--gold);padding-bottom:2px}
-  @media(max-width:760px){.nav-links{display:none}}
-
-  header.hero{padding:14vh 6vw 8vh;max-width:900px}
-  .eyebrow{font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
-  header.hero h1{font-size:clamp(2.6rem,6vw,4.2rem);margin-bottom:26px}
-  header.hero p{max-width:560px;font-size:1.05rem;opacity:.85}
-
-  .note{
-    margin:0 6vw 4vh;max-width:560px;
-    border-left:2px solid var(--gold);padding:14px 22px;
-    font-size:.92rem;opacity:.85;
-  }
-
-  .trek{
-    border-top:1px solid var(--line);
-    padding:9vh 6vw;
-    display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:7vw;
-  }
-  @media(max-width:900px){.trek{grid-template-columns:1fr;gap:36px}}
-  .t-head .kind{font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
-  .t-head h2{font-size:clamp(2rem,4vw,2.9rem);margin-bottom:8px}
-  .t-head .place{font-size:.9rem;letter-spacing:.05em;color:var(--green);margin-bottom:24px}
-  .t-head p.desc{max-width:480px;margin-bottom:30px}
-  .btn{
-    display:inline-block;background:var(--green);color:var(--cream);
-    padding:14px 34px;font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;
-    transition:background .25s;
-  }
-  .btn:hover,.btn:focus-visible{background:#1f4029}
-
-  .facts{border-left:1px solid var(--line);padding-left:28px}
-  .fact{padding-bottom:22px}
-  .fact:last-child{padding-bottom:0}
-  .fact .label{
-    font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:2px;
-  }
-  .fact .value{font-family:'Cormorant Garamond',serif;font-size:1.35rem;color:var(--green)}
-  .fact p.detail{font-size:.9rem;opacity:.8;max-width:420px;margin-top:4px}
-
-  footer{
-    border-top:1px solid var(--line);padding:60px 6vw;
-    display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;
-    font-size:.85rem;opacity:.8;
-  }
-  footer .f-brand{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--green);opacity:1}
-
-  .wa-float{
-    position:fixed;right:22px;bottom:22px;width:54px;height:54px;
-    background:var(--green);border-radius:50%;
-    display:flex;align-items:center;justify-content:center;
-    box-shadow:0 4px 18px rgba(30,26,22,.22);z-index:50;transition:transform .2s;
-  }
-  .wa-float:hover{transform:scale(1.06)}
-  .wa-float svg{width:26px;height:26px;fill:var(--cream)}
-  @media (prefers-reduced-motion: reduce){
-    html{scroll-behavior:auto}
-    .wa-float,.btn{transition:none}
-  }
-</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Outfit:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="/assets/css/site.css">
+<script>document.documentElement.classList.remove('no-js')</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://turiyatrails.in/"}, {"@type": "ListItem", "position": 2, "name": "Treks"}]}</script>
 </head>
 <body>
-
-<nav>
-  <a class="brand" href="index.html">Turiya Trails</a>
-  <div class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="journeys.html">Journeys</a>
-    <a href="treks.html" class="active">Treks</a>
-    <a href="forest-walks.html">Forest Walks</a>
-    <a href="birdwatching.html">Birdwatching</a>
-    <a href="stargazing.html">Stargazing</a>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header" data-tone="light">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="Turiya Trails, home">
+      <img class="brand-dark" src="/assets/img/logo-mark-forest.png" alt="" width="55" height="30">
+      <img class="brand-light" src="/assets/img/logo-mark-ivory.png" alt="" width="55" height="30">
+      <span class="brand-name">Turiya Trails</span>
+    </a>
+    <nav aria-label="Main"><ul class="nav-links"><li><a href="/journeys.html">Journeys</a></li><li><a href="/experiences.html">Day experiences</a></li><li><a href="/treks.html" aria-current="page">Treks</a></li><li><a href="/oakakhi.html">Oakakhi</a></li><li><a href="/field-notes.html">Journal</a></li><li><a href="/about.html">About</a></li></ul></nav>
+    <a class="btn btn--line nav-cta" href="/plan.html">Plan your journey</a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu"><span class="label">Menu</span><span class="bars" aria-hidden="true"></span></button>
   </div>
-</nav>
-
-<header class="hero">
-  <p class="eyebrow">Walk to notice, not to conquer</p>
-  <h1>Three trails, graded honestly</h1>
-  <p>These are the treks we know and lead ourselves. Each one also lives inside a longer journey, but you can walk any of them on its own. Groups of 4 to 10, led by our BMC certified guide.</p>
 </header>
-
-<p class="note">Dates are released in small batches, not year round. Message us on WhatsApp and we will tell you what is opening next.</p>
-
-<!-- PANDAVKHOLI -->
-<section class="trek" id="pandavkholi">
-  <div class="t-head">
-    <p class="kind">Beginner</p>
-    <h2>Pandavkholi</h2>
-    <p class="place">Kukuchina, near Dwarahat</p>
-    <p class="desc">A gentle forest climb to a high meadow tied to the years the Pandavas spent in hiding. The trail passes near the Mahavatar Babaji cave, and the meadow at the top is the kind of place people stop talking without being asked.</p>
-    <a class="btn" href="https://wa.me/916396091261?text=Namaste%2C%20I%20would%20like%20to%20know%20the%20next%20batch%20for%20the%20Pandavkholi%20trek.">Ask about the next batch</a>
+<div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+  <nav aria-label="Mobile"><ul><li><a class="mm-link" href="/journeys.html">Journeys<small></small></a></li><li><a class="mm-link" href="/experiences.html">Day experiences<small></small></a></li><li><a class="mm-link" href="/treks.html">Treks<small>Here</small></a></li><li><a class="mm-link" href="/oakakhi.html">Oakakhi<small></small></a></li><li><a class="mm-link" href="/field-notes.html">Journal<small></small></a></li><li><a class="mm-link" href="/about.html">About<small></small></a></li><li><a class="mm-link" href="/plan.html">Plan your journey<small></small></a></li></ul></nav>
+  <div class="mm-foot">
+    <a class="btn btn--light" href="https://wa.me/916396091261?text=Namaste%20Turiya%20Trails%2C%20I%20found%20you%20through%20the%20website%20and%20would%20like%20to%20know%20more."><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3a.5.5 0 0 0 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.1.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .2-1.2c-.1-.1-.3-.2-.5-.3Z"/></svg> Message us on WhatsApp</a>
+    <p>Oakakhi, Ranikhet · Kumaun Himalaya</p>
   </div>
-  <div class="facts">
-    <div class="fact">
-      <p class="label">Trail</p>
-      <p class="value">3.5 km each way</p>
-      <p class="detail">A steady forest path from Kukuchina village. Comfortable for first time trekkers who can walk a few hours.</p>
-    </div>
-    <div class="fact">
-      <p class="label">Getting there</p>
-      <p class="value">About 1.5 hours from Ranikhet</p>
-      <p class="detail">Via Dwarahat. We arrange the drive.</p>
-    </div>
-    <div class="fact">
-      <p class="label">Part of</p>
-      <p class="value">Into the Quiet</p>
-      <p class="detail">This trail is the final day of our beginner journey.</p>
-    </div>
+</div>
+<main id="main">
+
+<section class="page-hero">
+  <div class="hero-media"><div class="media "><svg viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><defs><linearGradient id="g57a25c87" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5d7184"/><stop offset="1" stop-color="#c9cfcf"/></linearGradient></defs><rect width="1600" height="1000" fill="url(#g57a25c87)"/><circle cx="1240" cy="200" r="48" fill="#f6f1e3" opacity=".45"/><path d="M-120,1000 L-120,640 L144,582 L209,497 L288,410 L353,479 L432,555 L480,544 L538,435 L608,310 L666,409 L736,538 L768,555 L819,460 L880,350 L931,437 L992,538 L1072,559 L1137,485 L1216,390 L1281,465 L1360,560 L1720,640 L1720,1000 Z" fill="#eef0ec"/><path d="M288,410 L353,479 L432,571 L310,640 Z" fill="#c7cdc8" opacity=".55"/><path d="M608,310 L666,409 L736,541 L627,640 Z" fill="#c7cdc8" opacity=".55"/><path d="M880,350 L931,437 L992,553 L897,640 Z" fill="#c7cdc8" opacity=".55"/><path d="M1216,390 L1281,465 L1360,565 L1238,640 Z" fill="#c7cdc8" opacity=".55"/><path d="M0,1000 L-120,711 Q-120,711 -66,701 Q-12,692 42,686 Q96,681 151,669 Q205,657 259,675 Q313,692 367,672 Q421,652 475,661 Q529,671 584,676 Q638,682 692,656 Q746,630 800,637 Q854,644 908,631 Q962,618 1016,618 Q1071,619 1125,625 Q1179,630 1233,622 Q1287,613 1341,607 Q1395,600 1449,635 Q1504,669 1558,654 Q1612,638 1666,643 L1720,647 L1720,1000 Z" fill="#c7cdc8"/><path d="M0,1000 L-120,728 Q-120,728 -66,721 Q-12,713 42,711 Q96,709 151,706 Q205,703 259,708 Q313,714 367,711 Q421,708 475,724 Q529,740 584,744 Q638,748 692,745 Q746,742 800,736 Q854,730 908,739 Q962,747 1016,742 Q1071,737 1125,757 Q1179,777 1233,767 Q1287,757 1341,761 Q1395,765 1449,777 Q1504,788 1558,790 Q1612,791 1666,772 L1720,753 L1720,1000 Z" fill="#8c9890"/><path d="M0,1000 L-120,798 Q-120,798 -66,788 Q-12,779 42,777 Q96,776 151,769 Q205,763 259,766 Q313,770 367,777 Q421,784 475,779 Q529,773 584,798 Q638,823 692,825 Q746,828 800,817 Q854,806 908,828 Q962,850 1016,835 Q1071,820 1125,815 Q1179,811 1233,825 Q1287,839 1341,835 Q1395,830 1449,837 Q1504,844 1558,838 Q1612,832 1666,838 L1720,844 L1720,1000 Z" fill="#5d6b5e"/><path d="M0,1000 L-120,894 Q-120,894 -66,893 Q-12,892 42,901 Q96,909 151,904 Q205,898 259,898 Q313,898 367,899 Q421,900 475,889 Q529,879 584,874 Q638,870 692,876 Q746,883 800,871 Q854,859 908,861 Q962,864 1016,868 Q1071,872 1125,866 Q1179,860 1233,853 Q1287,846 1341,859 Q1395,872 1449,858 Q1504,845 1558,865 Q1612,884 1666,892 L1720,900 L1720,1000 Z" fill="#34412f"/></svg></div></div>
+  <div class="wrap page-hero-inner">
+    <nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li aria-current="page">Treks</li></ol></nav>
+    <span class="eyebrow">Treks</span>
+    <h1>Walk to notice, not to <em>conquer</em></h1>
+    <p class="lede">Five trails, graded honestly. These are the treks we know and lead ourselves, from a gentle forest climb to a glacier at the head of a valley.</p>
+    
   </div>
 </section>
-
-<!-- PINNATH -->
-<section class="trek" id="pinnath">
-  <div class="t-head">
-    <p class="kind">Intermediate</p>
-    <h2>Pinnath</h2>
-    <p class="place">Near Kausani</p>
-    <p class="desc">A climb through oak and rhododendron to a temple ridge at 2,750 metres. The clouds usually arrive before you do, and on a clear day the high Himalaya stands in a line across the north.</p>
-    <a class="btn" href="https://wa.me/916396091261?text=Namaste%2C%20I%20would%20like%20to%20know%20the%20next%20batch%20for%20the%20Pinnath%20trek.">Ask about the next batch</a>
-  </div>
-  <div class="facts">
-    <div class="fact">
-      <p class="label">Trail</p>
-      <p class="value">5 km each way</p>
-      <p class="detail">A sustained climb. You should be comfortable walking uphill for a few hours at altitude.</p>
-    </div>
-    <div class="fact">
-      <p class="label">Altitude</p>
-      <p class="value">2,750 metres</p>
-      <p class="detail">High enough to feel it. We walk slowly on purpose.</p>
-    </div>
-    <div class="fact">
-      <p class="label">Part of</p>
-      <p class="value">Where the Clouds Rest</p>
-      <p class="detail">This trail is the final day of our intermediate journey, with a night near Kausani.</p>
-    </div>
-  </div>
-</section>
-
-<!-- BHARATKOT -->
-<section class="trek" id="bharatkot">
-  <div class="t-head">
-    <p class="kind">Challenging</p>
-    <h2>Bharatkot</h2>
-    <p class="place">Almora district</p>
-    <p class="desc">The highest peak in its range, and the hardest walking we offer. The trek is usually taken over two days with a night in camp on the mountain. It asks for fitness and gives back a sky you will not forget.</p>
-    <a class="btn" href="https://wa.me/916396091261?text=Namaste%2C%20I%20would%20like%20to%20know%20the%20next%20batch%20for%20the%20Bharatkot%20trek.">Ask about the next batch</a>
-  </div>
-  <div class="facts">
-    <div class="fact">
-      <p class="label">Trail</p>
-      <p class="value">A full two day trek</p>
-      <p class="detail">Long distances and real climbs. For fit, experienced walkers. We will talk honestly with you about readiness before confirming.</p>
-    </div>
-    <div class="fact">
-      <p class="label">Camp</p>
-      <p class="value">One night on the mountain</p>
-      <p class="detail">Camping equipment is included. The night sky from camp is half the reason to come.</p>
-    </div>
-    <div class="fact">
-      <p class="label">Part of</p>
-      <p class="value">The Seeker's Ridge</p>
-      <p class="detail">This trek is the heart of our challenging journey.</p>
-    </div>
-  </div>
-</section>
-
-<footer>
+<section class="section" style="padding-top:clamp(3rem,6vw,5rem)">
+  <div class="wrap">
+    <div class="notice reveal"><p>Each trek lives inside a longer journey, and the shorter ones can also be walked on their own. Groups of 4 to 10, led by our BMC certified lead guide. Dates are released in small batches. Message us and we will tell you what is opening next.</p></div>
+    <article class="grid-2 reveal" id="pandavkholi" style="margin-top:clamp(4rem,8vw,7rem)">
+  <div><div class="media media--wide"><svg viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pandavkholi, Kukuchina, near Dwarahat" focusable="false"><title>Pandavkholi, Kukuchina, near Dwarahat</title><defs><linearGradient id="g3d0d5660" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#22392b"/><stop offset="1" stop-color="#8f8a63"/></linearGradient></defs><rect width="1600" height="1000" fill="url(#g3d0d5660)"/><defs><radialGradient id="g3d0d5660r"><stop offset="0" stop-color="#e3c48a" stop-opacity=".35"/><stop offset="1" stop-color="#e3c48a" stop-opacity="0"/></radialGradient></defs><circle cx="1242" cy="318" r="420" fill="url(#g3d0d5660r)"/><circle cx="1242" cy="318" r="96" fill="none" stroke="#e3c48a" stroke-width="3" opacity=".7"/><circle cx="1242" cy="318" r="30" fill="#e3c48a" opacity=".75"/><path d="M0,1000 L-120,500 Q-120,500 -66,481 Q-12,462 42,503 Q96,545 151,533 Q205,522 259,495 Q313,468 367,494 Q421,519 475,483 Q529,446 584,421 Q638,396 692,437 Q746,479 800,459 Q854,439 908,405 Q962,370 1016,397 Q1071,423 1125,393 Q1179,362 1233,368 Q1287,375 1341,406 Q1395,436 1449,444 Q1504,452 1558,471 Q1612,489 1666,468 L1720,448 L1720,1000 Z" fill="#6d7553"/><path class="art-drift" d="M0,1000 L-120,637 Q-120,637 -66,630 Q-12,624 42,620 Q96,616 151,600 Q205,584 259,591 Q313,598 367,562 Q421,527 475,506 Q529,484 584,512 Q638,540 692,520 Q746,499 800,510 Q854,521 908,493 Q962,466 1016,479 Q1071,492 1125,503 Q1179,513 1233,504 Q1287,495 1341,539 Q1395,583 1449,575 Q1504,566 1558,562 Q1612,557 1666,598 L1720,639 L1720,1000 Z" fill="#55623f"/><path d="M0,1000 L-120,716 Q-120,716 -66,700 Q-12,684 42,665 Q96,645 151,660 Q205,676 259,672 Q313,669 367,653 Q421,637 475,657 Q529,677 584,645 Q638,612 692,628 Q746,643 800,622 Q854,601 908,605 Q962,610 1016,592 Q1071,575 1125,607 Q1179,639 1233,608 Q1287,578 1341,630 Q1395,683 1449,662 Q1504,642 1558,652 Q1612,663 1666,640 L1720,618 L1720,1000 Z" fill="#3d4c31"/><path d="M0,1000 L-120,673 Q-120,673 -66,685 Q-12,697 42,722 Q96,747 151,761 Q205,775 259,754 Q313,733 367,733 Q421,733 475,734 Q529,735 584,753 Q638,770 692,763 Q746,755 800,747 Q854,739 908,770 Q962,802 1016,792 Q1071,783 1125,763 Q1179,744 1233,758 Q1287,771 1341,756 Q1395,741 1449,718 Q1504,695 1558,696 Q1612,696 1666,682 L1720,668 L1720,1000 Z" fill="#2a3a26"/><path d="M0,1000 L-120,860 Q-120,860 -66,836 Q-12,811 42,819 Q96,826 151,838 Q205,849 259,845 Q313,842 367,825 Q421,808 475,814 Q529,820 584,816 Q638,811 692,795 Q746,779 800,811 Q854,844 908,829 Q962,814 1016,840 Q1071,866 1125,862 Q1179,858 1233,857 Q1287,856 1341,861 Q1395,865 1449,866 Q1504,868 1558,873 Q1612,879 1666,878 L1720,876 L1720,1000 Z" fill="#1b2a1e"/></svg></div></div>
   <div>
-    <p class="f-brand">Turiya Trails</p>
-    <p>Oakakhi, Ranikhet, Kumaun Himalayas</p>
+    <span class="eyebrow">Beginner · Kukuchina, near Dwarahat</span>
+    <h2 class="h2">Pandavkholi</h2>
+    <p class="prose" style="margin-top:1.25rem">A gentle forest climb to a high meadow tied to the years the Pandavas spent in hiding. The trail passes near the Mahavatar Babaji cave, and the meadow at the top is the kind of place people stop talking without being asked.</p>
+    <dl class="trek-facts"><div><dt>Trail</dt><dd>About 3.5 km each way, a steady forest path from Kukuchina village</dd></div><div><dt>Getting there</dt><dd>About 1.5 hours from Ranikhet via Dwarahat. We arrange the drive.</dd></div><div><dt>Suits</dt><dd>First-time trekkers who can walk a few hours</dd></div></dl>
+    <p class="small" style="margin-top:1rem">Part of: <a href="/journeys/into-the-quiet.html">Into the Quiet</a>, <a href="/journeys/the-long-quiet.html">The Long Quiet</a></p>
+    <p class="small" style="margin-top:1rem"><strong style="font-weight:500">Day trek from Oakakhi:</strong> ₹3,500 per person</p>
+    <a class="link-arrow" href="https://wa.me/916396091261?text=Namaste%20Turiya%20Trails%2C%20I%20would%20like%20to%20know%20the%20next%20dates%20for%20the%20Pandavkholi%20trek.">Ask about the next batch</a>
   </div>
+</article><article class="grid-2 reveal" id="pinnath" style="margin-top:clamp(4rem,8vw,7rem)">
+  <div style="order:2"><div class="media media--wide"><svg viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pinnath, Near Kausani" focusable="false"><title>Pinnath, Near Kausani</title><defs><linearGradient id="g17ebd15f" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#cfd0bf"/><stop offset="1" stop-color="#ece6d6"/></linearGradient></defs><rect width="1600" height="1000" fill="url(#g17ebd15f)"/><defs><radialGradient id="g17ebd15fr"><stop offset="0" stop-color="#f4ecd8" stop-opacity=".35"/><stop offset="1" stop-color="#f4ecd8" stop-opacity="0"/></radialGradient></defs><circle cx="1039" cy="332" r="420" fill="url(#g17ebd15fr)"/><circle cx="1039" cy="332" r="96" fill="none" stroke="#f4ecd8" stroke-width="3" opacity=".7"/><circle cx="1039" cy="332" r="30" fill="#f4ecd8" opacity=".75"/><path d="M0,1000 L-120,482 Q-120,482 -66,436 Q-12,389 42,389 Q96,390 151,415 Q205,440 259,402 Q313,364 367,416 Q421,467 475,438 Q529,409 584,416 Q638,422 692,431 Q746,440 800,466 Q854,493 908,488 Q962,484 1016,515 Q1071,546 1125,516 Q1179,485 1233,510 Q1287,535 1341,555 Q1395,574 1449,575 Q1504,576 1558,554 Q1612,532 1666,535 L1720,539 L1720,1000 Z" fill="#b9bda6"/><path class="art-drift" d="M0,1000 L-120,532 Q-120,532 -66,506 Q-12,481 42,521 Q96,560 151,536 Q205,511 259,558 Q313,605 367,590 Q421,575 475,601 Q529,627 584,596 Q638,565 692,558 Q746,551 800,574 Q854,598 908,591 Q962,584 1016,604 Q1071,624 1125,615 Q1179,606 1233,618 Q1287,630 1341,589 Q1395,548 1449,550 Q1504,552 1558,550 Q1612,549 1666,536 L1720,523 L1720,1000 Z" fill="#9fa68a"/><rect class="art-drift" x="-100" y="520" width="1800" height="90" fill="#f5f1e8" opacity=".22"/><path d="M0,1000 L-120,610 Q-120,610 -66,617 Q-12,624 42,620 Q96,617 151,601 Q205,585 259,583 Q313,581 367,613 Q421,645 475,643 Q529,641 584,649 Q638,657 692,651 Q746,644 800,642 Q854,639 908,680 Q962,720 1016,719 Q1071,718 1125,689 Q1179,661 1233,684 Q1287,708 1341,716 Q1395,724 1449,717 Q1504,711 1558,690 Q1612,669 1666,661 L1720,653 L1720,1000 Z" fill="#808a6b"/><rect class="art-drift" x="-100" y="610" width="1800" height="90" fill="#f5f1e8" opacity=".22"/><path d="M0,1000 L-120,673 Q-120,673 -66,692 Q-12,711 42,719 Q96,726 151,742 Q205,757 259,765 Q313,774 367,772 Q421,770 475,788 Q529,806 584,797 Q638,789 692,775 Q746,760 800,760 Q854,760 908,749 Q962,738 1016,759 Q1071,779 1125,754 Q1179,729 1233,741 Q1287,753 1341,743 Q1395,733 1449,750 Q1504,766 1558,744 Q1612,723 1666,739 L1720,756 L1720,1000 Z" fill="#5f6c4d"/><path d="M0,1000 L-120,793 Q-120,793 -66,805 Q-12,816 42,833 Q96,849 151,852 Q205,855 259,862 Q313,868 367,867 Q421,866 475,858 Q529,849 584,859 Q638,868 692,882 Q746,896 800,893 Q854,890 908,888 Q962,887 1016,871 Q1071,855 1125,864 Q1179,872 1233,861 Q1287,851 1341,861 Q1395,871 1449,868 Q1504,865 1558,842 Q1612,820 1666,822 L1720,824 L1720,1000 Z" fill="#3f4c33"/></svg></div></div>
   <div>
-    <p>turiyatrails.in</p>
-    <p><a href="https://wa.me/916396091261">WhatsApp: +91 63960 91261</a></p>
+    <span class="eyebrow">Intermediate · Near Kausani</span>
+    <h2 class="h2">Pinnath</h2>
+    <p class="prose" style="margin-top:1.25rem">A climb through oak and rhododendron to a temple ridge at 2,750 metres. The clouds usually arrive before you do, and on a clear day the high Himalaya stands in a line across the north.</p>
+    <dl class="trek-facts"><div><dt>Trail</dt><dd>About 5 km each way, a sustained climb</dd></div><div><dt>Altitude</dt><dd>2,750 metres. High enough to feel it.</dd></div><div><dt>Suits</dt><dd>Walkers comfortable going uphill for a few hours</dd></div></dl>
+    <p class="small" style="margin-top:1rem">Part of: <a href="/journeys/where-the-clouds-rest.html">Where the Clouds Rest</a></p>
+    <p class="small" style="margin-top:1rem"><strong style="font-weight:500">Day trek from Kausani:</strong> ₹4,000 per person</p>
+    <a class="link-arrow" href="https://wa.me/916396091261?text=Namaste%20Turiya%20Trails%2C%20I%20would%20like%20to%20know%20the%20next%20dates%20for%20the%20Pinnath%20trek.">Ask about the next batch</a>
+  </div>
+</article><article class="grid-2 reveal" id="bharatkot" style="margin-top:clamp(4rem,8vw,7rem)">
+  <div><div class="media media--wide"><svg viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bharatkot, Almora district" focusable="false"><title>Bharatkot, Almora district</title><defs><linearGradient id="g891a2133" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2f3b37"/><stop offset="1" stop-color="#b08a5a"/></linearGradient></defs><rect width="1600" height="1000" fill="url(#g891a2133)"/><defs><radialGradient id="g891a2133r"><stop offset="0" stop-color="#f0cf92" stop-opacity=".35"/><stop offset="1" stop-color="#f0cf92" stop-opacity="0"/></radialGradient></defs><circle cx="1040" cy="320" r="420" fill="url(#g891a2133r)"/><circle cx="1040" cy="320" r="96" fill="none" stroke="#f0cf92" stroke-width="3" opacity=".7"/><circle cx="1040" cy="320" r="30" fill="#f0cf92" opacity=".75"/><path d="M0,1000 L-120,418 Q-120,418 -66,444 Q-12,471 42,486 Q96,501 151,504 Q205,507 259,527 Q313,547 367,552 Q421,557 475,566 Q529,576 584,547 Q638,518 692,546 Q746,573 800,559 Q854,545 908,525 Q962,506 1016,467 Q1071,428 1125,467 Q1179,507 1233,469 Q1287,431 1341,486 Q1395,542 1449,498 Q1504,454 1558,430 Q1612,407 1666,438 L1720,470 L1720,1000 Z" fill="#6b5b45"/><path d="M0,1000 L-120,494 Q-120,494 -66,486 Q-12,478 42,474 Q96,470 151,478 Q205,486 259,491 Q313,496 367,490 Q421,483 475,528 Q529,572 584,570 Q638,567 692,573 Q746,579 800,604 Q854,629 908,601 Q962,572 1016,581 Q1071,589 1125,622 Q1179,654 1233,634 Q1287,615 1341,631 Q1395,646 1449,648 Q1504,650 1558,627 Q1612,605 1666,596 L1720,587 L1720,1000 Z" fill="#54493a"/><path d="M0,1000 L-120,692 Q-120,692 -66,687 Q-12,683 42,709 Q96,735 151,702 Q205,668 259,689 Q313,709 367,679 Q421,648 475,673 Q529,699 584,649 Q638,600 692,623 Q746,647 800,624 Q854,602 908,623 Q962,644 1016,610 Q1071,577 1125,581 Q1179,585 1233,605 Q1287,626 1341,614 Q1395,603 1449,619 Q1504,636 1558,626 Q1612,617 1666,615 L1720,614 L1720,1000 Z" fill="#3f3a2f"/><path d="M0,1000 L-120,769 Q-120,769 -66,767 Q-12,765 42,741 Q96,717 151,725 Q205,733 259,717 Q313,702 367,718 Q421,735 475,722 Q529,710 584,711 Q638,711 692,699 Q746,686 800,698 Q854,711 908,713 Q962,715 1016,728 Q1071,742 1125,751 Q1179,761 1233,750 Q1287,739 1341,732 Q1395,725 1449,742 Q1504,759 1558,783 Q1612,807 1666,786 L1720,765 L1720,1000 Z" fill="#2b2a22"/><path d="M0,1000 L-120,848 Q-120,848 -66,847 Q-12,847 42,854 Q96,861 151,853 Q205,845 259,836 Q313,827 367,848 Q421,870 475,877 Q529,884 584,871 Q638,858 692,856 Q746,854 800,848 Q854,841 908,849 Q962,857 1016,851 Q1071,845 1125,848 Q1179,851 1233,845 Q1287,838 1341,811 Q1395,784 1449,804 Q1504,823 1558,809 Q1612,795 1666,792 L1720,789 L1720,1000 Z" fill="#1b1c17"/></svg></div></div>
+  <div>
+    <span class="eyebrow">Challenging · Almora district</span>
+    <h2 class="h2">Bharatkot</h2>
+    <p class="prose" style="margin-top:1.25rem">The highest peak in its range, and the hardest walking near Ranikhet. Usually taken over two days with a night in camp on the mountain. It asks for fitness and gives back a sky you will not forget.</p>
+    <dl class="trek-facts"><div><dt>Trail</dt><dd>A full two-day trek with long distances and real climbs</dd></div><div><dt>Camp</dt><dd>One night on the mountain, equipment included</dd></div><div><dt>Suits</dt><dd>Fit, experienced walkers. We talk about readiness before confirming.</dd></div></dl>
+    <p class="small" style="margin-top:1rem">Part of: <a href="/journeys/the-seekers-ridge.html">The Seeker&#x27;s Ridge</a></p>
+    <p class="small" style="margin-top:1rem"><strong style="font-weight:500">Overnight trek:</strong> ₹9,500 per person</p>
+    <a class="link-arrow" href="https://wa.me/916396091261?text=Namaste%20Turiya%20Trails%2C%20I%20would%20like%20to%20know%20the%20next%20dates%20for%20the%20Bharatkot%20trek.">Ask about the next batch</a>
+  </div>
+</article><article class="grid-2 reveal" id="khalia-top" style="margin-top:clamp(4rem,8vw,7rem)">
+  <div style="order:2"><div class="media media--wide"><svg viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Khalia Top, Munsyari, Pithoragarh district" focusable="false"><title>Khalia Top, Munsyari, Pithoragarh district</title><defs><linearGradient id="g63c9762c" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5d7184"/><stop offset="1" stop-color="#c9cfcf"/></linearGradient></defs><rect width="1600" height="1000" fill="url(#g63c9762c)"/><circle cx="1240" cy="200" r="48" fill="#f6f1e3" opacity=".45"/><path d="M-120,1000 L-120,640 L96,580 L161,497 L240,410 L305,479 L384,566 L432,548 L490,435 L560,310 L618,409 L688,522 L720,557 L770,460 L832,350 L882,437 L944,537 L1024,565 L1089,485 L1168,390 L1233,465 L1312,547 L1720,640 L1720,1000 Z" fill="#eef0ec"/><path d="M240,410 L305,479 L384,571 L262,640 Z" fill="#c7cdc8" opacity=".55"/><path d="M560,310 L618,409 L688,541 L579,640 Z" fill="#c7cdc8" opacity=".55"/><path d="M832,350 L882,437 L944,553 L849,640 Z" fill="#c7cdc8" opacity=".55"/><path d="M1168,390 L1233,465 L1312,565 L1190,640 Z" fill="#c7cdc8" opacity=".55"/><path d="M0,1000 L-120,685 Q-120,685 -66,667 Q-12,648 42,661 Q96,673 151,674 Q205,675 259,683 Q313,691 367,701 Q421,711 475,704 Q529,697 584,682 Q638,667 692,673 Q746,679 800,681 Q854,683 908,666 Q962,650 1016,667 Q1071,685 1125,655 Q1179,625 1233,633 Q1287,641 1341,641 Q1395,641 1449,635 Q1504,629 1558,619 Q1612,609 1666,630 L1720,650 L1720,1000 Z" fill="#c7cdc8"/><path d="M0,1000 L-120,768 Q-120,768 -66,764 Q-12,760 42,765 Q96,769 151,773 Q205,776 259,766 Q313,755 367,752 Q421,749 475,772 Q529,794 584,785 Q638,775 692,776 Q746,778 800,750 Q854,722 908,747 Q962,771 1016,760 Q1071,749 1125,740 Q1179,731 1233,709 Q1287,686 1341,714 Q1395,741 1449,730 Q1504,720 1558,721 Q1612,723 1666,714 L1720,704 L1720,1000 Z" fill="#8c9890"/><path d="M0,1000 L-120,812 Q-120,812 -66,813 Q-12,813 42,807 Q96,800 151,815 Q205,830 259,816 Q313,803 367,821 Q421,840 475,840 Q529,840 584,849 Q638,858 692,840 Q746,822 800,836 Q854,851 908,847 Q962,843 1016,820 Q1071,798 1125,809 Q1179,821 1233,810 Q1287,800 1341,800 Q1395,800 1449,783 Q1504,766 1558,767 Q1612,769 1666,772 L1720,775 L1720,1000 Z" fill="#5d6b5e"/><path d="M0,1000 L-120,884 Q-120,884 -66,870 Q-12,857 42,869 Q96,881 151,871 Q205,860 259,870 Q313,879 367,875 Q421,872 475,875 Q529,878 584,882 Q638,886 692,897 Q746,908 800,909 Q854,910 908,896 Q962,883 1016,895 Q1071,906 1125,902 Q1179,899 1233,906 Q1287,913 1341,908 Q1395,904 1449,892 Q1504,879 1558,893 Q1612,906 1666,894 L1720,881 L1720,1000 Z" fill="#34412f"/></svg></div></div>
+  <div>
+    <span class="eyebrow">Moderate · Munsyari, Pithoragarh district</span>
+    <h2 class="h2">Khalia Top</h2>
+    <p class="prose" style="margin-top:1.25rem">Forest giving way to open high meadows above Munsyari, at around 3,500 metres. On a clear morning the Panchachuli peaks fill the horizon. Under snow in winter, flowering in early summer.</p>
+    <dl class="trek-facts"><div><dt>Trail</dt><dd>A long climbing day through forest to the meadows, with a camp night</dd></div><div><dt>Altitude</dt><dd>Around 3,500 metres</dd></div><div><dt>Suits</dt><dd>Walkers ready for five to six hours on the trail</dd></div></dl>
+    <p class="small" style="margin-top:1rem">Part of: <a href="/journeys/above-the-treeline.html">Above the Treeline</a></p>
+    
+    <a class="link-arrow" href="https://wa.me/916396091261?text=Namaste%20Turiya%20Trails%2C%20I%20would%20like%20to%20know%20the%20next%20dates%20for%20the%20Khalia%20Top%20trek.">Ask about the next batch</a>
+  </div>
+</article><article class="grid-2 reveal" id="pindari" style="margin-top:clamp(4rem,8vw,7rem)">
+  <div><div class="media media--wide"><svg viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pindari Glacier, Bageshwar district" focusable="false"><title>Pindari Glacier, Bageshwar district</title><defs><linearGradient id="g14ce46ba" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5d7184"/><stop offset="1" stop-color="#c9cfcf"/></linearGradient></defs><rect width="1600" height="1000" fill="url(#g14ce46ba)"/><circle cx="1240" cy="200" r="48" fill="#f6f1e3" opacity=".45"/><path d="M-120,1000 L-120,640 L152,564 L217,497 L296,410 L361,479 L440,556 L488,552 L546,435 L616,310 L674,409 L744,535 L776,563 L827,460 L888,350 L939,437 L1000,537 L1080,560 L1145,485 L1224,390 L1289,465 L1368,560 L1720,640 L1720,1000 Z" fill="#eef0ec"/><path d="M296,410 L361,479 L440,571 L318,640 Z" fill="#c7cdc8" opacity=".55"/><path d="M616,310 L674,409 L744,541 L636,640 Z" fill="#c7cdc8" opacity=".55"/><path d="M888,350 L939,437 L1000,553 L905,640 Z" fill="#c7cdc8" opacity=".55"/><path d="M1224,390 L1289,465 L1368,565 L1246,640 Z" fill="#c7cdc8" opacity=".55"/><path d="M0,1000 L-120,603 Q-120,603 -66,618 Q-12,632 42,642 Q96,651 151,649 Q205,647 259,641 Q313,635 367,656 Q421,678 475,683 Q529,689 584,679 Q638,670 692,681 Q746,692 800,679 Q854,667 908,692 Q962,716 1016,693 Q1071,669 1125,672 Q1179,676 1233,685 Q1287,694 1341,680 Q1395,667 1449,669 Q1504,671 1558,642 Q1612,614 1666,611 L1720,609 L1720,1000 Z" fill="#c7cdc8"/><path d="M0,1000 L-120,785 Q-120,785 -66,783 Q-12,780 42,769 Q96,757 151,756 Q205,755 259,768 Q313,780 367,776 Q421,772 475,778 Q529,784 584,777 Q638,770 692,752 Q746,734 800,737 Q854,739 908,744 Q962,749 1016,724 Q1071,698 1125,698 Q1179,698 1233,707 Q1287,715 1341,707 Q1395,698 1449,703 Q1504,708 1558,722 Q1612,737 1666,732 L1720,727 L1720,1000 Z" fill="#8c9890"/><path d="M0,1000 L-120,778 Q-120,778 -66,784 Q-12,791 42,788 Q96,786 151,780 Q205,774 259,774 Q313,773 367,770 Q421,766 475,784 Q529,802 584,805 Q638,808 692,815 Q746,823 800,822 Q854,822 908,813 Q962,804 1016,799 Q1071,794 1125,803 Q1179,811 1233,825 Q1287,839 1341,829 Q1395,819 1449,821 Q1504,823 1558,829 Q1612,834 1666,834 L1720,834 L1720,1000 Z" fill="#5d6b5e"/><path d="M0,1000 L-120,856 Q-120,856 -66,862 Q-12,868 42,860 Q96,853 151,862 Q205,871 259,870 Q313,869 367,865 Q421,862 475,878 Q529,894 584,888 Q638,881 692,894 Q746,906 800,903 Q854,899 908,899 Q962,900 1016,898 Q1071,896 1125,886 Q1179,876 1233,874 Q1287,872 1341,874 Q1395,876 1449,883 Q1504,889 1558,889 Q1612,888 1666,881 L1720,873 L1720,1000 Z" fill="#34412f"/></svg></div></div>
+  <div>
+    <span class="eyebrow">Challenging · Bageshwar district</span>
+    <h2 class="h2">Pindari Glacier</h2>
+    <p class="prose" style="margin-top:1.25rem">A multi-day walk up the Pindar valley through the last villages, forest and moraine, to Zero Point at the foot of the glacier at around 3,600 metres.</p>
+    <dl class="trek-facts"><div><dt>Trail</dt><dd>Five walking days from the roadhead and back</dd></div><div><dt>Altitude</dt><dd>Around 3,600 metres at Zero Point</dd></div><div><dt>Suits</dt><dd>Fit walkers with some trekking experience</dd></div></dl>
+    <p class="small" style="margin-top:1rem">Part of: <a href="/journeys/where-the-river-begins.html">Where the River Begins</a></p>
+    
+    <a class="link-arrow" href="https://wa.me/916396091261?text=Namaste%20Turiya%20Trails%2C%20I%20would%20like%20to%20know%20the%20next%20dates%20for%20the%20Pindari%20Glacier%20trek.">Ask about the next batch</a>
+  </div>
+</article>
+  </div>
+</section>
+<section class="section section--dark">
+  <div class="wrap">
+    <div class="grid-2" style="align-items:start">
+      <div class="reveal">
+        <span class="eyebrow">How we trek</span>
+        <h2 class="display">Trekking as a form of inquiry</h2>
+        <p class="lede" style="margin-top:1.5rem">There is a version of Himalayan trekking that is about conquest: summits bagged, kilometres logged, photos taken. That is not us. We use the act of walking through mountains for something slower and harder to name.</p>
+      </div>
+      <div class="reveal">
+        <ul class="checklist"><li>A walking question each morning, with no obligation to answer out loud</li><li>A slow pace: 4 to 6 km a day on most treks, not 15</li><li>Simple, fresh food cooked for each meal</li><li>Guides trained in mindful facilitation, not performance</li><li>No competitive atmosphere. Everyone moves at their own pace.</li><li>Campfire conversations in the evening, never forced</li><li>Digital detox encouraged, not enforced</li><li>An honest conversation about readiness before you book</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section section--dark cta">
+  <div class="wrap reveal">
+    <span class="eyebrow">Begin here</span>
+    <h2>Not sure which trail is yours?</h2>
+    <p>Tell us what walking you have done before. We will be honest about which trek fits, and which one to save for later.</p>
+    <div class="btn-row">
+      <a class="btn btn--light" href="/plan.html">Plan your journey</a>
+      <a class="btn btn--ghost-light" href="https://wa.me/916396091261?text=Namaste%20Turiya%20Trails%2C%20I%20found%20you%20through%20the%20website%20and%20would%20like%20to%20know%20more."><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3a.5.5 0 0 0 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.1.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .2-1.2c-.1-.1-.3-.2-.5-.3Z"/></svg> WhatsApp us</a>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="/assets/img/logo-mark-ivory.png" alt="Turiya Trails" width="84" height="46" loading="lazy">
+        <p>Small-group journeys, forest walks, birdwatching and stargazing in the Kumaun Himalaya. Rooted in Ranikhet.</p>
+      </div>
+      <div class="footer-col"><h2>Explore</h2><ul><li><a href="/journeys.html">Journeys</a></li><li><a href="/experiences.html">Day experiences</a></li><li><a href="/treks.html">Treks</a></li><li><a href="/field-notes.html">Journal</a></li></ul></div>
+      <div class="footer-col"><h2>Turiya Trails</h2><ul><li><a href="/about.html">About Turiya</a></li><li><a href="/team.html">Our guides</a></li><li><a href="/oakakhi.html">Oakakhi, our base</a></li><li><a href="/privacy.html">Privacy</a></li></ul></div>
+      <div class="footer-col"><h2>Get in touch</h2><ul>
+        <li><a href="https://wa.me/916396091261?text=Namaste%20Turiya%20Trails%2C%20I%20have%20a%20question.">WhatsApp +91 63960 91261</a></li>
+        <li><a href="/plan.html">Enquiry form</a></li>
+        <li><a href="https://www.google.com/maps/search/Oakakhi+Stays+Ranikhet+Uttarakhand" rel="noopener">Oakakhi Stays, Ranikhet</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Turiya Trails. Rooted in Ranikhet.</span>
+      <span>Walk slowly. Notice deeply.</span>
+    </div>
   </div>
 </footer>
-
-<a class="wa-float" href="https://wa.me/916396091261?text=Namaste%2C%20I%20found%20you%20through%20the%20website%20and%20would%20like%20to%20know%20more." aria-label="Message us on WhatsApp">
-  <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.6.8 5 2.3 7L4 29l7.2-2.2c1.5.8 3.1 1.2 4.8 1.2 6.6 0 12-5.4 12-12S22.6 3 16 3zm0 21.8c-1.5 0-3-.4-4.3-1.2l-.3-.2-4.3 1.3 1.3-4.1-.2-.3c-.9-1.4-1.4-3-1.4-4.8 0-5.1 4.1-9.2 9.2-9.2s9.2 4.1 9.2 9.2-4.1 9.3-9.2 9.3zm5-6.9c-.3-.1-1.6-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.2-1.4-.8-.7-1.4-1.6-1.5-1.9-.2-.3 0-.4.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.6-.7 1.9-1.3.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3z"/></svg>
-</a>
-
+<a class="wa-float" href="https://wa.me/916396091261?text=Namaste%20Turiya%20Trails%2C%20I%20found%20you%20through%20the%20website%20and%20would%20like%20to%20know%20more." aria-label="Message Turiya Trails on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3a.5.5 0 0 0 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.1.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .2-1.2c-.1-.1-.3-.2-.5-.3Z"/></svg><span>Ask us</span></a>
+<script src="/assets/js/site.js" defer></script>
 </body>
 </html>

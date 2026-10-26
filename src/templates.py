@@ -1,0 +1,190 @@
+"""Shared page pieces: <head>, navigation, footer and image slots."""
+import json
+import os
+from html import escape
+
+from . import art
+from .data import NAV, SITE, wa
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PHOTO_DIR = os.path.join(ROOT, "assets", "img", "photos")
+
+FONTS = ("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400"
+         "&family=Outfit:wght@300;400;500&display=swap")
+
+WA_ICON = ('<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3a.5.5 0 0 0 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.1.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .2-1.2c-.1-.1-.3-.2-.5-.3Z"/></svg>')
+
+
+def url(path=""):
+    return SITE["url"].rstrip("/") + "/" + path.lstrip("/")
+
+
+def photo_sources(slot):
+    """Return the optimised versions of a photo if one has been added for this slot."""
+    small = os.path.join(PHOTO_DIR, "out", f"{slot}-900.webp")
+    large = os.path.join(PHOTO_DIR, "out", f"{slot}-1800.webp")
+    for ext in ("jpg", "jpeg", "png", "webp"):
+        original = os.path.join(PHOTO_DIR, f"{slot}.{ext}")
+        if os.path.exists(original):
+            return {
+                "fallback": f"/assets/img/photos/{slot}.{ext}",
+                "small": f"/assets/img/photos/out/{slot}-900.webp" if os.path.exists(small) else None,
+                "large": f"/assets/img/photos/out/{slot}-1800.webp" if os.path.exists(large) else None,
+            }
+    return None
+
+
+def media(slot, scene, alt, cls="", eager=False, sizes="(min-width: 900px) 50vw, 100vw"):
+    """An image slot. Shows the photo for `slot` if it exists, otherwise an illustration."""
+    src = photo_sources(slot) if slot else None
+    loading = "eager" if eager else "lazy"
+    if src:
+        srcset = ", ".join(s for s in [f'{src["small"]} 900w' if src["small"] else "", f'{src["large"]} 1800w' if src["large"] else ""] if s)
+        source = f'<source type="image/webp" srcset="{srcset}" sizes="{sizes}">' if srcset else ""
+        inner = f'<picture>{source}<img src="{src["fallback"]}" alt="{escape(alt)}" loading="{loading}" decoding="async" width="1800" height="1200"></picture>'
+    else:
+        kind, seed = scene
+        inner = art.scene(kind, seed, alt)
+    return f'<div class="media {cls}">{inner}</div>'
+
+
+def head(meta):
+    title = meta["title"]
+    desc = meta["description"]
+    canonical = url(meta["path"])
+    image = url(meta.get("image", "assets/img/og-default.jpg"))
+    og_type = meta.get("og_type", "website")
+    ld = meta.get("jsonld") or []
+    ld_html = "".join(f'<script type="application/ld+json">{json.dumps(x, ensure_ascii=False)}</script>' for x in ld)
+    robots = '<meta name="robots" content="noindex">' if meta.get("noindex") else ""
+    return f"""<!DOCTYPE html>
+<html lang="en-IN" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{escape(title)}</title>
+<meta name="description" content="{escape(desc)}">
+<link rel="canonical" href="{canonical}">
+{robots}
+<meta property="og:site_name" content="Turiya Trails">
+<meta property="og:type" content="{og_type}">
+<meta property="og:title" content="{escape(meta.get('og_title', title))}">
+<meta property="og:description" content="{escape(desc)}">
+<meta property="og:url" content="{canonical}">
+<meta property="og:image" content="{image}">
+<meta property="og:locale" content="en_IN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#17291f">
+<link rel="icon" type="image/png" sizes="48x48" href="/assets/img/favicon-48.png">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="{FONTS}">
+<link rel="stylesheet" href="/assets/css/site.css">
+<script>document.documentElement.classList.remove('no-js')</script>
+{ld_html}
+</head>"""
+
+
+def header(current, tone="light"):
+    here = ' aria-current="page"'
+    links = "".join(
+        f'<li><a href="/{href}"{here if href == current else ""}>{label}</a></li>'
+        for label, href in NAV
+    )
+    mm = "".join(
+        f'<li><a class="mm-link" href="/{href}">{label}<small>{"Here" if href == current else ""}</small></a></li>'
+        for label, href in NAV
+    )
+    return f"""<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header" data-tone="{tone}">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="Turiya Trails, home">
+      <img class="brand-dark" src="/assets/img/logo-mark-forest.png" alt="" width="55" height="30">
+      <img class="brand-light" src="/assets/img/logo-mark-ivory.png" alt="" width="55" height="30">
+      <span class="brand-name">Turiya Trails</span>
+    </a>
+    <nav aria-label="Main"><ul class="nav-links">{links}</ul></nav>
+    <a class="btn btn--line nav-cta" href="/plan.html">Plan your journey</a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu"><span class="label">Menu</span><span class="bars" aria-hidden="true"></span></button>
+  </div>
+</header>
+<div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+  <nav aria-label="Mobile"><ul>{mm}<li><a class="mm-link" href="/plan.html">Plan your journey<small></small></a></li></ul></nav>
+  <div class="mm-foot">
+    <a class="btn btn--light" href="{wa('Namaste Turiya Trails, I found you through the website and would like to know more.')}">{WA_ICON} Message us on WhatsApp</a>
+    <p>Oakakhi, Ranikhet · Kumaun Himalaya</p>
+  </div>
+</div>"""
+
+
+def footer():
+    explore = [("Journeys", "journeys.html"), ("Day experiences", "experiences.html"), ("Treks", "treks.html"), ("Journal", "field-notes.html")]
+    about = [("About Turiya", "about.html"), ("Our guides", "team.html"), ("Oakakhi, our base", "oakakhi.html"), ("Privacy", "privacy.html")]
+    col = lambda items: "".join(f'<li><a href="/{h}">{l}</a></li>' for l, h in items)
+    return f"""<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="/assets/img/logo-mark-ivory.png" alt="Turiya Trails" width="84" height="46" loading="lazy">
+        <p>Small-group journeys, forest walks, birdwatching and stargazing in the Kumaun Himalaya. Rooted in Ranikhet.</p>
+      </div>
+      <div class="footer-col"><h2>Explore</h2><ul>{col(explore)}</ul></div>
+      <div class="footer-col"><h2>Turiya Trails</h2><ul>{col(about)}</ul></div>
+      <div class="footer-col"><h2>Get in touch</h2><ul>
+        <li><a href="{wa('Namaste Turiya Trails, I have a question.')}">WhatsApp {SITE['phone_display']}</a></li>
+        <li><a href="/plan.html">Enquiry form</a></li>
+        <li><a href="{SITE['maps']}" rel="noopener">Oakakhi Stays, Ranikhet</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© {SITE['year']} Turiya Trails. Rooted in Ranikhet.</span>
+      <span>Walk slowly. Notice deeply.</span>
+    </div>
+  </div>
+</footer>
+<a class="wa-float" href="{wa('Namaste Turiya Trails, I found you through the website and would like to know more.')}" aria-label="Message Turiya Trails on WhatsApp">{WA_ICON}<span>Ask us</span></a>
+<script src="/assets/js/site.js" defer></script>"""
+
+
+def page(meta, body, current="", tone="light"):
+    return f"""{head(meta)}
+<body>
+{header(current, tone)}
+<main id="main">
+{body}
+</main>
+{footer()}
+</body>
+</html>
+"""
+
+
+def breadcrumbs(items):
+    """items: list of (label, href or None). Returns (html, jsonld)."""
+    lis = "".join(
+        f'<li><a href="/{h}">{escape(l)}</a></li>' if h is not None else f'<li aria-current="page">{escape(l)}</li>'
+        for l, h in items
+    )
+    ld = {
+        "@context": "https://schema.org", "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": i + 1, "name": l, **({"item": url(h)} if h is not None else {})}
+            for i, (l, h) in enumerate(items)
+        ],
+    }
+    return f'<nav class="breadcrumbs" aria-label="Breadcrumb"><ol>{lis}</ol></nav>', ld
+
+
+ORG_LD = {
+    "@context": "https://schema.org",
+    "@type": "TravelAgency",
+    "name": "Turiya Trails",
+    "url": SITE["url"] + "/",
+    "logo": SITE["url"] + "/assets/img/icon-512.png",
+    "image": SITE["url"] + "/assets/img/og-default.jpg",
+    "telephone": SITE["phone_display"].replace(" ", ""),
+    "description": "Small-group journeys, treks, forest walks, birdwatching and stargazing in the Kumaun Himalaya, based at Oakakhi Stays in Ranikhet.",
+    "address": {"@type": "PostalAddress", "addressLocality": "Ranikhet", "addressRegion": "Uttarakhand", "addressCountry": "IN"},
+    "areaServed": "Kumaun, Uttarakhand, India",
+}
