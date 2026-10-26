@@ -168,7 +168,9 @@ def footer():
       <div class="footer-col"><h2>Turiya Trails</h2><ul>{col(about)}</ul></div>
       <div class="footer-col"><h2>Get in touch</h2><ul>
         <li><a href="{wa('Namaste Turiya Trails, I have a question.')}">WhatsApp {SITE['phone_display']}</a></li>
+        <li><a href="mailto:{SITE['email']}">{SITE['email']}</a></li>
         <li><a href="/plan.html">Enquiry form</a></li>
+        <li><a href="/international.html">Travelling from abroad</a></li>
         <li><a href="{SITE['maps']}" rel="noopener">Oakakhi Stays, Ranikhet</a></li>
       </ul></div>
     </div>
@@ -219,6 +221,7 @@ ORG_LD = {
     "logo": SITE["url"] + "/assets/img/icon-512.png",
     "image": SITE["url"] + "/assets/img/og-default.jpg",
     "telephone": SITE["phone_display"].replace(" ", ""),
+    "email": SITE["email"],
     "description": "Small-group journeys, treks, forest walks, birdwatching and stargazing in the Kumaun Himalaya, based at Oakakhi Stays in Ranikhet.",
     "address": {"@type": "PostalAddress", "addressLocality": "Ranikhet", "addressRegion": "Uttarakhand", "addressCountry": "IN"},
     "areaServed": "Kumaun, Uttarakhand, India",
