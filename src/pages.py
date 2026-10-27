@@ -774,7 +774,7 @@ def treks():
 def oakakhi():
     crumbs, crumbs_ld = breadcrumbs([("Home", ""), ("Oakakhi", None)])
     body = f"""
-{page_hero("Our base", "Every journey begins at <em>Oakakhi</em>", "A small homestay in the oak forest above Ranikhet, at around 1,800 metres. Chai first. Nothing is discussed until chai is in hand.", ("mist", 20), "oakakhi-hero", crumbs)}
+{page_hero("Our base", "Every journey begins at <em>Oakakhi</em>", "A small homestay in the oak forest above Ranikhet, at around 1,800 metres. Chai first. Nothing is discussed until chai is in hand.", ("mist", 20), "oakakhi-hero", crumbs, split=True)}
 <section class="section">
   <div class="wrap">
     <div class="grid-2 grid-2--wide-right">
