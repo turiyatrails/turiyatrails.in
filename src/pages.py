@@ -78,13 +78,14 @@ def cta(title="Let’s plan a quieter kind of journey.", text="Tell us what you 
 def page_hero(eyebrow, title, lede, scene, slot, crumbs=None, facts=None, split=False):
     """Page header with the photo behind the text. With split, the header fills the screen,
     the headline sits at the top and the description at the bottom-left, leaving the
-    middle of the photo clear. With split="corner", all the text sits bottom-right."""
+    middle of the photo clear. With split="corner", all the text sits bottom-right;
+    with split="sky", top-right (for photos with open sky there)."""
     crumb_html = crumbs or ""
     facts_html = ""
     if facts:
         facts_html = '<dl class="facts">' + "".join(f"<div><dt>{E(k)}</dt><dd>{E(v)}</dd></div>" for k, v in facts) + "</dl>"
-    if split == "corner":
-        return f"""<section class="page-hero page-hero--split page-hero--corner">
+    if split in ("corner", "sky"):
+        return f"""<section class="page-hero page-hero--split page-hero--corner{' page-hero--sky' if split == 'sky' else ''}">
   <div class="hero-media">{media(slot, scene, "", eager=True, sizes="(max-aspect-ratio: 1/1) 220vh, 100vw")}</div>
   <div class="wrap page-hero-inner">
     {crumb_html}
@@ -933,8 +934,8 @@ def journal_index():
     crumbs, crumbs_ld = breadcrumbs([("Home", ""), ("Journal", None)])
     posts = journal_posts()
     body = f"""
-{plain_hero("Journal", "Notes from the trail and the <em>forest</em>", "Short, honest writing on the philosophy, the place and the practicalities. Growing slowly, the way everything else here does.", crumbs)}
-<section class="section" style="padding-top:0">
+{page_hero("Journal", "Notes from the trail and the <em>forest</em>", "Short, honest writing on the philosophy, the place and the practicalities. Growing slowly, the way everything else here does.", ("night", 5), "journal-hero", crumbs, split="sky")}
+<section class="section">
   <div class="wrap">
     <ul class="posts" style="list-style:none">{''.join(post_row(p) for p in posts)}</ul>
     <div class="grid-2 reveal" style="margin-top:clamp(4rem,8vw,6rem);align-items:start">
@@ -956,7 +957,7 @@ def journal_index():
         "jsonld": [crumbs_ld, {"@context": "https://schema.org", "@type": "Blog", "name": "Turiya Trails Journal", "url": url("field-notes.html"),
                                "blogPost": [{"@type": "BlogPosting", "headline": p["title"], "url": url(f"journal/{p['slug']}.html"), "datePublished": p["date"]} for p in posts]}],
     }
-    return "field-notes.html", page(meta, body, current="field-notes.html", tone="dark")
+    return "field-notes.html", page(meta, body, current="field-notes.html")
 
 
 def article(p, posts):
