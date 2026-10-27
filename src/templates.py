@@ -35,6 +35,7 @@ def photo_sources(slot):
 
 
 # Where the subject sits in a photo, so cropping keeps it in view (CSS object-position).
+# A pair means (wide screens, phones).
 FOCUS = {
     "home-hero": "57% 60%",
     "home-intro": "50% 60%",
@@ -45,7 +46,7 @@ FOCUS = {
     "trek-bharatkot": "60% 60%",
     "journeys-hero": "50% 62%",
     "treks-hero": "55% 60%",
-    "experiences-hero": "0% 65%",
+    "experiences-hero": ("0% 65%", "46% 65%"),
     "about-hero": "50% 45%",
     "team-nishant": "50% 70%",
     "team-sachin": "35% 60%",
@@ -62,7 +63,11 @@ def media(slot, scene, alt, cls="", eager=False, sizes="(min-width: 900px) 50vw,
     if src:
         srcset = ", ".join(s for s in [f'{src["small"]} 900w' if src["small"] else "", f'{src["large"]} 1800w' if src["large"] else ""] if s)
         source = f'<source type="image/webp" srcset="{srcset}" sizes="{sizes}">' if srcset else ""
-        pos = f' style="object-position:{FOCUS[slot]}"' if slot in FOCUS else ""
+        focus = FOCUS.get(slot)
+        if isinstance(focus, tuple):
+            pos = f' style="--pos:{focus[0]};--pos-m:{focus[1]}"'
+        else:
+            pos = f' style="--pos:{focus}"' if focus else ""
         fetch = ' fetchpriority="high"' if eager else ""
         inner = f'<picture>{source}<img src="{src["fallback"]}" alt="{escape(alt)}" loading="{loading}"{fetch} decoding="async" width="1800" height="1200"{pos}></picture>'
     else:
