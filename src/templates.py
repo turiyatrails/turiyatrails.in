@@ -15,6 +15,17 @@ FONT_FACES = open(os.path.join(ROOT, "assets", "css", "fonts.css"), encoding="ut
 WA_ICON = ('<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3a.5.5 0 0 0 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.1.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .2-1.2c-.1-.1-.3-.2-.5-.3Z"/></svg>')
 
 
+def v(web_path):
+    """Add a short content fingerprint to an asset URL, so caches can keep files for a
+    long time yet always fetch the new version when the file changes."""
+    import hashlib
+    try:
+        with open(os.path.join(ROOT, web_path.lstrip("/")), "rb") as f:
+            return f"{web_path}?v={hashlib.md5(f.read()).hexdigest()[:8]}"
+    except OSError:
+        return web_path
+
+
 def url(path=""):
     return SITE["url"].rstrip("/") + "/" + path.lstrip("/")
 
@@ -38,8 +49,8 @@ def photo_sources(slot):
         original = os.path.join(PHOTO_DIR, f"{slot}.{ext}")
         if os.path.exists(original):
             return {
-                "fallback": f"/assets/img/photos/{slot}.{ext}",
-                "webp": [(f"/assets/img/photos/out/{slot}-{w}.webp", w) for w in PHOTO_WIDTHS
+                "fallback": v(f"/assets/img/photos/{slot}.{ext}"),
+                "webp": [(v(f"/assets/img/photos/out/{slot}-{w}.webp"), w) for w in PHOTO_WIDTHS
                          if os.path.exists(os.path.join(PHOTO_DIR, "out", f"{slot}-{w}.webp"))],
             }
     return None
@@ -138,7 +149,7 @@ def head(meta):
 <link rel="preload" href="/assets/fonts/cormorant-garamond-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/outfit-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>{FONT_FACES}</style>
-<link rel="stylesheet" href="/assets/css/site.css">
+<link rel="stylesheet" href="{v('/assets/css/site.css')}">
 <script>document.documentElement.classList.remove('no-js')</script>
 {ld_html}
 </head>"""
@@ -204,7 +215,7 @@ def footer():
   </div>
 </footer>
 <a class="wa-float" href="{wa('Namaste Turiya Trails, I found you through the website and would like to know more.')}" aria-label="Message Turiya Trails on WhatsApp">{WA_ICON}<span>Ask us</span></a>
-<script src="/assets/js/site.js" defer></script>"""
+<script src="{v('/assets/js/site.js')}" defer></script>"""
 
 
 def page(meta, body, current="", tone="light"):
