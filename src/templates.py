@@ -36,7 +36,7 @@ def photo_sources(slot):
 
 # Where the subject sits in a photo, so cropping keeps it in view (CSS object-position).
 FOCUS = {
-    "home-hero": "62% 55%",
+    "home-hero": "57% 60%",
     "home-intro": "50% 60%",
     "journey-into-the-quiet": "50% 75%",
     "journey-the-seekers-ridge": "50% 70%",
