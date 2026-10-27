@@ -48,6 +48,7 @@ FOCUS = {
     "trek-bharatkot": "60% 60%",
     "journeys-hero": "50% 62%",
     "treks-hero": ("0% 70%", "50% 70%"),
+    "oakakhi-hero": ("50% 40%", "45% 50%"),
     "experiences-hero": ("0% 65%", "46% 65%"),
     "about-hero": "50% 45%",
     "team-nishant": "50% 70%",
