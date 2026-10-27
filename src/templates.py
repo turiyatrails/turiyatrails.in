@@ -19,6 +19,15 @@ def url(path=""):
     return SITE["url"].rstrip("/") + "/" + path.lstrip("/")
 
 
+def _previews():
+    """Tiny blurred previews made by build.py, keyed by photo slot."""
+    try:
+        with open(os.path.join(PHOTO_DIR, "out", "previews.json"), encoding="utf-8") as f:
+            return json.load(f)
+    except (OSError, ValueError):
+        return {}
+
+
 # Widths generated for every photo. The browser picks the smallest that looks sharp.
 PHOTO_WIDTHS = (480, 800, 1200, 1600)
 
@@ -73,6 +82,11 @@ def media(slot, scene, alt, cls="", eager=False, sizes="(min-width: 1240px) 560p
             pos = f' style="--pos:{focus}"' if focus else ""
         fetch = ' fetchpriority="high"' if eager else ""
         inner = f'<picture>{source}<img src="{src["fallback"]}" alt="{escape(alt)}" loading="{loading}"{fetch} decoding="async" width="1800" height="1200"{pos}></picture>'
+        preview = _previews().get(slot)
+        if preview:
+            # Shown instantly behind the photo, so the box is never empty while it downloads.
+            bg_pos = (focus[0] if isinstance(focus, tuple) else focus) or "50% 50%"
+            return f'<div class="media {cls}" style="background-image:url({preview});background-size:cover;background-position:{bg_pos}">{inner}</div>'
     else:
         kind, seed = scene
         inner = art.scene(kind, seed, alt)
