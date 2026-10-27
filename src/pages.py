@@ -75,11 +75,25 @@ def cta(title="Let’s plan a quieter kind of journey.", text="Tell us what you 
 </section>"""
 
 
-def page_hero(eyebrow, title, lede, scene, slot, crumbs=None, facts=None):
+def page_hero(eyebrow, title, lede, scene, slot, crumbs=None, facts=None, photo_below=False, alt=""):
+    """Page header. With photo_below, the text sits on a dark band and the photo is shown
+    whole underneath it, uncropped and undimmed (for group shots where everyone must show)."""
     crumb_html = crumbs or ""
     facts_html = ""
     if facts:
         facts_html = '<dl class="facts">' + "".join(f"<div><dt>{E(k)}</dt><dd>{E(v)}</dd></div>" for k, v in facts) + "</dl>"
+    if photo_below and photo_sources(slot):
+        return f"""<section class="page-hero page-hero--below">
+  <div class="wrap page-hero-inner">
+    {crumb_html}
+    <div class="phb-grid">
+      <div><span class="eyebrow">{E(eyebrow)}</span><h1>{title}</h1></div>
+      <p class="lede">{E(lede)}</p>
+    </div>
+    {facts_html}
+  </div>
+  {media(slot, scene, alt, cls="media--natural", eager=True, sizes="100vw")}
+</section>"""
     return f"""<section class="page-hero">
   <div class="hero-media">{media(slot, scene, "", eager=True, sizes="(max-aspect-ratio: 1/1) 220vh, 100vw")}</div>
   <div class="wrap page-hero-inner">
@@ -721,7 +735,7 @@ def treks():
   </div>
 </article>""")
     body = f"""
-{page_hero("Treks", "Walk to notice, not to <em>conquer</em>", "Five trails, graded honestly. These are the treks we know and lead ourselves, from a gentle forest climb to a glacier at the head of a valley.", ("snow", 9), "treks-hero", crumbs)}
+{page_hero("Treks", "Walk to notice, not to <em>conquer</em>", "Five trails, graded honestly. These are the treks we know and lead ourselves, from a gentle forest climb to a glacier at the head of a valley.", ("snow", 9), "treks-hero", crumbs, photo_below=True, alt="Five trekkers around an orange tent at a summit camp, looking out over layered Kumaun hills at sunrise")}
 <section class="section" style="padding-top:clamp(3rem,6vw,5rem)">
   <div class="wrap">
     <div class="notice reveal"><p>Each trek lives inside a longer journey, and the shorter ones can also be walked on their own. Groups of 4 to 10, led by our BMC certified lead guide. Dates are released in small batches. Message us and we will tell you what is opening next.</p></div>

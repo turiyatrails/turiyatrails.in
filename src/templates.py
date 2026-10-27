@@ -45,7 +45,6 @@ FOCUS = {
     "trek-pandavkholi": "55% 60%",
     "trek-bharatkot": "60% 60%",
     "journeys-hero": "50% 62%",
-    "treks-hero": ("20% 50%", "52% 50%"),
     "experiences-hero": ("0% 65%", "46% 65%"),
     "about-hero": "50% 45%",
     "team-nishant": "50% 70%",
@@ -54,6 +53,16 @@ FOCUS = {
     "pandavkholi-1": "60% 60%",
     "bharatkot-1": "50% 55%",
 }
+
+
+def natural_size(web_path):
+    """Pixel size of a photo, so the browser reserves the right space before it loads."""
+    try:
+        from PIL import Image
+        with Image.open(os.path.join(ROOT, web_path.lstrip("/"))) as im:
+            return im.size
+    except Exception:
+        return 1800, 1200
 
 
 def media(slot, scene, alt, cls="", eager=False, sizes="(min-width: 900px) 50vw, 100vw"):
@@ -69,7 +78,8 @@ def media(slot, scene, alt, cls="", eager=False, sizes="(min-width: 900px) 50vw,
         else:
             pos = f' style="--pos:{focus}"' if focus else ""
         fetch = ' fetchpriority="high"' if eager else ""
-        inner = f'<picture>{source}<img src="{src["fallback"]}" alt="{escape(alt)}" loading="{loading}"{fetch} decoding="async" width="1800" height="1200"{pos}></picture>'
+        w, h = natural_size(src["fallback"]) if "media--natural" in cls else (1800, 1200)
+        inner = f'<picture>{source}<img src="{src["fallback"]}" alt="{escape(alt)}" loading="{loading}"{fetch} decoding="async" width="{w}" height="{h}"{pos}></picture>'
     else:
         kind, seed = scene
         inner = art.scene(kind, seed, alt)
