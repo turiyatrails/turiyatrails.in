@@ -9,8 +9,8 @@ from .data import NAV, SITE, wa
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PHOTO_DIR = os.path.join(ROOT, "assets", "img", "photos")
 
-FONTS = ("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400"
-         "&family=Outfit:wght@300;400;500&display=swap")
+# Fonts are self-hosted (assets/fonts) so pages do not wait on a third-party server.
+FONT_FACES = open(os.path.join(ROOT, "assets", "css", "fonts.css"), encoding="utf-8").read()
 
 WA_ICON = ('<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3a.5.5 0 0 0 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.1.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .2-1.2c-.1-.1-.3-.2-.5-.3Z"/></svg>')
 
@@ -19,17 +19,19 @@ def url(path=""):
     return SITE["url"].rstrip("/") + "/" + path.lstrip("/")
 
 
+# Widths generated for every photo. The browser picks the smallest that looks sharp.
+PHOTO_WIDTHS = (480, 800, 1200, 1600)
+
+
 def photo_sources(slot):
     """Return the optimised versions of a photo if one has been added for this slot."""
-    small = os.path.join(PHOTO_DIR, "out", f"{slot}-900.webp")
-    large = os.path.join(PHOTO_DIR, "out", f"{slot}-1800.webp")
     for ext in ("jpg", "jpeg", "png", "webp"):
         original = os.path.join(PHOTO_DIR, f"{slot}.{ext}")
         if os.path.exists(original):
             return {
                 "fallback": f"/assets/img/photos/{slot}.{ext}",
-                "small": f"/assets/img/photos/out/{slot}-900.webp" if os.path.exists(small) else None,
-                "large": f"/assets/img/photos/out/{slot}-1800.webp" if os.path.exists(large) else None,
+                "webp": [(f"/assets/img/photos/out/{slot}-{w}.webp", w) for w in PHOTO_WIDTHS
+                         if os.path.exists(os.path.join(PHOTO_DIR, "out", f"{slot}-{w}.webp"))],
             }
     return None
 
@@ -56,12 +58,12 @@ FOCUS = {
 }
 
 
-def media(slot, scene, alt, cls="", eager=False, sizes="(min-width: 900px) 50vw, 100vw"):
+def media(slot, scene, alt, cls="", eager=False, sizes="(min-width: 1240px) 560px, (min-width: 900px) 45vw, 92vw"):
     """An image slot. Shows the photo for `slot` if it exists, otherwise an illustration."""
     src = photo_sources(slot) if slot else None
     loading = "eager" if eager else "lazy"
     if src:
-        srcset = ", ".join(s for s in [f'{src["small"]} 900w' if src["small"] else "", f'{src["large"]} 1800w' if src["large"] else ""] if s)
+        srcset = ", ".join(f"{path} {w}w" for path, w in src["webp"])
         source = f'<source type="image/webp" srcset="{srcset}" sizes="{sizes}">' if srcset else ""
         focus = FOCUS.get(slot)
         if isinstance(focus, tuple):
@@ -79,7 +81,7 @@ def media(slot, scene, alt, cls="", eager=False, sizes="(min-width: 900px) 50vw,
 def gallery(items, note=""):
     """A row of photos. items: (slot, alt, caption or "")."""
     figs = "".join(
-        f'<figure class="g-item">{media(slot, ("mist", i), alt, sizes="(min-width: 900px) 25vw, 50vw")}'
+        f'<figure class="g-item">{media(slot, ("mist", i), alt, sizes="(min-width: 1240px) 270px, (min-width: 900px) 22vw, 46vw")}'
         + (f"<figcaption>{escape(cap)}</figcaption>" if cap else "") + "</figure>"
         for i, (slot, alt, cap) in enumerate(items) if photo_sources(slot)
     )
@@ -118,9 +120,9 @@ def head(meta):
 <meta name="theme-color" content="#17291f">
 <link rel="icon" type="image/png" sizes="48x48" href="/assets/img/favicon-48.png">
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="{FONTS}">
+<link rel="preload" href="/assets/fonts/cormorant-garamond-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/outfit-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>{FONT_FACES}</style>
 <link rel="stylesheet" href="/assets/css/site.css">
 <script>document.documentElement.classList.remove('no-js')</script>
 {ld_html}

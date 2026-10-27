@@ -18,9 +18,16 @@
 <meta name="theme-color" content="#17291f">
 <link rel="icon" type="image/png" sizes="48x48" href="/assets/img/favicon-48.png">
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Outfit:wght@300;400;500&display=swap">
+<link rel="preload" href="/assets/fonts/cormorant-garamond-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/outfit-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>/* Self-hosted fonts (Latin and Latin Extended subsets, from Google Fonts, SIL Open Font License). */
+@font-face { font-family: 'Cormorant Garamond'; font-style: italic; font-weight: 300 400; font-display: swap; src: url('/assets/fonts/cormorant-garamond-italic-latin-ext.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Cormorant Garamond'; font-style: italic; font-weight: 300 400; font-display: swap; src: url('/assets/fonts/cormorant-garamond-italic-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 300 500; font-display: swap; src: url('/assets/fonts/cormorant-garamond-normal-latin-ext.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 300 500; font-display: swap; src: url('/assets/fonts/cormorant-garamond-normal-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Outfit'; font-style: normal; font-weight: 300 500; font-display: swap; src: url('/assets/fonts/outfit-normal-latin-ext.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Outfit'; font-style: normal; font-weight: 300 500; font-display: swap; src: url('/assets/fonts/outfit-normal-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+</style>
 <link rel="stylesheet" href="/assets/css/site.css">
 <script>document.documentElement.classList.remove('no-js')</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://turiyatrails.in/"}, {"@type": "ListItem", "position": 2, "name": "Day experiences", "item": "https://turiyatrails.in/experiences.html"}, {"@type": "ListItem", "position": 3, "name": "Stargazing"}]}</script>
@@ -107,13 +114,13 @@
   <span class="f-route">Ranikhet, Kausani, Kasar Devi</span>
   <span class="f-foot"><span>3 nights, 4 days</span><span class="f-price">₹18,500</span></span>
 </a><a class="feature reveal" href="/journeys/kalika-weekend.html">
-  <div class="media "><picture><source type="image/webp" srcset="/assets/img/photos/out/journey-kalika-weekend-900.webp 900w, /assets/img/photos/out/journey-kalika-weekend-1800.webp 1800w" sizes="(min-width: 1100px) 33vw, (min-width: 760px) 50vw, 100vw"><img src="/assets/img/photos/journey-kalika-weekend.jpg" alt="The Kalika Weekend, Oakakhi, Ranikhet" loading="lazy" decoding="async" width="1800" height="1200"></picture></div>
+  <div class="media "><picture><source type="image/webp" srcset="/assets/img/photos/out/journey-kalika-weekend-480.webp 480w, /assets/img/photos/out/journey-kalika-weekend-800.webp 800w, /assets/img/photos/out/journey-kalika-weekend-1200.webp 1200w, /assets/img/photos/out/journey-kalika-weekend-1600.webp 1600w" sizes="(min-width: 1240px) 340px, (min-width: 1100px) 30vw, (min-width: 760px) 46vw, 92vw"><img src="/assets/img/photos/journey-kalika-weekend.jpg" alt="The Kalika Weekend, Oakakhi, Ranikhet" loading="lazy" decoding="async" width="1800" height="1200"></picture></div>
   <span class="f-level">Slow days · Easy<span class="tag">New</span></span>
   <h3>The Kalika Weekend</h3>
   <span class="f-route">Oakakhi, Ranikhet</span>
   <span class="f-foot"><span>2 nights, 3 days</span><span class="f-price">₹12,000</span></span>
 </a><a class="feature reveal" href="/journeys/the-seekers-ridge.html">
-  <div class="media "><picture><source type="image/webp" srcset="/assets/img/photos/out/journey-the-seekers-ridge-900.webp 900w, /assets/img/photos/out/journey-the-seekers-ridge-1800.webp 1800w" sizes="(min-width: 1100px) 33vw, (min-width: 760px) 50vw, 100vw"><img src="/assets/img/photos/journey-the-seekers-ridge.jpg" alt="The Seeker&#x27;s Ridge, Ranikhet and Bharatkot" loading="lazy" decoding="async" width="1800" height="1200" style="--pos:50% 70%"></picture></div>
+  <div class="media "><picture><source type="image/webp" srcset="/assets/img/photos/out/journey-the-seekers-ridge-480.webp 480w, /assets/img/photos/out/journey-the-seekers-ridge-800.webp 800w, /assets/img/photos/out/journey-the-seekers-ridge-1200.webp 1200w, /assets/img/photos/out/journey-the-seekers-ridge-1600.webp 1600w" sizes="(min-width: 1240px) 340px, (min-width: 1100px) 30vw, (min-width: 760px) 46vw, 92vw"><img src="/assets/img/photos/journey-the-seekers-ridge.jpg" alt="The Seeker&#x27;s Ridge, Ranikhet and Bharatkot" loading="lazy" decoding="async" width="1800" height="1200" style="--pos:50% 70%"></picture></div>
   <span class="f-level">Slow days · Challenging</span>
   <h3>The Seeker&#x27;s Ridge</h3>
   <span class="f-route">Ranikhet and Bharatkot</span>
