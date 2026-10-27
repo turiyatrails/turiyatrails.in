@@ -510,7 +510,7 @@ body.menu-open { overflow: hidden; }
 @media (min-width: 1080px) { .wa-float { display: none; } }
 
 /* ---------- Motion ---------- */
-.reveal { opacity: 0; transform: translateY(18px); transition: opacity 1s var(--ease), transform 1s var(--ease); }
+.reveal { opacity: 0; transform: translateY(12px); transition: opacity .5s var(--ease), transform .5s var(--ease); }
 .reveal.is-in { opacity: 1; transform: none; }
 .no-js .reveal { opacity: 1; transform: none; }
 .art-drift { animation: drift 38s ease-in-out infinite alternate; }

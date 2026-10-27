@@ -50,8 +50,31 @@ def optimise_photos():
             print(f"  photo  {os.path.relpath(dest, ROOT)}")
 
 
+def make_previews():
+    """Tiny blurred previews, inlined in the page, shown while each photo downloads."""
+    try:
+        from PIL import Image, ImageOps
+    except ImportError:
+        return
+    import base64, io, json
+    previews = {}
+    for name in sorted(os.listdir(PHOTO_DIR)):
+        stem, ext = os.path.splitext(name)
+        if ext.lower() not in (".jpg", ".jpeg", ".png", ".webp"):
+            continue
+        with Image.open(os.path.join(PHOTO_DIR, name)) as im:
+            im = ImageOps.exif_transpose(im).convert("RGB")
+            im.thumbnail((20, 20))
+            buf = io.BytesIO()
+            im.save(buf, "JPEG", quality=50)
+        previews[stem] = "data:image/jpeg;base64," + base64.b64encode(buf.getvalue()).decode()
+    with open(os.path.join(PHOTO_DIR, "out", "previews.json"), "w") as f:
+        json.dump(previews, f, indent=0, sort_keys=True)
+
+
 def main():
     optimise_photos()
+    make_previews()
     pages = all_pages()
     for path, html in pages:
         dest = os.path.join(ROOT, path)
