@@ -78,11 +78,23 @@ def cta(title="Let’s plan a quieter kind of journey.", text="Tell us what you 
 def page_hero(eyebrow, title, lede, scene, slot, crumbs=None, facts=None, split=False):
     """Page header with the photo behind the text. With split, the header fills the screen,
     the headline sits at the top and the description at the bottom-left, leaving the
-    middle of the photo clear."""
+    middle of the photo clear. With split="corner", all the text sits bottom-right."""
     crumb_html = crumbs or ""
     facts_html = ""
     if facts:
         facts_html = '<dl class="facts">' + "".join(f"<div><dt>{E(k)}</dt><dd>{E(v)}</dd></div>" for k, v in facts) + "</dl>"
+    if split == "corner":
+        return f"""<section class="page-hero page-hero--split page-hero--corner">
+  <div class="hero-media">{media(slot, scene, "", eager=True, sizes="(max-aspect-ratio: 1/1) 220vh, 100vw")}</div>
+  <div class="wrap page-hero-inner">
+    {crumb_html}
+    <div class="corner-text">
+      <span class="eyebrow">{E(eyebrow)}</span>
+      <h1>{title}</h1>
+      <p class="lede">{E(lede)}</p>
+    </div>
+  </div>
+</section>"""
     if split:
         return f"""<section class="page-hero page-hero--split">
   <div class="hero-media">{media(slot, scene, "", eager=True, sizes="(max-aspect-ratio: 1/1) 220vh, 100vw")}</div>
@@ -774,7 +786,7 @@ def treks():
 def oakakhi():
     crumbs, crumbs_ld = breadcrumbs([("Home", ""), ("Oakakhi", None)])
     body = f"""
-{page_hero("Our base", "Every journey begins at <em>Oakakhi</em>", "A small homestay in the oak forest above Ranikhet, at around 1,800 metres. Chai first. Nothing is discussed until chai is in hand.", ("mist", 20), "oakakhi-hero", crumbs, split=True)}
+{page_hero("Our base", "Every journey begins at <em>Oakakhi</em>", "A small homestay in the oak forest above Ranikhet, at around 1,800 metres. Chai first. Nothing is discussed until chai is in hand.", ("mist", 20), "oakakhi-hero", crumbs, split="corner")}
 <section class="section">
   <div class="wrap">
     <div class="grid-2 grid-2--wide-right">

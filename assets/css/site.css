@@ -256,6 +256,19 @@ body.menu-open { overflow: hidden; }
 .page-hero--split h1 { font-size: clamp(2.2rem, min(1.4rem + 3.2vw, 7.6vh), 4.6rem); max-width: 14ch; }
 .page-hero--split .lede { max-width: 22rem; margin: 0; font-size: var(--fs-base); }
 .page-hero--split .hero-media::after { background: linear-gradient(180deg, rgba(18, 31, 23, .6) 0%, rgba(18, 31, 23, .2) 32%, rgba(18, 31, 23, 0) 50%, rgba(18, 31, 23, .15) 70%, rgba(18, 31, 23, .7) 100%); }
+/* Corner variant: all text bottom-right, shaded only where the text sits. */
+.page-hero--corner .page-hero-inner { justify-content: space-between; }
+.page-hero--corner .corner-text { align-self: flex-end; max-width: 31rem; }
+.page-hero--corner h1 { max-width: none; text-shadow: 0 2px 24px rgba(18, 31, 23, .45); }
+.page-hero--corner .lede { color: rgba(245, 241, 232, .9); }
+.page-hero--corner .lede { max-width: 28rem; margin-top: 1.25rem; }
+.page-hero--corner .hero-media::after { background:
+  radial-gradient(ellipse 66% 78% at 95% 95%, rgba(18, 31, 23, .9) 0%, rgba(18, 31, 23, .72) 45%, rgba(18, 31, 23, 0) 85%),
+  linear-gradient(180deg, rgba(18, 31, 23, .5) 0%, rgba(18, 31, 23, 0) 22%); }
+@media (max-width: 640px) {
+  .page-hero--corner .corner-text { align-self: stretch; }
+  .page-hero--corner .hero-media::after { background: linear-gradient(180deg, rgba(18, 31, 23, .55) 0%, rgba(18, 31, 23, 0) 25%, rgba(18, 31, 23, .1) 45%, rgba(18, 31, 23, .85) 100%); }
+}
 @media (max-width: 640px) { .page-hero--split .hero-media::after { background: linear-gradient(180deg, rgba(18, 31, 23, .65) 0%, rgba(18, 31, 23, .2) 40%, rgba(18, 31, 23, .25) 60%, rgba(18, 31, 23, .8) 100%); } }
 .page-hero--plain .lede { color: var(--ink-soft); }
 .page-hero--plain .eyebrow { color: var(--moss); }
