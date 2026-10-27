@@ -265,6 +265,15 @@ body.menu-open { overflow: hidden; }
 .page-hero--corner .hero-media::after { background:
   radial-gradient(ellipse 66% 78% at 95% 95%, rgba(18, 31, 23, .9) 0%, rgba(18, 31, 23, .72) 45%, rgba(18, 31, 23, 0) 85%),
   linear-gradient(180deg, rgba(18, 31, 23, .5) 0%, rgba(18, 31, 23, 0) 22%); }
+/* Sky variant: the same text block, top-right over open sky. */
+.page-hero--sky .page-hero-inner { justify-content: flex-start; }
+.page-hero--sky .corner-text { margin-top: clamp(.5rem, 2vh, 1.5rem); }
+.page-hero--sky .hero-media::after { background:
+  radial-gradient(ellipse 60% 70% at 92% 10%, rgba(18, 31, 23, .55) 0%, rgba(18, 31, 23, .3) 50%, rgba(18, 31, 23, 0) 85%),
+  linear-gradient(180deg, rgba(18, 31, 23, .45) 0%, rgba(18, 31, 23, 0) 20%); }
+@media (max-width: 640px) {
+  .page-hero--sky .hero-media::after { background: linear-gradient(180deg, rgba(18, 31, 23, .7) 0%, rgba(18, 31, 23, .45) 45%, rgba(18, 31, 23, 0) 70%); }
+}
 @media (max-width: 640px) {
   .page-hero--corner .corner-text { align-self: stretch; }
   .page-hero--corner .hero-media::after { background: linear-gradient(180deg, rgba(18, 31, 23, .55) 0%, rgba(18, 31, 23, 0) 25%, rgba(18, 31, 23, .1) 45%, rgba(18, 31, 23, .85) 100%); }
