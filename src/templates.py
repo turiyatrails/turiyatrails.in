@@ -43,7 +43,7 @@ FOCUS = {
     "journey-where-the-river-begins": "50% 40%",
     "trek-pandavkholi": "55% 60%",
     "trek-bharatkot": "60% 60%",
-    "journeys-hero": "50% 75%",
+    "journeys-hero": "50% 62%",
     "treks-hero": "50% 60%",
     "about-hero": "50% 45%",
     "team-nishant": "50% 70%",
