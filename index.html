@@ -18,9 +18,16 @@
 <meta name="theme-color" content="#17291f">
 <link rel="icon" type="image/png" sizes="48x48" href="/assets/img/favicon-48.png">
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Outfit:wght@300;400;500&display=swap">
+<link rel="preload" href="/assets/fonts/cormorant-garamond-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/outfit-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>/* Self-hosted fonts (Latin and Latin Extended subsets, from Google Fonts, SIL Open Font License). */
+@font-face { font-family: 'Cormorant Garamond'; font-style: italic; font-weight: 300 400; font-display: swap; src: url('/assets/fonts/cormorant-garamond-italic-latin-ext.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Cormorant Garamond'; font-style: italic; font-weight: 300 400; font-display: swap; src: url('/assets/fonts/cormorant-garamond-italic-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 300 500; font-display: swap; src: url('/assets/fonts/cormorant-garamond-normal-latin-ext.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 300 500; font-display: swap; src: url('/assets/fonts/cormorant-garamond-normal-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Outfit'; font-style: normal; font-weight: 300 500; font-display: swap; src: url('/assets/fonts/outfit-normal-latin-ext.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Outfit'; font-style: normal; font-weight: 300 500; font-display: swap; src: url('/assets/fonts/outfit-normal-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+</style>
 <link rel="stylesheet" href="/assets/css/site.css">
 <script>document.documentElement.classList.remove('no-js')</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TravelAgency", "name": "Turiya Trails", "url": "https://turiyatrails.in/", "logo": "https://turiyatrails.in/assets/img/icon-512.png", "image": "https://turiyatrails.in/assets/img/og-default.jpg", "telephone": "+916396091261", "email": "turiyatrails@gmail.com", "description": "Small-group journeys, treks, forest walks, birdwatching and stargazing in the Kumaun Himalaya, based at Oakakhi Stays in Ranikhet.", "address": {"@type": "PostalAddress", "addressLocality": "Ranikhet", "addressRegion": "Uttarakhand", "addressCountry": "IN"}, "areaServed": "Kumaun, Uttarakhand, India"}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Turiya Trails", "url": "https://turiyatrails.in/"}</script>
@@ -49,7 +56,7 @@
 <main id="main">
 
 <section class="hero">
-  <div class="hero-media"><div class="media "><picture><source type="image/webp" srcset="/assets/img/photos/out/home-hero-900.webp 900w, /assets/img/photos/out/home-hero-1800.webp 1800w" sizes="(max-aspect-ratio: 1/1) 220vh, 100vw"><img src="/assets/img/photos/home-hero.jpg" alt="" loading="eager" fetchpriority="high" decoding="async" width="1800" height="1200" style="--pos:57% 60%"></picture></div></div>
+  <div class="hero-media"><div class="media "><picture><source type="image/webp" srcset="/assets/img/photos/out/home-hero-480.webp 480w, /assets/img/photos/out/home-hero-800.webp 800w, /assets/img/photos/out/home-hero-1200.webp 1200w, /assets/img/photos/out/home-hero-1600.webp 1600w" sizes="(max-aspect-ratio: 1/1) 220vh, 100vw"><img src="/assets/img/photos/home-hero.jpg" alt="" loading="eager" fetchpriority="high" decoding="async" width="1800" height="1200" style="--pos:57% 60%"></picture></div></div>
   <div class="wrap hero-inner">
     <span class="eyebrow">Ranikhet · Kumaun Himalaya</span>
     <h1>Walk slowly. <em>Notice</em> everything.</h1>
@@ -68,7 +75,7 @@
 <section class="section" id="about">
   <div class="wrap">
     <div class="grid-2 grid-2--wide-right">
-      <div class="reveal"><div class="media media--tall"><picture><source type="image/webp" srcset="/assets/img/photos/out/home-intro-900.webp 900w, /assets/img/photos/out/home-intro-1800.webp 1800w" sizes="(min-width: 900px) 50vw, 100vw"><img src="/assets/img/photos/home-intro.jpg" alt="Oak forest near Ranikhet" loading="lazy" decoding="async" width="1800" height="1200" style="--pos:50% 60%"></picture></div></div>
+      <div class="reveal"><div class="media media--tall"><picture><source type="image/webp" srcset="/assets/img/photos/out/home-intro-480.webp 480w, /assets/img/photos/out/home-intro-800.webp 800w, /assets/img/photos/out/home-intro-1200.webp 1200w, /assets/img/photos/out/home-intro-1600.webp 1600w" sizes="(min-width: 1240px) 560px, (min-width: 900px) 45vw, 92vw"><img src="/assets/img/photos/home-intro.jpg" alt="Oak forest near Ranikhet" loading="lazy" decoding="async" width="1800" height="1200" style="--pos:50% 60%"></picture></div></div>
       <div class="reveal">
         <span class="eyebrow">Not another adventure company</span>
         <p class="intro-statement">A journey can be one bird you finally see properly, an hour inside an oak forest, or a single long look at the <em>night sky.</em></p>
@@ -90,7 +97,7 @@
       <p class="lede">Book a single morning or evening on its own, or let us weave several into a journey of a few days. Every way in starts from Ranikhet.</p>
     </div>
     <div class="ways"><a class="way reveal" href="/forest-walks.html">
-  <div class="way-media"><div class="media "><picture><source type="image/webp" srcset="/assets/img/photos/out/forest-walks-900.webp 900w, /assets/img/photos/out/forest-walks-1800.webp 1800w" sizes="(min-width: 900px) 50vw, 100vw"><img src="/assets/img/photos/forest-walks.jpg" alt="Silent forest walks" loading="lazy" decoding="async" width="1800" height="1200"></picture></div></div>
+  <div class="way-media"><div class="media "><picture><source type="image/webp" srcset="/assets/img/photos/out/forest-walks-480.webp 480w, /assets/img/photos/out/forest-walks-800.webp 800w, /assets/img/photos/out/forest-walks-1200.webp 1200w, /assets/img/photos/out/forest-walks-1600.webp 1600w" sizes="(min-width: 1240px) 560px, (min-width: 900px) 45vw, 92vw"><img src="/assets/img/photos/forest-walks.jpg" alt="Silent forest walks" loading="lazy" decoding="async" width="1800" height="1200"></picture></div></div>
   <div class="way-body">
     <span class="way-num">01</span>
     <h3>Silent forest walks</h3>
@@ -99,7 +106,7 @@
     <span class="link-arrow">Explore forest walks</span>
   </div>
 </a><a class="way reveal" href="/birdwatching.html">
-  <div class="way-media"><div class="media "><picture><source type="image/webp" srcset="/assets/img/photos/out/birdwatching-900.webp 900w, /assets/img/photos/out/birdwatching-1800.webp 1800w" sizes="(min-width: 900px) 50vw, 100vw"><img src="/assets/img/photos/birdwatching.jpg" alt="Birdwatching" loading="lazy" decoding="async" width="1800" height="1200"></picture></div></div>
+  <div class="way-media"><div class="media "><picture><source type="image/webp" srcset="/assets/img/photos/out/birdwatching-480.webp 480w, /assets/img/photos/out/birdwatching-800.webp 800w, /assets/img/photos/out/birdwatching-1200.webp 1200w, /assets/img/photos/out/birdwatching-1600.webp 1600w" sizes="(min-width: 1240px) 560px, (min-width: 900px) 45vw, 92vw"><img src="/assets/img/photos/birdwatching.jpg" alt="Birdwatching" loading="lazy" decoding="async" width="1800" height="1200"></picture></div></div>
   <div class="way-body">
     <span class="way-num">02</span>
     <h3>Birdwatching</h3>
@@ -117,7 +124,7 @@
     <span class="link-arrow">Explore stargazing</span>
   </div>
 </a><a class="way reveal" href="/treks.html">
-  <div class="way-media"><div class="media "><picture><source type="image/webp" srcset="/assets/img/photos/out/treks-900.webp 900w, /assets/img/photos/out/treks-1800.webp 1800w" sizes="(min-width: 900px) 50vw, 100vw"><img src="/assets/img/photos/treks.jpg" alt="Treks and mountain journeys" loading="lazy" decoding="async" width="1800" height="1200"></picture></div></div>
+  <div class="way-media"><div class="media "><picture><source type="image/webp" srcset="/assets/img/photos/out/treks-480.webp 480w, /assets/img/photos/out/treks-800.webp 800w, /assets/img/photos/out/treks-1200.webp 1200w, /assets/img/photos/out/treks-1600.webp 1600w" sizes="(min-width: 1240px) 560px, (min-width: 900px) 45vw, 92vw"><img src="/assets/img/photos/treks.jpg" alt="Treks and mountain journeys" loading="lazy" decoding="async" width="1800" height="1200"></picture></div></div>
   <div class="way-body">
     <span class="way-num">04</span>
     <h3>Treks and mountain journeys</h3>
@@ -144,19 +151,19 @@
       <p class="lede">Each journey blends forest walks, birds, a night sky and sometimes a trek, around a single place or idea. Prices include stays, meals, guiding and transport during the journey.</p>
     </div>
     <div class="feature-grid"><a class="feature reveal" href="/journeys/kalika-weekend.html">
-  <div class="media "><picture><source type="image/webp" srcset="/assets/img/photos/out/journey-kalika-weekend-900.webp 900w, /assets/img/photos/out/journey-kalika-weekend-1800.webp 1800w" sizes="(min-width: 1100px) 33vw, (min-width: 760px) 50vw, 100vw"><img src="/assets/img/photos/journey-kalika-weekend.jpg" alt="The Kalika Weekend, Oakakhi, Ranikhet" loading="lazy" decoding="async" width="1800" height="1200"></picture></div>
+  <div class="media "><picture><source type="image/webp" srcset="/assets/img/photos/out/journey-kalika-weekend-480.webp 480w, /assets/img/photos/out/journey-kalika-weekend-800.webp 800w, /assets/img/photos/out/journey-kalika-weekend-1200.webp 1200w, /assets/img/photos/out/journey-kalika-weekend-1600.webp 1600w" sizes="(min-width: 1240px) 340px, (min-width: 1100px) 30vw, (min-width: 760px) 46vw, 92vw"><img src="/assets/img/photos/journey-kalika-weekend.jpg" alt="The Kalika Weekend, Oakakhi, Ranikhet" loading="lazy" decoding="async" width="1800" height="1200"></picture></div>
   <span class="f-level">Slow days · Easy<span class="tag">New</span></span>
   <h3>The Kalika Weekend</h3>
   <span class="f-route">Oakakhi, Ranikhet</span>
   <span class="f-foot"><span>2 nights, 3 days</span><span class="f-price">₹12,000</span></span>
 </a><a class="feature reveal" href="/journeys/into-the-quiet.html">
-  <div class="media "><picture><source type="image/webp" srcset="/assets/img/photos/out/journey-into-the-quiet-900.webp 900w, /assets/img/photos/out/journey-into-the-quiet-1800.webp 1800w" sizes="(min-width: 1100px) 33vw, (min-width: 760px) 50vw, 100vw"><img src="/assets/img/photos/journey-into-the-quiet.jpg" alt="Into the Quiet, Ranikhet and Pandavkholi" loading="lazy" decoding="async" width="1800" height="1200" style="--pos:50% 75%"></picture></div>
+  <div class="media "><picture><source type="image/webp" srcset="/assets/img/photos/out/journey-into-the-quiet-480.webp 480w, /assets/img/photos/out/journey-into-the-quiet-800.webp 800w, /assets/img/photos/out/journey-into-the-quiet-1200.webp 1200w, /assets/img/photos/out/journey-into-the-quiet-1600.webp 1600w" sizes="(min-width: 1240px) 340px, (min-width: 1100px) 30vw, (min-width: 760px) 46vw, 92vw"><img src="/assets/img/photos/journey-into-the-quiet.jpg" alt="Into the Quiet, Ranikhet and Pandavkholi" loading="lazy" decoding="async" width="1800" height="1200" style="--pos:50% 75%"></picture></div>
   <span class="f-level">Slow days · Beginner</span>
   <h3>Into the Quiet</h3>
   <span class="f-route">Ranikhet and Pandavkholi</span>
   <span class="f-foot"><span>2 nights, 3 days</span><span class="f-price">₹14,000</span></span>
 </a><a class="feature reveal" href="/journeys/first-light.html">
-  <div class="media "><picture><source type="image/webp" srcset="/assets/img/photos/out/journey-first-light-900.webp 900w, /assets/img/photos/out/journey-first-light-1800.webp 1800w" sizes="(min-width: 1100px) 33vw, (min-width: 760px) 50vw, 100vw"><img src="/assets/img/photos/journey-first-light.jpg" alt="First Light, Ranikhet, Sattal, Pangot" loading="lazy" decoding="async" width="1800" height="1200"></picture></div>
+  <div class="media "><picture><source type="image/webp" srcset="/assets/img/photos/out/journey-first-light-480.webp 480w, /assets/img/photos/out/journey-first-light-800.webp 800w, /assets/img/photos/out/journey-first-light-1200.webp 1200w, /assets/img/photos/out/journey-first-light-1600.webp 1600w" sizes="(min-width: 1240px) 340px, (min-width: 1100px) 30vw, (min-width: 760px) 46vw, 92vw"><img src="/assets/img/photos/journey-first-light.jpg" alt="First Light, Ranikhet, Sattal, Pangot" loading="lazy" decoding="async" width="1800" height="1200"></picture></div>
   <span class="f-level">Birdwatching · Easy</span>
   <h3>First Light</h3>
   <span class="f-route">Ranikhet, Sattal, Pangot</span>
@@ -174,7 +181,7 @@
   <span class="f-route">Ranikhet to Munsyari and Khalia Top</span>
   <span class="f-foot"><span>5 nights, 6 days</span><span class="f-price">₹26,500</span></span>
 </a><a class="feature reveal" href="/journeys/where-the-river-begins.html">
-  <div class="media "><picture><source type="image/webp" srcset="/assets/img/photos/out/journey-where-the-river-begins-900.webp 900w, /assets/img/photos/out/journey-where-the-river-begins-1800.webp 1800w" sizes="(min-width: 1100px) 33vw, (min-width: 760px) 50vw, 100vw"><img src="/assets/img/photos/journey-where-the-river-begins.jpg" alt="Where the River Begins, Ranikhet to the Pindari Glacier" loading="lazy" decoding="async" width="1800" height="1200" style="--pos:50% 40%"></picture></div>
+  <div class="media "><picture><source type="image/webp" srcset="/assets/img/photos/out/journey-where-the-river-begins-480.webp 480w, /assets/img/photos/out/journey-where-the-river-begins-800.webp 800w, /assets/img/photos/out/journey-where-the-river-begins-1200.webp 1200w, /assets/img/photos/out/journey-where-the-river-begins-1600.webp 1600w" sizes="(min-width: 1240px) 340px, (min-width: 1100px) 30vw, (min-width: 760px) 46vw, 92vw"><img src="/assets/img/photos/journey-where-the-river-begins.jpg" alt="Where the River Begins, Ranikhet to the Pindari Glacier" loading="lazy" decoding="async" width="1800" height="1200" style="--pos:50% 40%"></picture></div>
   <span class="f-level">Mountain journey · Challenging<span class="tag">New</span></span>
   <h3>Where the River Begins</h3>
   <span class="f-route">Ranikhet to the Pindari Glacier</span>

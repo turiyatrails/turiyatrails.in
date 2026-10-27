@@ -28,7 +28,7 @@ def price_label(j):
 def journey_card(j, eager=False):
     tag = '<span class="tag">New</span>' if j["status"] == "new" else ('<span class="tag">Opening soon</span>' if j["status"] == "soon" else "")
     return f"""<a class="feature reveal" href="/journeys/{j['slug']}.html">
-  {media(j['photo'], j['art'], f"{j['name']}, {j['route']}", eager=eager, sizes="(min-width: 1100px) 33vw, (min-width: 760px) 50vw, 100vw")}
+  {media(j['photo'], j['art'], f"{j['name']}, {j['route']}", eager=eager, sizes="(min-width: 1240px) 340px, (min-width: 1100px) 30vw, (min-width: 760px) 46vw, 92vw")}
   <span class="f-level">{E(j['kind'])} · {E(j['level'])}{tag}</span>
   <h3>{E(j['name'])}</h3>
   <span class="f-route">{E(j['route'])}</span>
@@ -868,7 +868,7 @@ def about():
 def team():
     crumbs, crumbs_ld = breadcrumbs([("Home", ""), ("About", "about.html"), ("Guides", None)])
     people = "".join(f"""<article class="person reveal">
-  {media(p['photo'], ('mist', 40), f"{p['name']}, {p['role']}", cls="media--portrait", sizes="(min-width: 860px) 33vw, 100vw") if photo_sources(p.get('photo', '')) else f'<div class="initial" aria-hidden="true">{E(p["initial"])}</div>'}
+  {media(p['photo'], ('mist', 40), f"{p['name']}, {p['role']}", cls="media--portrait", sizes="(min-width: 1240px) 340px, (min-width: 860px) 30vw, 92vw") if photo_sources(p.get('photo', '')) else f'<div class="initial" aria-hidden="true">{E(p["initial"])}</div>'}
   <h3>{E(p['name'])}</h3><span class="role">{E(p['role'])}</span>
   <p>{E(p['bio'])}</p>
   <ul class="chips">{''.join(f'<li>{E(s)}</li>' for s in p['skills'])}</ul>
@@ -1156,7 +1156,7 @@ def privacy():
       <p>Every “Book”, “Ask” and “Enquire” button opens WhatsApp with a pre-filled message, sent directly to the Turiya Trails number. The enquiry form works the same way: it builds a message in your browser and opens WhatsApp. Nothing you type is sent to or stored by this website.</p>
       <p>If you email us at {SITE['email']}, we use your address only to reply to you.</p>
       <p>If you message us on WhatsApp, that conversation lives on WhatsApp, governed by WhatsApp's own privacy terms, not ours. We do not sell, share, or use your number for anything beyond the conversation you started.</p>
-      <p>Our fonts are loaded from Google Fonts, which means your browser requests them from Google. Our hosting provider may log basic technical information, such as IP address and browser type, as part of standard web hosting. We do not access or use this data ourselves.</p>
+      <p>Our hosting provider may log basic technical information, such as IP address and browser type, as part of standard web hosting. We do not access or use this data ourselves.</p>
       <p>If anything here changes, this page will change with it. If you have a question we have not answered, ask us directly on WhatsApp.</p>
     </div>
   </div>

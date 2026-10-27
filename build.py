@@ -16,15 +16,15 @@ sys.path.insert(0, ROOT)
 
 from src.data import SITE  # noqa: E402
 from src.pages import all_pages  # noqa: E402
-from src.templates import PHOTO_DIR  # noqa: E402
+from src.templates import PHOTO_DIR, PHOTO_WIDTHS  # noqa: E402
 
 
 def optimise_photos():
-    """Make 900px and 1800px WebP copies of each photo in assets/img/photos/."""
+    """Make WebP copies of each photo in assets/img/photos/ at every width in PHOTO_WIDTHS."""
     if not os.path.isdir(PHOTO_DIR):
         return
     try:
-        from PIL import Image, ImageOps
+        from PIL import Image, ImageFilter, ImageOps
     except ImportError:
         print("  Pillow not installed: photos will be used at their original size.")
         return
@@ -35,7 +35,7 @@ def optimise_photos():
         if ext.lower() not in (".jpg", ".jpeg", ".png", ".webp"):
             continue
         src = os.path.join(PHOTO_DIR, name)
-        for width in (900, 1800):
+        for width in PHOTO_WIDTHS:
             dest = os.path.join(out_dir, f"{stem}-{width}.webp")
             if os.path.exists(dest) and os.path.getmtime(dest) >= os.path.getmtime(src):
                 continue
@@ -43,7 +43,10 @@ def optimise_photos():
                 im = ImageOps.exif_transpose(im).convert("RGB")
                 if im.width > width:
                     im = im.resize((width, round(im.height * width / im.width)), Image.LANCZOS)
-                im.save(dest, "WEBP", quality=70, method=6)
+                # A barely visible softening removes phone-camera grain, which otherwise
+                # makes detailed photos (leaves, grass) two or three times heavier.
+                im = im.filter(ImageFilter.GaussianBlur(0.4))
+                im.save(dest, "WEBP", quality=62, method=6)
             print(f"  photo  {os.path.relpath(dest, ROOT)}")
 
 
