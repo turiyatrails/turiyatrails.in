@@ -247,20 +247,6 @@ body.menu-open { overflow: hidden; }
 .page-hero .lede { color: rgba(245, 241, 232, .82); margin-top: 1.5rem; }
 .page-hero .eyebrow { color: var(--ochre-soft); }
 .page-hero--plain { background: var(--ivory); color: var(--ink); }
-.page-hero--below .page-hero-inner { padding-bottom: clamp(2.5rem, 5vw, 4rem); }
-@media (min-width: 900px) {
-  .page-hero--below .page-hero-inner { padding-top: calc(var(--nav-h) + 2.5rem); padding-bottom: 2.5rem; }
-  .page-hero--below .breadcrumbs { margin-bottom: 1.25rem; }
-  .phb-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 4rem; align-items: end; }
-  .phb-grid .eyebrow { margin-bottom: 1rem; }
-  .phb-grid h1 { max-width: none; }
-  .phb-grid .lede { margin: 0; }
-  /* Fit the photo into what is left of the screen, trimming sky rather than people. */
-  .page-hero--below .media--natural { height: clamp(340px, calc(100vh - 390px), 720px); }
-  .page-hero--below .media--natural img { height: 100%; object-fit: cover; object-position: 50% 82%; }
-}
-.media--natural { background: none; }
-.media--natural img { height: auto; display: block; }
 .page-hero--plain .lede { color: var(--ink-soft); }
 .page-hero--plain .eyebrow { color: var(--moss); }
 .breadcrumbs { font-size: var(--fs-xs); letter-spacing: .14em; text-transform: uppercase; margin-bottom: 2rem; opacity: .75; }
