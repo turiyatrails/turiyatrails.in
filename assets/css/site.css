@@ -314,19 +314,37 @@ body.menu-open { overflow: hidden; }
 .g-item figcaption { font-size: var(--fs-sm); color: var(--stone-600); margin-top: .6rem; }
 .g-note { font-size: var(--fs-xs); color: var(--stone-600); margin-top: 1rem; letter-spacing: .04em; }
 
-/* Full-bleed photo band with the statement in the sky. */
-.intro-band { position: relative; height: clamp(560px, 75vw, 1180px); display: flex; color: var(--ivory); background: var(--forest-900); isolation: isolate; overflow: hidden; }
-.ib-media { position: absolute; inset: 0; z-index: -1; }
-.ib-media > .media { height: 100%; }
-.ib-media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10, 30, 60, .45) 0%, rgba(10, 30, 60, .15) 30%, rgba(10, 30, 60, 0) 45%); }
-.ib-text { padding-top: clamp(4rem, 9vh, 7rem); padding-bottom: 4rem; }
-.ib-text .eyebrow { color: var(--ochre-soft); }
-.intro-band .intro-statement { color: var(--ivory); max-width: 30ch; font-size: clamp(1.7rem, 1.1rem + 1.7vw, 2.9rem); text-shadow: 0 2px 30px rgba(10, 30, 60, .35); }
-.intro-band .intro-statement em { color: #f1d9a0; }
-@media (max-width: 640px) { .intro-band { height: auto; min-height: 92svh; } .ib-media::after { background: linear-gradient(180deg, rgba(10, 30, 60, .55) 0%, rgba(10, 30, 60, .2) 45%, rgba(10, 30, 60, 0) 60%); } }
-.founders { list-style: none; margin-top: 2.5rem; border-top: 1px solid var(--stone-200); }
-.founders li { display: grid; grid-template-columns: 7rem 1fr; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--stone-200); color: var(--ink-soft); }
-.founders span { font-family: var(--serif); font-size: 1.35rem; color: var(--ink); }
+/* Homepage intro: a framed photo with a small inset, beside the statement. */
+.intro-split { display: grid; gap: clamp(3rem, 6vw, 6rem); align-items: center; }
+@media (min-width: 900px) { .intro-split { grid-template-columns: 5fr 6fr; } }
+.intro-photos { position: relative; padding: 0 12% 12% 0; }
+.intro-photos .ip-main { aspect-ratio: 4 / 5; }
+.intro-photos .ip-main img { object-position: 30% 50%; }
+.intro-photos .ip-inset { position: absolute; right: 0; bottom: 0; width: 42%; aspect-ratio: 1; border: 8px solid var(--ivory); box-shadow: 0 18px 40px rgba(31, 29, 25, .12); }
+.intro-photos::before { content: ""; position: absolute; left: -1.25rem; top: -1.25rem; width: 40%; height: 40%; border-left: 1px solid var(--moss-200); border-top: 1px solid var(--moss-200); }
+
+/* People cards that link to a guide's own page. */
+.person--link { text-decoration: none; display: block; }
+.person--link .stillness { font-family: var(--serif); font-size: 1.3rem; color: var(--ink-soft); margin: 0 0 1.25rem; }
+.person--link .media img { transition: transform 1.2s var(--ease); }
+.person--link:hover .media img { transform: scale(1.03); }
+.person--link:hover h3 { font-style: italic; }
+
+/* A guide's own page. */
+.guide-hero { padding-top: calc(var(--nav-h) + clamp(2.5rem, 6vh, 4.5rem)); padding-bottom: clamp(4rem, 8vw, 7rem); }
+.gh-grid { display: grid; gap: clamp(2.5rem, 6vw, 6rem); align-items: start; margin-top: 1rem; }
+@media (min-width: 900px) { .gh-grid { grid-template-columns: 5fr 6fr; } .gh-grid > div:first-child { position: sticky; top: calc(var(--nav-h) + 1.5rem); } }
+.gh-photo { aspect-ratio: 4 / 5; }
+.gh-copy h1 { font-size: var(--fs-3xl); font-weight: 300; }
+.gh-tagline { font-family: var(--serif); font-style: italic; font-size: var(--fs-xl); color: var(--moss); margin: 1rem 0 2.5rem; line-height: 1.35; }
+.gh-copy .chips { margin-top: 2rem; }
+.mini-journeys { list-style: none; border-top: 1px solid var(--stone-200); }
+.mini-journeys a { display: grid; grid-template-columns: 1fr auto; gap: .2rem 1.5rem; padding: 1.25rem 0; border-bottom: 1px solid var(--stone-200); text-decoration: none; }
+.mj-name { font-family: var(--serif); font-size: 1.5rem; }
+.mj-meta { grid-column: 1; font-size: var(--fs-sm); color: var(--stone-600); }
+.mj-price { grid-column: 2; grid-row: 1 / span 2; align-self: center; font-family: var(--serif); font-size: 1.25rem; }
+.mini-journeys a:hover .mj-name { font-style: italic; }
+.others { display: flex; flex-wrap: wrap; gap: 1.25rem 3rem; }
 
 /* ---------- Intro / editorial ---------- */
 .intro-statement { font-family: var(--serif); font-size: var(--fs-2xl); font-weight: 300; line-height: 1.3; max-width: 26ch; }

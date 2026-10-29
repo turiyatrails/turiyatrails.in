@@ -159,14 +159,6 @@ def post_row(p):
 </a></li>"""
 
 
-# The founding story, used on the homepage and the about page.
-STORY = [
-    "Turiya Trails began as four friends in the hills around Ranikhet: an astro guide, two trek guides and a birdwatcher. Sachin reads the night sky. Nishant and Naveen lead the treks, and Naveen rarely puts his camera down. Ganesh watches the birds.",
-    "Every trek we found nearby was either too loud, too fast, or trying to sell us an adventure. Kalika forest, Oakakhi, the Kumaun skies, none of it needed dressing up. It needed someone to slow down enough to actually see it.",
-    "So we built something plainer, with Nishant's homestay at Oakakhi as our base: walk slowly, watch closely, ask real questions, and let the mountains do the rest.",
-]
-
-
 # ---------------------------------------------------------------------------
 # Home
 # ---------------------------------------------------------------------------
@@ -232,32 +224,18 @@ def home():
   </div>
 </section>
 
-<section class="intro-band" id="about">
-  <div class="ib-media">{media("home-intro", ("snow", 5), "A trekker in a yellow jacket sits with eyes closed in the sun, facing a wall of snow peaks", sizes="100vw")}</div>
-  <div class="wrap ib-text reveal">
-    <span class="eyebrow">Not another adventure company</span>
-    <p class="intro-statement">A journey can be one bird you finally see properly, an hour inside an oak forest, or a single long look at the <em>night sky.</em></p>
-  </div>
-</section>
-
-<section class="section">
+<section class="section" id="about">
   <div class="wrap">
-    <div class="grid-2" style="align-items:start">
-      <div class="reveal">
-        <span class="eyebrow">How it began</span>
-        <h2 class="h2">Four friends, one <em>quieter</em> idea</h2>
-        <ul class="founders">
-          <li><span>Sachin</span>reads the night sky</li>
-          <li><span>Nishant</span>leads the trail</li>
-          <li><span>Naveen</span>leads the trail, camera in hand</li>
-          <li><span>Ganesh</span>watches the birds</li>
-        </ul>
+    <div class="intro-split">
+      <div class="intro-photos reveal">
+        {media("home-intro", ("snow", 5), "A trekker in a yellow jacket sits with eyes closed in the sun, facing a wall of snow peaks", cls="ip-main", sizes="(min-width: 1240px) 520px, (min-width: 900px) 42vw, 88vw")}
+        {media("bird-verditer", ("lake", 4), "A verditer flycatcher on a wire", cls="ip-inset", sizes="(min-width: 900px) 220px, 40vw")}
       </div>
-      <div class="prose reveal">
-        <p>{STORY[0]}</p>
-        <p>{STORY[1]}</p>
-        <p>{STORY[2]}</p>
-        <a class="link-arrow" href="/about.html">Our story</a>
+      <div class="intro-copy reveal">
+        <span class="eyebrow">Not another adventure company</span>
+        <p class="intro-statement">A journey can be one bird you finally see properly, an hour inside an oak forest, or a single long look at the <em>night sky.</em></p>
+        <p class="lede" style="margin-top:2rem">Turiya Trails was started by four friends from these hills, each of whom found a kind of stillness out here. This is the travel we were missing.</p>
+        <p style="margin-top:2rem"><a class="link-arrow" href="/about.html">Our story</a></p>
       </div>
     </div>
   </div>
@@ -859,26 +837,59 @@ def oakakhi():
 # ---------------------------------------------------------------------------
 # About and team
 # ---------------------------------------------------------------------------
+def friends_grid(link_label=True):
+    cards = []
+    for p in TEAM:
+        img = (media(p['photo'], ('mist', 40), f"{p['name']}, {p['role']}", cls="media--portrait", sizes="(min-width: 1240px) 270px, (min-width: 1100px) 22vw, (min-width: 700px) 45vw, 92vw")
+               if photo_sources(p['photo']) else f'<div class="initial" aria-hidden="true">{E(p["initial"])}</div>')
+        cards.append(f"""<a class="person person--link reveal" href="/guides/{p['slug']}.html">
+  {img}
+  <h3>{E(p['name'])}</h3><span class="role">{E(p['role'])}</span>
+  <p class="stillness"><em>{E(p['stillness'])}</em></p>
+  <span class="link-arrow">Know {E(p['name'].split(' ')[0])}</span>
+</a>""")
+    return '<div class="people">' + "".join(cards) + "</div>"
+
+
 def about():
-    crumbs, crumbs_ld = breadcrumbs([("Home", ""), ("About", None)])
+    crumbs, crumbs_ld = breadcrumbs([("Home", ""), ("Our story", None)])
     oath = ["I will walk with awareness, not just legs.", "I will be kind to animals and to the Earth.", "I will leave nature better than I found it.", "I will stay curious. Ask the harder questions.", "I will respect silence and fellow travellers.", "I will return not just changed, but clear."]
     body = f"""
-{page_hero("About Turiya Trails", "Not another <em>adventure</em> company", "Four friends from the hills around Ranikhet: an astro guide, two trek guides and a birdwatcher, building something plainer.", ("dusk", 30), "about-hero", crumbs)}
+{page_hero("Our story", "Four friends, four kinds of <em>stillness</em>", "Turiya Trails began with four friends from the hills around Ranikhet, and a kind of travel we could not find anywhere else.", ("dusk", 30), "about-hero", crumbs)}
 <section class="section">
   <div class="wrap">
     <div class="grid-2" style="align-items:start">
-      <div class="reveal"><span class="eyebrow">Why we started</span><h2 class="h2">Too loud, too fast, or trying to sell an adventure</h2></div>
+      <div class="reveal"><span class="eyebrow">Why we started</span><h2 class="h2">Somewhere along the way, travel became a race</h2></div>
       <div class="prose reveal">
-        <p>{STORY[0]}</p>
-        <p>{STORY[1]}</p>
-        <p>{STORY[2]}</p>
-        <p>The name comes from Turiya, a state of awareness beneath waking, dreaming and deep sleep. Always present, rarely noticed. That is what these journeys are quietly built around.</p>
-        <a class="link-arrow" href="/journal/what-does-turiya-mean.html">What Turiya means</a>
+        <p>Cheap packages that fit five viewpoints into a day. Groups of thirty shouting their way up a trail. A summit reached, a photograph posted, and the bus already leaving. We had been on those trips. We came home tired, with full camera rolls and the strange feeling that we had never really arrived.</p>
+        <p>The hills we grew up in deserved better than that. Kalika forest, the ridges above Ranikhet, the Kumaun sky at night: none of it needed dressing up. It needed someone to slow down enough to actually see it.</p>
       </div>
     </div>
   </div>
 </section>
 <section class="pause section--stone"><div class="wrap reveal"><p class="quote">“When do you feel most like yourself?”</p><span class="quote-cite">A walking question</span></div></section>
+<section class="section">
+  <div class="wrap">
+    <div class="heading-block reveal">
+      <span class="eyebrow">The four of us</span>
+      <h2 class="h2">Each of us found it somewhere different</h2>
+      <p class="lede">For Nishant and Naveen it was the long walk up a mountain. For Sachin it was the sky after dark. For Ganesh it was a single bird call in the canopy. Different places, the same quiet. We wanted to share it, without the noise.</p>
+    </div>
+    {friends_grid()}
+  </div>
+</section>
+<section class="section section--paper">
+  <div class="wrap">
+    <div class="grid-2" style="align-items:start">
+      <div class="reveal"><span class="eyebrow">What we built</span><h2 class="h2">Something plainer</h2></div>
+      <div class="prose reveal">
+        <p>So we built the kind of travel we were missing, with Nishant's family home at Oakakhi as our base. Small groups. Slow days. Forest walks, birds at dawn, a night under the stars, a trek when you are ready for one. Walk slowly, watch closely, ask real questions, and let the mountains do the rest.</p>
+        <p>The name comes from Turiya, a word from the Mandukya Upanishad for the awareness beneath waking, dreaming and deep sleep. Always present, rarely noticed. It is the closest word we have for what a slow day in these hills can do.</p>
+        <a class="link-arrow" href="/journal/what-does-turiya-mean.html">What Turiya means</a>
+      </div>
+    </div>
+  </div>
+</section>
 <section class="section">
   <div class="wrap">
     <div class="heading-block reveal"><span class="eyebrow">Right people, not more people</span><h2 class="h2">Not for everyone. For the right ones.</h2></div>
@@ -897,62 +908,102 @@ def about():
     </div>
   </div>
 </section>
-<section class="section">
-  <div class="wrap">
-    <div class="grid-2">
-      <div class="reveal"><span class="eyebrow">The people</span><h2 class="h2">Grounded companions, not entertainers</h2></div>
-      <div class="reveal"><p class="lede">Trained in Himalayan terrain, safety and first aid, birdwatching and astro storytelling. They speak when the mountain speaks, and stay silent when silence is needed.</p><p style="margin-top:2rem"><a class="link-arrow" href="/team.html">Meet the guides</a></p></div>
-    </div>
-  </div>
-</section>
 {cta()}
 """
     meta = {
         "path": "about.html",
-        "title": "About Turiya Trails | Conscious travel in the Kumaun Himalaya",
-        "description": "Why Turiya Trails exists, what the name means, and who our slow, small-group journeys in Ranikhet and the Kumaun Himalaya are for.",
+        "title": "Our story: four friends from Ranikhet | Turiya Trails",
+        "description": "Turiya Trails began with four friends from the hills around Ranikhet, tired of rushed, cheap travel, who each found stillness somewhere different: on the trail, under the stars, in birdsong.",
         "jsonld": [crumbs_ld, ORG_LD],
     }
     return "about.html", page(meta, body, current="about.html")
 
 
 def team():
-    crumbs, crumbs_ld = breadcrumbs([("Home", ""), ("About", "about.html"), ("Guides", None)])
-    people = "".join(f"""<article class="person reveal">
-  {media(p['photo'], ('mist', 40), f"{p['name']}, {p['role']}", cls="media--portrait", sizes="(min-width: 1240px) 340px, (min-width: 860px) 30vw, 92vw") if photo_sources(p.get('photo', '')) else f'<div class="initial" aria-hidden="true">{E(p["initial"])}</div>'}
-  <h3>{E(p['name'])}</h3><span class="role">{E(p['role'])}</span>
-  <p>{E(p['bio'])}</p>
-  <ul class="chips">{''.join(f'<li>{E(s)}</li>' for s in p['skills'])}</ul>
-  {f'<blockquote>“{E(p["quote"])}”</blockquote>' if p.get('quote') else ''}
-</article>""" for p in TEAM)
+    crumbs, crumbs_ld = breadcrumbs([("Home", ""), ("Our story", "about.html"), ("Guides", None)])
     body = f"""
-{plain_hero("The people behind Turiya Trails", "Grounded companions, not <em>entertainers</em>", "People trust people, not brochures. Here is who you will actually be walking, watching birds and sitting under the stars with.", crumbs)}
+{plain_hero("Your guides", "Grounded companions, not <em>entertainers</em>", "People trust people, not brochures. Here are the four friends you will actually be walking, watching birds and sitting under the stars with.", crumbs)}
 <section class="section" style="padding-top:0">
   <div class="wrap">
-    <p class="muted small reveal" style="margin-bottom:3rem">Real people, real photographs. No stock images on this page.</p>
-    <div class="people">{people}</div>
+    {friends_grid()}
   </div>
 </section>
 <section class="section section--stone">
   <div class="wrap cols-2">
-    <div class="reveal"><span class="eyebrow">What connects them</span><h2 class="h2">From these hills, for these hills</h2></div>
-    <div class="reveal">{checklist(["All four live in or near the Kumaun hills, not flown in for the season", "Trained in Himalayan safety and basic first aid", "Speak when the mountain speaks, silent when silence is needed", "None of them perform for a camera, including Naveen's own"])}</div>
+    <div class="reveal"><span class="eyebrow">What connects us</span><h2 class="h2">From these hills, for these hills</h2></div>
+    <div class="reveal">{checklist(["All four of us live in or near the Kumaun hills, not flown in for the season", "Trained in Himalayan safety and basic first aid", "We speak when the mountain speaks, and stay silent when silence is needed", "Nothing on our trips is staged for a camera, including Naveen's own"])}</div>
   </div>
 </section>
-{cta("Want to meet them yourself?")}
+{cta("Want to meet us yourself?")}
 """
     meta = {
         "path": "team.html",
-        "title": "Meet the guides | Turiya Trails, Ranikhet",
+        "title": "Your guides | Turiya Trails, Ranikhet",
         "description": "Meet the four friends behind Turiya Trails in Ranikhet: Nishant and Naveen, trek guides; Sachin, astro guide; and Ganesh, birdwatcher.",
         "jsonld": [crumbs_ld],
     }
     return "team.html", page(meta, body, current="about.html", tone="dark")
 
 
-# ---------------------------------------------------------------------------
-# Journal
-# ---------------------------------------------------------------------------
+def guide_page(p):
+    first = p['name'].split(' ')[0]
+    crumbs, crumbs_ld = breadcrumbs([("Home", ""), ("Your guides", "team.html"), (first, None)])
+    hero_slot = f"guide-{p['slug']}-1"
+    hero_img = (media(hero_slot, ('mist', 41), f"{p['name']}, {p['role']}", cls="gh-photo", eager=True, sizes="(min-width: 1240px) 520px, (min-width: 900px) 42vw, 92vw")
+                if photo_sources(hero_slot) else
+                media(p['photo'], ('mist', 41), f"{p['name']}, {p['role']}", cls="gh-photo", eager=True) if photo_sources(p['photo']) else
+                f'<div class="initial gh-photo" aria-hidden="true">{E(p["initial"])}</div>')
+    story = "".join(f"<p>{E(x)}</p>" for x in p['story'])
+    quote = f'<section class="pause section--stone"><div class="wrap reveal"><p class="quote">“{E(p["quote"])}”</p><span class="quote-cite">{E(first)}</span></div></section>' if p.get('quote') else ""
+    gal = gallery(p.get('gallery', []), p.get('gallery_note', ''))
+    gal_html = f'<section class="section section--paper"><div class="wrap"><div class="heading-block reveal"><span class="eyebrow">Out there</span><h2 class="h2">On the trail with {E(first)}</h2></div>{gal}</div></section>' if gal else ""
+    others = [o for o in TEAM if o['slug'] != p['slug']]
+    body = f"""
+<section class="guide-hero">
+  <div class="wrap">
+    {crumbs}
+    <div class="gh-grid">
+      <div class="reveal">{hero_img}</div>
+      <div class="gh-copy reveal">
+        <span class="eyebrow">{E(p['role'])}</span>
+        <h1>{E(p['name'])}</h1>
+        <p class="gh-tagline">{E(p['tagline'])}</p>
+        <div class="prose">{story}</div>
+        <ul class="chips">{''.join(f'<li>{E(x)}</li>' for x in p['skills'])}</ul>
+      </div>
+    </div>
+  </div>
+</section>
+{quote}
+{gal_html}
+<section class="section">
+  <div class="wrap">
+    <div class="grid-2" style="align-items:start">
+      <div class="reveal"><span class="eyebrow">Walking with {E(first)}</span><h2 class="h2">What {E(first)} does on a journey</h2><div style="margin-top:2rem">{checklist(p['with_you'])}</div></div>
+      <div class="reveal"><span class="eyebrow">Journeys</span><h2 class="h3" style="margin-bottom:1.5rem">Where you might meet {E(first)}</h2>
+        <ul class="mini-journeys">{''.join(f'<li><a href="/journeys/{journey(s)["slug"]}.html"><span class="mj-name">{E(journey(s)["name"])}</span><span class="mj-meta">{duration(journey(s))} · {E(journey(s)["route"])}</span><span class="mj-price">{price_label(journey(s))}</span></a></li>' for s in p['journeys'])}</ul></div>
+    </div>
+  </div>
+</section>
+<section class="section section--stone">
+  <div class="wrap">
+    <div class="heading-block reveal"><span class="eyebrow">The others</span><h2 class="h2">Meet the rest of us</h2></div>
+    <div class="others">{''.join(f'<a class="link-arrow" href="/guides/{o["slug"]}.html">{E(o["name"])}, {E(o["role"].lower())}</a>' for o in others)}</div>
+  </div>
+</section>
+{cta()}
+"""
+    person_ld = {"@context": "https://schema.org", "@type": "Person", "name": p['name'], "jobTitle": p['role'],
+                 "worksFor": {"@type": "TravelAgency", "name": "Turiya Trails", "url": SITE["url"] + "/"}, "url": url(f"guides/{p['slug']}.html")}
+    meta = {
+        "path": f"guides/{p['slug']}.html",
+        "title": f"{first}, {p['role'].lower()} | Turiya Trails",
+        "description": f"Meet {first}, {p['role'].lower()} at Turiya Trails in Ranikhet. {p['tagline']}",
+        "jsonld": [crumbs_ld, person_ld],
+    }
+    return f"guides/{p['slug']}.html", page(meta, body, current="about.html", tone="dark")
+
+
 def journal_index():
     crumbs, crumbs_ld = breadcrumbs([("Home", ""), ("Journal", None)])
     posts = journal_posts()
@@ -1255,5 +1306,6 @@ def all_pages():
            treks(), oakakhi(), about(), team(), journal_index(), plan(), international(), privacy(), not_found(),
            redirect("conscious-treks.html", "treks.html", "Treks")]
     out += [journey_page(j) for j in JOURNEYS]
+    out += [guide_page(p) for p in TEAM]
     out += [article(p, posts) for p in posts]
     return out
