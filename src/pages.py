@@ -840,8 +840,9 @@ def oakakhi():
 def friends_grid(link_label=True):
     cards = []
     for p in TEAM:
-        img = (media(p['photo'], ('mist', 40), f"{p['name']}, {p['role']}", cls="media--portrait", sizes="(min-width: 1240px) 270px, (min-width: 1100px) 22vw, (min-width: 700px) 45vw, 92vw")
-               if photo_sources(p['photo']) else f'<div class="initial" aria-hidden="true">{E(p["initial"])}</div>')
+        slot = f"guide-{p['slug']}-1" if photo_sources(f"guide-{p['slug']}-1") else p['photo']
+        img = (media(slot, ('mist', 40), f"{p['name']}, {p['role']}", cls="media--portrait", sizes="(min-width: 1240px) 270px, (min-width: 1100px) 22vw, (min-width: 700px) 45vw, 92vw")
+               if photo_sources(slot) else f'<div class="initial" aria-hidden="true">{E(p["initial"])}</div>')
         cards.append(f"""<a class="person person--link reveal" href="/guides/{p['slug']}.html">
   {img}
   <h3>{E(p['name'])}</h3><span class="role">{E(p['role'])}</span>

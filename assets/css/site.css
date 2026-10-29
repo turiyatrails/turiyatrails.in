@@ -310,6 +310,7 @@ body.menu-open { overflow: hidden; }
 .gallery:has(> :nth-child(5)) { grid-template-columns: repeat(2, 1fr); }
 @media (min-width: 900px) { .gallery:has(> :nth-child(5)) { grid-template-columns: repeat(5, 1fr); } }
 .g-item { margin: 0; }
+@media (min-width: 900px) { .gallery:has(> :nth-child(6)) { grid-template-columns: repeat(3, 1fr); } }
 .g-item .media { aspect-ratio: 4 / 5; }
 .g-item figcaption { font-size: var(--fs-sm); color: var(--stone-600); margin-top: .6rem; }
 .g-note { font-size: var(--fs-xs); color: var(--stone-600); margin-top: 1rem; letter-spacing: .04em; }
