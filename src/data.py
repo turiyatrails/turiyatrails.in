@@ -503,7 +503,7 @@ PLACES = [
 # People (from the existing site)
 # ---------------------------------------------------------------------------
 TEAM = [
-    {"initial": "N", "photo": "team-nishant", "name": "Nishant", "role": "Lead guide and host",
+    {"initial": "N", "photo": "team-nishant", "name": "Nishant", "role": "Trek guide and host",
      "bio": "Runs Oakakhi Stays in Ranikhet and leads every trek in person. BMC mountaineering certified. The person you will meet first, chai in hand, before anything else is discussed.",
      "skills": ["Himalayan safety", "Hospitality", "Forest ecology"],
      "quote": "I've hosted people at Oakakhi for years. What I want now is to actually walk them into the forest, not just point at it from the porch."},
@@ -511,10 +511,13 @@ TEAM = [
      "bio": "Training with a stargazing company near Ramnagar and bringing every technique back to Turiya's astro nights. Believes the best fact is the one wrapped inside a story.",
      "skills": ["Constellation navigation", "Astrophotography", "Campfire storytelling"],
      "quote": "Most people have never really looked up. My job on an astro night isn't to recite facts, it's to get out of the way so the sky can do that."},
-    {"initial": "K", "photo": "team-naveen", "name": "Naveen (Kannu)", "role": "Field documentarian",
-     "bio": "Born in these hills. Shoots every walk, every dawn, every quiet moment that would otherwise go unrecorded. Also first on the trail when the group needs steady hands.",
-     "skills": ["Camera craft", "Birding", "First aid"],
+    {"initial": "K", "photo": "team-naveen", "name": "Naveen (Kannu)", "role": "Trek guide and cameraperson",
+     "bio": "Born in these hills. Leads treks alongside Nishant, and shoots every walk, every dawn, every quiet moment that would otherwise go unrecorded.",
+     "skills": ["Trekking", "Camera craft", "First aid"],
      "quote": "I grew up in these hills. Filming them for Turiya Trails is the first time work has meant showing people my own backyard properly."},
+    {"initial": "G", "photo": "team-ganesh", "name": "Ganesh", "role": "Birdwatcher",
+     "bio": "The birdwatcher of the four. Leads the birding mornings, and is the one who will stop the whole group for a call in the canopy.",
+     "skills": ["Birdwatching", "Bird calls", "Field notes"]},
 ]
 
 FAQ = [

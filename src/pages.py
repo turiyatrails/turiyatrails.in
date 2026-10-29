@@ -159,6 +159,14 @@ def post_row(p):
 </a></li>"""
 
 
+# The founding story, used on the homepage and the about page.
+STORY = [
+    "Turiya Trails began as four friends in the hills around Ranikhet: an astro guide, two trek guides and a birdwatcher. Sachin reads the night sky. Nishant and Naveen lead the treks, and Naveen rarely puts his camera down. Ganesh watches the birds.",
+    "Every trek we found nearby was either too loud, too fast, or trying to sell us an adventure. Kalika forest, Oakakhi, the Kumaun skies, none of it needed dressing up. It needed someone to slow down enough to actually see it.",
+    "So we built something plainer, with Nishant's homestay at Oakakhi as our base: walk slowly, watch closely, ask real questions, and let the mountains do the rest.",
+]
+
+
 # ---------------------------------------------------------------------------
 # Home
 # ---------------------------------------------------------------------------
@@ -202,7 +210,7 @@ def home():
     ]
     steps_html = "".join(f"<li><h3>{t}</h3><p>{E(d)}</p></li>" for t, d in steps)
 
-    voices = "".join(f"""<figure class="reveal"><blockquote class="quote" style="font-size:var(--fs-xl);max-width:none">“{E(p['quote'])}”</blockquote><figcaption class="quote-cite" style="opacity:.75">{E(p['name'])}, {E(p['role'])}</figcaption></figure>""" for p in TEAM)
+    voices = "".join(f"""<figure class="reveal"><blockquote class="quote" style="font-size:var(--fs-xl);max-width:none">“{E(p['quote'])}”</blockquote><figcaption class="quote-cite" style="opacity:.75">{E(p['name'])}, {E(p['role'])}</figcaption></figure>""" for p in TEAM if p.get("quote"))
 
     posts_html = "".join(post_row(p) for p in journal_posts()[:3])
 
@@ -224,17 +232,31 @@ def home():
   </div>
 </section>
 
-<section class="section" id="about">
+<section class="intro-band" id="about">
+  <div class="ib-media">{media("home-intro", ("snow", 5), "A trekker in a yellow jacket sits with eyes closed in the sun, facing a wall of snow peaks", sizes="100vw")}</div>
+  <div class="wrap ib-text reveal">
+    <span class="eyebrow">Not another adventure company</span>
+    <p class="intro-statement">A journey can be one bird you finally see properly, an hour inside an oak forest, or a single long look at the <em>night sky.</em></p>
+  </div>
+</section>
+
+<section class="section">
   <div class="wrap">
-    <div class="grid-2 grid-2--wide-right">
-      <div class="reveal">{media("home-intro", ("forest", 5), "Oak forest near Ranikhet", cls="media--tall")}</div>
+    <div class="grid-2" style="align-items:start">
       <div class="reveal">
-        <span class="eyebrow">Not another adventure company</span>
-        <p class="intro-statement">A journey can be one bird you finally see properly, an hour inside an oak forest, or a single long look at the <em>night sky.</em></p>
-        <div class="prose" style="margin-top:2.5rem">
-          <p>Every trek we found nearby was either too loud, too fast, or trying to sell us an adventure. Kalika forest, Oakakhi, the Kumaun skies, none of it needed dressing up. It needed someone to slow down enough to actually see it.</p>
-          <p>So a guide, an astro storyteller, a documentarian and a small homestay in Ranikhet built something plainer: walk slowly, watch closely, ask real questions, and let the mountains do the rest.</p>
-        </div>
+        <span class="eyebrow">How it began</span>
+        <h2 class="h2">Four friends, one <em>quieter</em> idea</h2>
+        <ul class="founders">
+          <li><span>Sachin</span>reads the night sky</li>
+          <li><span>Nishant</span>leads the trail</li>
+          <li><span>Naveen</span>leads the trail, camera in hand</li>
+          <li><span>Ganesh</span>watches the birds</li>
+        </ul>
+      </div>
+      <div class="prose reveal">
+        <p>{STORY[0]}</p>
+        <p>{STORY[1]}</p>
+        <p>{STORY[2]}</p>
         <a class="link-arrow" href="/about.html">Our story</a>
       </div>
     </div>
@@ -841,14 +863,15 @@ def about():
     crumbs, crumbs_ld = breadcrumbs([("Home", ""), ("About", None)])
     oath = ["I will walk with awareness, not just legs.", "I will be kind to animals and to the Earth.", "I will leave nature better than I found it.", "I will stay curious. Ask the harder questions.", "I will respect silence and fellow travellers.", "I will return not just changed, but clear."]
     body = f"""
-{page_hero("About Turiya Trails", "Not another <em>adventure</em> company", "A guide, an astro storyteller, a documentarian and a small homestay in Ranikhet, building something plainer.", ("dusk", 30), "about-hero", crumbs)}
+{page_hero("About Turiya Trails", "Not another <em>adventure</em> company", "Four friends from the hills around Ranikhet: an astro guide, two trek guides and a birdwatcher, building something plainer.", ("dusk", 30), "about-hero", crumbs)}
 <section class="section">
   <div class="wrap">
     <div class="grid-2" style="align-items:start">
       <div class="reveal"><span class="eyebrow">Why we started</span><h2 class="h2">Too loud, too fast, or trying to sell an adventure</h2></div>
       <div class="prose reveal">
-        <p>Every trek we found nearby was either too loud, too fast, or trying to sell us an adventure. Kalika forest, Oakakhi, the Kumaun skies, none of it needed dressing up. It needed someone to slow down enough to actually see it.</p>
-        <p>So a guide, an astro storyteller, a documentarian and a small homestay in Ranikhet built something plainer: walk slowly, watch closely, ask real questions, and let the mountains do the rest.</p>
+        <p>{STORY[0]}</p>
+        <p>{STORY[1]}</p>
+        <p>{STORY[2]}</p>
         <p>The name comes from Turiya, a state of awareness beneath waking, dreaming and deep sleep. Always present, rarely noticed. That is what these journeys are quietly built around.</p>
         <a class="link-arrow" href="/journal/what-does-turiya-mean.html">What Turiya means</a>
       </div>
@@ -900,7 +923,7 @@ def team():
   <h3>{E(p['name'])}</h3><span class="role">{E(p['role'])}</span>
   <p>{E(p['bio'])}</p>
   <ul class="chips">{''.join(f'<li>{E(s)}</li>' for s in p['skills'])}</ul>
-  <blockquote>“{E(p['quote'])}”</blockquote>
+  {f'<blockquote>“{E(p["quote"])}”</blockquote>' if p.get('quote') else ''}
 </article>""" for p in TEAM)
     body = f"""
 {plain_hero("The people behind Turiya Trails", "Grounded companions, not <em>entertainers</em>", "People trust people, not brochures. Here is who you will actually be walking, watching birds and sitting under the stars with.", crumbs)}
@@ -913,7 +936,7 @@ def team():
 <section class="section section--stone">
   <div class="wrap cols-2">
     <div class="reveal"><span class="eyebrow">What connects them</span><h2 class="h2">From these hills, for these hills</h2></div>
-    <div class="reveal">{checklist(["All three live in or near the Kumaun hills, not flown in for the season", "Trained in Himalayan safety and basic first aid", "Speak when the mountain speaks, silent when silence is needed", "None of them perform for a camera, including Naveen's own"])}</div>
+    <div class="reveal">{checklist(["All four live in or near the Kumaun hills, not flown in for the season", "Trained in Himalayan safety and basic first aid", "Speak when the mountain speaks, silent when silence is needed", "None of them perform for a camera, including Naveen's own"])}</div>
   </div>
 </section>
 {cta("Want to meet them yourself?")}
@@ -921,7 +944,7 @@ def team():
     meta = {
         "path": "team.html",
         "title": "Meet the guides | Turiya Trails, Ranikhet",
-        "description": "Meet Nishant, Sachin and Naveen: the lead guide and host, astro storyteller and field documentarian behind Turiya Trails in Ranikhet.",
+        "description": "Meet the four friends behind Turiya Trails in Ranikhet: Nishant and Naveen, trek guides; Sachin, astro guide; and Ganesh, birdwatcher.",
         "jsonld": [crumbs_ld],
     }
     return "team.html", page(meta, body, current="about.html", tone="dark")

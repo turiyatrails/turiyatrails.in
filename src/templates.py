@@ -60,7 +60,7 @@ def photo_sources(slot):
 # A pair means (wide screens, phones).
 FOCUS = {
     "home-hero": "57% 60%",
-    "home-intro": "50% 60%",
+    "home-intro": ("50% 10%", "34% 50%"),
     "journey-into-the-quiet": "50% 75%",
     "journey-the-seekers-ridge": "50% 70%",
     "journey-where-the-river-begins": "50% 40%",
