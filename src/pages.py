@@ -445,15 +445,15 @@ def journey_page(j):
     others = [x for x in JOURNEYS if x["slug"] != j["slug"] and x["status"] != "soon"]
     others = sorted(others, key=lambda x: (x["kind"] != j["kind"], abs(x["price"] - j["price"])))[:3]
     body = f"""
-{page_hero(f"{j['kind']} · {j['level']}", E(j['name']), j['summary'], j['art'], j['photo'], crumbs,
-           [("Duration", duration(j)), ("Route", j['route']), ("Level", j['level']), ("Price", price_label(j) + " pp")])}
+{page_hero(f"{j['kind']} · {j['level']}", E(j['name']), j['summary'], j['art'], j.get('hero', j['photo']), crumbs,
+           [("Duration", duration(j)), ("Route", j['route']), ("Level", j['level']), ("Price", price_label(j) + " pp")], split=bool(j.get('hero')))}
 <section class="section">
   <div class="wrap">
     <div class="detail">
       <div class="detail-main">
         <section class="prose reveal">{intro}</section>
         <section class="reveal"><h2>Day by day</h2><ol class="itinerary">{itinerary}</ol></section>
-        {f'<section><h2>From the trail</h2>{gallery(j["gallery"], "Photographs from our own walks on this route.")}</section>' if j.get("gallery") else ""}
+        {f'<section><h2>From the trail</h2>{gallery(j["gallery"], "Photographs from our own walks on this route.", essay=True)}</section>' if j.get("gallery") else ""}
         {trek_html}
         <section class="cols-2 reveal">
           <div><h2>Who it suits</h2>{checklist(j['for'])}</div>
@@ -956,7 +956,7 @@ def guide_page(p):
                 f'<div class="initial gh-photo" aria-hidden="true">{E(p["initial"])}</div>')
     story = "".join(f"<p>{E(x)}</p>" for x in p['story'])
     quote = f'<section class="pause section--stone"><div class="wrap reveal"><p class="quote">“{E(p["quote"])}”</p><span class="quote-cite">{E(first)}</span></div></section>' if p.get('quote') else ""
-    gal = gallery(p.get('gallery', []), p.get('gallery_note', ''))
+    gal = gallery(p.get('gallery', []), p.get('gallery_note', ''), essay=p['slug'] != 'ganesh')
     gal_html = f'<section class="section section--paper"><div class="wrap"><div class="heading-block reveal"><span class="eyebrow">Out there</span><h2 class="h2">On the trail with {E(first)}</h2></div>{gal}</div></section>' if gal else ""
     others = [o for o in TEAM if o['slug'] != p['slug']]
     body = f"""
@@ -964,7 +964,7 @@ def guide_page(p):
   <div class="wrap">
     {crumbs}
     <div class="gh-grid">
-      <div class="reveal">{hero_img}</div>
+      <div class="reveal gh-frame">{hero_img}</div>
       <div class="gh-copy reveal">
         <span class="eyebrow">{E(p['role'])}</span>
         <h1>{E(p['name'])}</h1>
