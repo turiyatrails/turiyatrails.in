@@ -507,6 +507,21 @@ PLACES = [
 ]
 
 # ---------------------------------------------------------------------------
+# Guest reviews of Oakakhi Stays, from Google (first name and initial only).
+# ---------------------------------------------------------------------------
+OAKAKHI_RATING = {"score": "5.0", "count": 203,
+                  "url": "https://www.google.com/travel/hotels/entity/CgoIpLLLgsayntBvEAE/reviews"}
+OAKAKHI_REVIEWS = [
+    ("Sharu A.", "December 2025", "The host Nishant has done a really good job with the rooms and service."),
+    ("Roshan G.", "November 2025", "Enjoyed their comforting hospitality with the view of Himalayan ranges in the morning and star gazing in the night."),
+    ("Sunita", "November 2025", "The fresh mountain air, delicious home-cooked meals, and tranquil surroundings made it the perfect escape from city life."),
+    ("Kshitij G.", "November 2025", "The location is peaceful with stunning mountain views, the rooms are clean and cozy, and the staff is extremely friendly and helpful."),
+    ("Abhishek S.", "October 2025", "Peaceful, clean, and surrounded by stunning mountain meadows and breathtaking sunset views. Truly a hidden gem!"),
+    ("Maneesh L.", "December 2025", "The location is great, the family suite is very spacious and amazingly done."),
+]
+OAKAKHI_MENTIONS = ["Home-cooked meals", "Himalayan views", "Sunsets", "A peaceful location", "Thoughtfully designed rooms", "Stargazing at night"]
+
+# ---------------------------------------------------------------------------
 # People (from the existing site)
 # ---------------------------------------------------------------------------
 TEAM = [
@@ -517,7 +532,7 @@ TEAM = [
      "quote": "I've hosted people at Oakakhi for years. What I want now is to actually walk them into the forest, not just point at it from the porch.",
      "tagline": "The trail, and the house at the end of it.",
      "story": [
-         "Nishant runs Oakakhi, the family home in the oak forest above Ranikhet where every Turiya journey begins. For years he welcomed travellers there, and watched most of them look at the forest from the porch and leave.",
+         "Nishant runs Oakakhi, the family home in the oak forest above Ranikhet where every Turiya journey begins. For years he has welcomed travellers there: Oakakhi holds a 5.0 rating across more than two hundred Google reviews, most of them about the home-cooked food, the views and the welcome. And he watched most of those guests look at the forest from the porch, and leave.",
          "Walking is where he goes quiet. Not the fast walking of a group racing to a viewpoint, but the long, steady kind, where the breath settles and the mind follows. He is BMC mountaineering certified, and leads every trek himself.",
          "On a walk with Nishant you will notice how little he says, and how much he sees: the change in the weather before it arrives, the tired walker at the back before they say anything, the clearing worth stopping in.",
      ],
@@ -525,7 +540,10 @@ TEAM = [
      "gallery": [("guide-nishant-2", "Nishant in a yellow jacket, eyes closed in the sun before the snow peaks", ""),
                  ("guide-nishant-3", "Nishant in an orange jacket on a ridge above Ranikhet", ""),
                  ("guide-nishant-4", "Nishant in a doorway, looking out at the mountains", "")],
-     "journeys": ["into-the-quiet", "the-seekers-ridge", "where-the-clouds-rest"]},
+     "journeys": ["into-the-quiet", "the-seekers-ridge", "where-the-clouds-rest"],
+     "guest_words": [("Sharu A.", "The host Nishant has done a really good job with the rooms and service."),
+                     ("Ravi P.", "He knows the mountains inside out and helped us explore the area like locals."),
+                     ("Roshan G.", "Enjoyed their comforting hospitality with the view of Himalayan ranges in the morning and star gazing in the night.")]},
     {"slug": "sachin", "initial": "S", "photo": "team-sachin", "name": "Sachin", "role": "Astro guide and storyteller",
      "stillness": "finds it under the stars",
      "bio": "Training with a stargazing company near Ramnagar and bringing every technique back to Turiya's astro nights. Believes the best fact is the one wrapped inside a story.",

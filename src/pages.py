@@ -5,7 +5,7 @@ from datetime import date
 from html import escape
 
 from . import markdown
-from .data import (FAQ, FEATURED_JOURNEYS, JOURNEYS, PLACES, PRICE_NOTE, SESSION_TERMS, SESSIONS, SITE, TEAM, TREKS,
+from .data import (OAKAKHI_MENTIONS, OAKAKHI_RATING, OAKAKHI_REVIEWS, FAQ, FEATURED_JOURNEYS, JOURNEYS, PLACES, PRICE_NOTE, SESSION_TERMS, SESSIONS, SITE, TEAM, TREKS,
                    USD_RATE, journey, rupees, trek, usd, wa)
 from .templates import ORG_LD, ROOT, WA_ICON, breadcrumbs, gallery, media, page, photo_sources, url
 
@@ -804,6 +804,24 @@ def oakakhi():
     </div>
   </div>
 </section>
+<section class="section section--dark">
+  <div class="wrap">
+    <div class="reviews-head reveal">
+      <div>
+        <span class="eyebrow">What guests say</span>
+        <h2 class="h2">In their words</h2>
+      </div>
+      <a class="rating-badge" href="{OAKAKHI_RATING['url']}" rel="noopener">
+        <span class="rb-score">{OAKAKHI_RATING['score']}</span>
+        <span class="rb-stars" aria-hidden="true">★★★★★</span>
+        <span class="rb-count">{OAKAKHI_RATING['count']} Google reviews</span>
+      </a>
+    </div>
+    <div class="reviews">{''.join(f'<figure class="review reveal"><blockquote>“{E(t)}”</blockquote><figcaption><span class="rv-name">{E(n)}</span><span class="rv-meta">Google review · {E(d)}</span></figcaption></figure>' for n, d, t in OAKAKHI_REVIEWS)}</div>
+    <div class="mentions reveal"><span class="eyebrow" style="margin:0">Guests mention most</span><ul class="chips">{''.join(f'<li>{E(m)}</li>' for m in OAKAKHI_MENTIONS)}</ul></div>
+    <p style="margin-top:2.5rem" class="reveal"><a class="link-arrow" href="{OAKAKHI_RATING['url']}" rel="noopener">Read all reviews on Google</a></p>
+  </div>
+</section>
 <section class="section section--stone">
   <div class="wrap">
     <div class="heading-block reveal"><span class="eyebrow">Getting here</span><h2 class="h2">The road to Ranikhet</h2><p class="lede">Ranikhet is in Almora district, Uttarakhand. Times below are approximate and depend on the roads and the season.</p></div>
@@ -956,6 +974,12 @@ def guide_page(p):
                 f'<div class="initial gh-photo" aria-hidden="true">{E(p["initial"])}</div>')
     story = "".join(f"<p>{E(x)}</p>" for x in p['story'])
     quote = f'<section class="pause section--stone"><div class="wrap reveal"><p class="quote">“{E(p["quote"])}”</p><span class="quote-cite">{E(first)}</span></div></section>' if p.get('quote') else ""
+    if p.get('guest_words'):
+        quote += f"""<section class="section section--dark"><div class="wrap">
+  <div class="reviews-head reveal"><div><span class="eyebrow">Guests on {E(first)}</span><h2 class="h2">From Oakakhi's Google reviews</h2></div>
+  <a class="rating-badge" href="{OAKAKHI_RATING['url']}" rel="noopener"><span class="rb-score">{OAKAKHI_RATING['score']}</span><span class="rb-stars" aria-hidden="true">★★★★★</span><span class="rb-count">{OAKAKHI_RATING['count']} Google reviews</span></a></div>
+  <div class="reviews">{''.join(f'<figure class="review reveal"><blockquote>“{E(t)}”</blockquote><figcaption><span class="rv-name">{E(n)}</span><span class="rv-meta">Google review of Oakakhi</span></figcaption></figure>' for n, t in p['guest_words'])}</div>
+</div></section>"""
     gal = gallery(p.get('gallery', []), p.get('gallery_note', ''), essay=p['slug'] != 'ganesh')
     gal_html = f'<section class="section section--paper"><div class="wrap"><div class="heading-block reveal"><span class="eyebrow">Out there</span><h2 class="h2">On the trail with {E(first)}</h2></div>{gal}</div></section>' if gal else ""
     others = [o for o in TEAM if o['slug'] != p['slug']]
