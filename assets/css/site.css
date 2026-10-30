@@ -345,6 +345,21 @@ body.menu-open { overflow: hidden; }
 .mj-meta { grid-column: 1; font-size: var(--fs-sm); color: var(--stone-600); }
 .mj-price { grid-column: 2; grid-row: 1 / span 2; align-self: center; font-family: var(--serif); font-size: 1.25rem; }
 .mini-journeys a:hover .mj-name { font-style: italic; }
+/* Photo essay: one large photo with smaller ones beside it. */
+.essay { display: grid; gap: .75rem; grid-template-columns: 1fr 1fr; }
+.essay .e-item { margin: 0; }
+.essay .e-item .media { height: 100%; aspect-ratio: 4 / 5; }
+.essay .e-item:first-child { grid-column: 1 / -1; }
+.essay .e-item:first-child .media { aspect-ratio: 4 / 3; }
+@media (min-width: 900px) {
+  .essay { grid-template-columns: 2fr 1fr; grid-auto-rows: 1fr; gap: 1rem; }
+  .essay .e-item:first-child { grid-column: 1; grid-row: 1 / span 2; }
+  .essay .e-item .media, .essay .e-item:first-child .media { aspect-ratio: auto; min-height: 260px; }
+  .essay:has(> :nth-child(5)) { grid-template-columns: 2fr 1fr 1fr; }
+}
+.gh-frame { position: relative; }
+.gh-frame::before { content: ""; position: absolute; left: -1.25rem; top: -1.25rem; width: 45%; height: 45%; border-left: 1px solid var(--moss-200); border-top: 1px solid var(--moss-200); z-index: -1; }
+.gh-frame::after { content: ""; position: absolute; right: -1.25rem; bottom: -1.25rem; width: 30%; height: 30%; border-right: 1px solid var(--moss-200); border-bottom: 1px solid var(--moss-200); z-index: -1; }
 .others { display: flex; flex-wrap: wrap; gap: 1.25rem 3rem; }
 
 /* ---------- Intro / editorial ---------- */

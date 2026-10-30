@@ -62,8 +62,14 @@ FOCUS = {
     "home-hero": "57% 60%",
     "home-intro": ("50% 10%", "34% 50%"),
     "journey-into-the-quiet": "50% 75%",
-    "journey-the-seekers-ridge": "50% 70%",
+    "journey-the-seekers-ridge": "50% 45%",
     "journey-where-the-river-begins": "50% 40%",
+    "journey-above-the-treeline-hero": ("60% 50%", "62% 50%"),
+    "journey-the-seekers-ridge-hero": ("50% 40%", "72% 50%"),
+    "journey-where-the-river-begins-hero": ("50% 60%", "45% 60%"),
+    "journey-above-the-treeline": "50% 35%",
+    "guide-nishant-2": "40% 30%",
+    "guide-sachin-3": "50% 40%",
     "trek-pandavkholi": "55% 60%",
     "trek-bharatkot": "60% 60%",
     "journeys-hero": "50% 62%",
@@ -105,8 +111,16 @@ def media(slot, scene, alt, cls="", eager=False, sizes="(min-width: 1240px) 560p
     return f'<div class="media {cls}">{inner}</div>'
 
 
-def gallery(items, note=""):
-    """A row of photos. items: (slot, alt, caption or "")."""
+def gallery(items, note="", essay=False):
+    """A set of photos. items: (slot, alt, caption or ""). essay=True lays them out as one
+    large photo with smaller ones beside it, instead of an even row."""
+    if essay:
+        figs = "".join(
+            f'<figure class="e-item">{media(slot, ("mist", i), alt, sizes="(min-width: 1240px) 760px, (min-width: 900px) 55vw, 92vw" if i == 0 else "(min-width: 1240px) 360px, (min-width: 900px) 27vw, 46vw")}</figure>'
+            for i, (slot, alt, cap) in enumerate(items) if photo_sources(slot)
+        )
+        note_html = f'<p class="g-note">{escape(note)}</p>' if note else ""
+        return f'<div class="essay reveal">{figs}</div>{note_html}' if figs else ""
     figs = "".join(
         f'<figure class="g-item">{media(slot, ("mist", i), alt, sizes="(min-width: 1240px) 270px, (min-width: 900px) 22vw, 46vw")}'
         + (f"<figcaption>{escape(cap)}</figcaption>" if cap else "") + "</figure>"
